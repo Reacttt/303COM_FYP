@@ -8,13 +8,15 @@ use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
-    public function printUser(){
+    public function printUser()
+    {
         $user = DB::table('user')->get();
-        return view('welcome',compact('user'));
+        return view('welcome', compact('user'));
     }
-  
-    public function insert(Request $request){
-        
+
+    public function insert(Request $request)
+    {
+
         // Validation for Form Database
         $this->validate($request, [
             'username' => 'required|max:255|unique:user,username',
@@ -27,14 +29,14 @@ class UserController extends Controller
         $password = Hash::make($request->input('password'));
         $email = $request->input('email');
 
-        $data=array(
-            "username"=>$username,
-            "password"=>$password,
-            "email"=>$email);
+        $data = array(
+            "username" => $username,
+            "password" => $password,
+            "email" => $email
+        );
 
         DB::table('user')->insert($data);
-            
-        return redirect()->route('login');
 
-        }
+        return redirect()->route('login');
     }
+}

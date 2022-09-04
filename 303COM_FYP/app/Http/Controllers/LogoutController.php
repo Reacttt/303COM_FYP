@@ -14,5 +14,4 @@ class LogoutController extends Controller
         return redirect('/')->with('alert', 'You successfully logged out!');
     }
 }
-
 ?>

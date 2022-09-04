@@ -32,16 +32,6 @@ class LoginController extends Controller
             } else {
                 return back()->with('fail', 'Password not matches');
             }
-
         }
-
-        /*
-        $user = User::where('username', $request->username)->where('password', $request->password)->first();
-        if ($user) {
-            Auth::login($user);
-            return redirect('/');
-        } else {
-            return back()->with('status', 'User does not exist');
-        } */
     }
 }
