@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
-use Symfony\Component\VarDumper\Caster\RedisCaster;
+use Illuminate\Support\Facades\Hash;
 
 class LoginController extends Controller
 {
@@ -23,12 +23,25 @@ class LoginController extends Controller
             'password' => 'required'
         ]);
 
+        $user = User::where('username', '=', $request->username)->first();
+
+        if ($user) {
+            if (Hash::check($request->password, $user->password)) {
+                Auth::login($user);
+                return redirect('/');
+            } else {
+                return back()->with('fail', 'Password not matches');
+            }
+
+        }
+
+        /*
         $user = User::where('username', $request->username)->where('password', $request->password)->first();
         if ($user) {
             Auth::login($user);
             return redirect('/');
         } else {
             return back()->with('status', 'User does not exist');
-        }
+        } */
     }
 }

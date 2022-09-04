@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -23,7 +24,7 @@ class UserController extends Controller
         ]);
 
         $username = $request->input('username');
-        $password = $request->input('password');
+        $password = Hash::make($request->input('password'));
         $email = $request->input('email');
 
         $data=array(

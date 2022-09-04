@@ -42,13 +42,13 @@
                <a href="#" class="nav-item nav-link">Currency</a>
                <a href="#" class="nav-item nav-link">Language</a>
                <?php
-                  if(Auth::user() != NULL){
-                     $username = Auth::user()->username; ?>
-                     <a href="/logout" class="nav-item nav-link"> {{ $username }} </a>
-                  <?php } else { ?>
-                     <a href="/register" class="nav-item nav-link">Sign Up</a>
-                     <a href="/login" class="nav-item nav-link">Login</a>
-                  <?php } ?>
+               if (Auth::user() != NULL) {
+                  $username = Auth::user()->username; ?>
+                  <a href="/logout" class="nav-item nav-link"> {{ $username }} </a>
+               <?php } else { ?>
+                  <a href="/register" class="nav-item nav-link">Sign Up</a>
+                  <a href="/login" class="nav-item nav-link">Login</a>
+               <?php } ?>
             </div>
          </nav>
       </div>
