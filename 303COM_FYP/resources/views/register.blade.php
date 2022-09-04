@@ -29,7 +29,7 @@
 <body>
 
    <div class='container'>
-      <form action="{{route('insertUser')}}" method="post" class="form-group" action="/register" enctype="multipart/form-data" align='center'>
+      <form action="{{route('registerUser')}}" method="post" class="form-group" action="/register" enctype="multipart/form-data" align='center'>
 
          <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>"><input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
 

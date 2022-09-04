@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
+use App\Models\User;
 
 class UserController extends Controller
 {
@@ -14,10 +16,9 @@ class UserController extends Controller
         return view('welcome', compact('user'));
     }
 
-    public function insert(Request $request)
+    public function registerUser(Request $request)
     {
 
-        // Validation for Form Database
         $this->validate($request, [
             'username' => 'required|max:255|unique:user,username',
             'password' => 'required|confirmed',
@@ -38,5 +39,33 @@ class UserController extends Controller
         DB::table('user')->insert($data);
 
         return redirect()->route('login');
+    }
+
+    public function loginUser(Request $request)
+    {
+
+        $request->validate([
+            'username' => 'required',
+            'password' => 'required'
+        ]);
+
+        $user = User::where('username', '=', $request->username)->first();
+
+        if ($user) {
+            if (Hash::check($request->password, $user->password)) {
+                Auth::login($user);
+                return redirect('/');
+            } else {
+                return back()->with('fail', 'Password not matches');
+            }
+        }
+    }
+
+    public function logoutUser()
+    {
+
+        Auth()->logout();
+
+        return redirect('/')->with('alert', 'You successfully logged out!');
     }
 }

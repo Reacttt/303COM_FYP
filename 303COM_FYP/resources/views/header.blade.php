@@ -44,7 +44,7 @@
                <?php
                if (Auth::user() != NULL) {
                   $username = Auth::user()->username; ?>
-                  <a href="/logout" class="nav-item nav-link"> {{ $username }} </a>
+                  <a href="/logoutUser" class="nav-item nav-link"> {{ $username }} </a>
                <?php } else { ?>
                   <a href="/register" class="nav-item nav-link">Sign Up</a>
                   <a href="/login" class="nav-item nav-link">Login</a>

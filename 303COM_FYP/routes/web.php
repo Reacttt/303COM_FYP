@@ -2,8 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 
-use App\Http\Controllers\LoginController;
-use App\Http\Controllers\LogoutController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\ViewController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,17 +16,10 @@ use App\Http\Controllers\LogoutController;
 |
 */
 
-Route::get('/', function () {
-    return view('home');
-});
+Route::get('/register', [ViewController::class, 'homePage']);
+Route::get('/register', [ViewController::class, 'registerPage']);
+Route::get('/login', [ViewController::class, 'loginPage']);
 
-Route::get('/register', function () {
-    return view('register');
-});
-
-Route::post('insertUser','App\Http\Controllers\UserController@insert')->name('insertUser');
-
-Route::get('/login', [LoginController::class, 'login'])->name('login');
-Route::post('/login', [LoginController::class, 'loginUser']);
-
-Route::get('/logout', [LogoutController::class, 'logout']);
+Route::post('registerUser', [UserController::class, 'registerUser'])->name('registerUser');
+Route::post('loginUser', [UserController::class, 'loginUser'])->name('loginUser');
+Route::get('logoutUser', [UserController::class, 'logoutUser'])->name('logoutUser');
