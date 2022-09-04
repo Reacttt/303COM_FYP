@@ -29,7 +29,7 @@
 <body>
 
    <form action="{{route('login')}}" method="post" class="form-group" action="/login" enctype="multipart/form-data">
-   @csrf
+      @csrf
       <input type="text" name="username" placeholder="Username" id="username" value="{{old('username')}}" required\>
       @error('username')
       <div class="error">
