@@ -23,11 +23,11 @@ class UserSeeder extends Seeder
             'email' => 'customer@estore.com'
         ]);
 
-        for($i = 0; $i < 3; $i++) {
+        for ($i = 0; $i < 3; $i++) {
             $users[] = [
                 'username' => Str::random(10),
                 'password' => Hash::make('password'),
-                'email' => Str::random(10).'@estore.com'
+                'email' => Str::random(10) . '@estore.com'
             ];
         }
 
