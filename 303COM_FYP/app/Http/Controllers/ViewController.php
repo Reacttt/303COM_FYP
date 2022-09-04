@@ -24,4 +24,7 @@ class ViewController extends Controller
 
     // Admin View
     
+    public function adminPage() {
+        return view("admin");
+    }
 }

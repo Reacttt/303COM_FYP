@@ -16,6 +16,7 @@ use App\Http\Controllers\ViewController;
 |
 */
 
+// Customer Routers
 Route::get('/register', [ViewController::class, 'homePage']);
 Route::get('/register', [ViewController::class, 'registerPage']);
 Route::get('/login', [ViewController::class, 'loginPage']);
@@ -23,3 +24,7 @@ Route::get('/login', [ViewController::class, 'loginPage']);
 Route::post('registerUser', [UserController::class, 'registerUser'])->name('registerUser');
 Route::post('loginUser', [UserController::class, 'loginUser'])->name('loginUser');
 Route::get('logoutUser', [UserController::class, 'logoutUser'])->name('logoutUser');
+
+// Admin Routers
+
+Route::get('/admin', [ViewController::class, 'adminPage']);
