@@ -41,14 +41,13 @@
                <a href="#" class="nav-item nav-link">Order History</a>
                <a href="#" class="nav-item nav-link">Currency</a>
                <a href="#" class="nav-item nav-link">Language</a>
-               <?php
-               if (Auth::user() != NULL) {
-                  $username = Auth::user()->username; ?>
+               @if (Auth::user() != NULL)
+                  @php $username = Auth::user()->username; @endphp
                   <a href="/logoutUser" class="nav-item nav-link"> {{ $username }} </a>
-               <?php } else { ?>
+               @else
                   <a href="/register" class="nav-item nav-link">Sign Up</a>
                   <a href="/login" class="nav-item nav-link">Login</a>
-               <?php } ?>
+               @endif
             </div>
          </nav>
       </div>
