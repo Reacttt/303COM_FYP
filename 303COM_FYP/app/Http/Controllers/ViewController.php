@@ -1,15 +1,14 @@
 <?php
 
 namespace App\Http\Controllers;
-
-use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class ViewController extends Controller
 {
     // Customer View
     public function homePage()
     {
-        return view("/");
+        return view("home");
     }
 
     public function registerPage()
@@ -20,6 +19,12 @@ class ViewController extends Controller
     public function loginPage()
     {
         return view("login");
+    }
+
+    public function categoryPage()
+    {
+        $category = DB::table('category')->select('id', 'name', 'description', 'image')->get();
+        return view("category", compact('category'));
     }
 
     // Admin View

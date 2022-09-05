@@ -1,0 +1,15 @@
+.wrapper-categoryrow {
+    display: grid;
+    grid-template-columns: repeat(5, 20fr);
+    gap: 90px;
+    margin-left: 200px;
+    margin-right: 150px;
+    justify-content: center;
+}
+
+.wrapper-category {
+    border-style: solid;
+    height: min-content;
+    padding-top: 20px;
+    padding-bottom: 10px;
+}
