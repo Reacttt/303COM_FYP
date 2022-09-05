@@ -25,7 +25,7 @@ class ViewController extends Controller
 
     public function categoryPage()
     {
-        $category = DB::table('category')->select('id', 'name', 'description', 'image')->get();
+        $category = DB::table('category')->select('category_id', 'category_name', 'category_description', 'category_image')->get();
         return view("category", compact('category'));
     }
 
@@ -35,7 +35,7 @@ class ViewController extends Controller
 
     public function cartPage()
     {
-        $cart = DB::table('cart')->select('id', 'user_id', 'product_id', 'quantity', 'subtotal');
+        $cart = DB::table('cart')->select('cart_id', 'user_id', 'product_id', 'product_quantity', 'product_subtotal');
         return view("cart", compact('cart'));
     }
 

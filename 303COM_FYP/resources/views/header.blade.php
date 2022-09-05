@@ -25,6 +25,13 @@
 </head>
 
 <body>
+
+   <!-- Alert -->
+
+   @if (session('alert'))
+      {{ session('alert') }}
+   @endif
+
    <!-- Nav Bar Start -->
    <div class="nav">
       <div class="container-fluid">
@@ -42,8 +49,8 @@
                <a href="#" class="nav-item nav-link">Currency</a>
                <a href="#" class="nav-item nav-link">Language</a>
                @if (Auth::user() != NULL)
-               @php $username = Auth::user()->username; @endphp
-               <a href="/logoutUser" class="nav-item nav-link"> {{ $username }} </a>
+               @php $user_username = Auth::user()->user_username; @endphp
+               <a href="/logoutUser" class="nav-item nav-link"> {{ $user_username }} </a>
                @else
                <a href="/register" class="nav-item nav-link">Sign Up</a>
                <a href="/login" class="nav-item nav-link">Login</a>

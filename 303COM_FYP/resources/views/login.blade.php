@@ -30,15 +30,15 @@
 
    <form action="{{route('loginUser')}}" method="post" class="form-group" action="/login" enctype="multipart/form-data">
       @csrf
-      <input type="text" name="username" placeholder="Username" id="username" value="{{old('username')}}" required\>
-      @error('username')
+      <input type="text" name="user_username" placeholder="Username" value="{{old('user_username')}}">
+      @error('user_username')
       <div class="error">
          {{ $message }}
       </div>
       @enderror
       <br>
-      <input type="text" name="password" placeholder="Password" id="password" required\>
-      @error('password')
+      <input type="text" name="user_password" placeholder="Password">
+      @error('user_password')
       <div class="error">
          {{ $message }}
       </div>

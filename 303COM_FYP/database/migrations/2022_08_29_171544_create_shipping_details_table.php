@@ -14,16 +14,16 @@ return new class extends Migration
     public function up()
     {
         Schema::create('shipping_details', function (Blueprint $table) {
-            $table->increments('id');
+            $table->increments('shipping_details_id');
             $table->integer('user_id');
-            $table->string('first_name');
-            $table->string('last_name');
-            $table->string('address_line1');
-            $table->string('address_line2');
-            $table->string('city');
-            $table->string('postal_code');
-            $table->string('country');
-            $table->string('contact');
+            $table->string('shipping_first_name');
+            $table->string('shipping_last_name');
+            $table->string('shipping_address_line1');
+            $table->string('shipping_address_line2');
+            $table->string('shipping_city');
+            $table->string('shipping_postal_code');
+            $table->string('shipping_country');
+            $table->string('shipping_contact');
             $table->timestamps();
         });
     }

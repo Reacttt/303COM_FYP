@@ -20,44 +20,49 @@ class UserController extends Controller
     {
 
         $this->validate($request, [
-            'username' => 'required|max:255|unique:user,username',
-            'password' => 'required|confirmed',
-            'password_confirmation' => 'required',
-            'email' => 'required|email|max:255',
+            'user_username' => 'required|max:255|unique:user,user_username',
+            'user_password' => 'required|confirmed',
+            'user_password_confirmation' => 'required',
+            'user_email' => 'required|email|max:255',
+            'user_status'
         ]);
 
-        $username = $request->input('username');
-        $password = Hash::make($request->input('password'));
-        $email = $request->input('email');
+        $user_username = $request->input('user_username');
+        $user_password = Hash::make($request->input('user_password'));
+        $user_email = $request->input('user_email');
+        $user_status = $request->input('user_status');
 
         $data = array(
-            "username" => $username,
-            "password" => $password,
-            "email" => $email
+            "user_username" => $user_username,
+            "user_password" => $user_password,
+            "user_email" => $user_email,
+            "user_status" => $user_status
         );
 
         DB::table('user')->insert($data);
 
-        return redirect()->route('login');
+        return redirect('login');
     }
 
     public function loginUser(Request $request)
     {
 
         $request->validate([
-            'username' => 'required',
-            'password' => 'required'
+            'user_username' => 'required',
+            'user_password' => 'required'
         ]);
 
-        $user = User::where('username', '=', $request->username)->first();
+        $user = User::where('user_username', '=', $request->user_username)->first();
 
         if ($user) {
-            if (Hash::check($request->password, $user->password)) {
+            if (Hash::check($request->user_password, $user->user_password)) {
                 Auth::login($user);
-                return redirect('/');
+                return redirect('/')->with('alert', 'User login successfully!');
             } else {
-                return back()->with('fail', 'Password not matches');
+                return back()->with('alert', 'Password does not matches!');
             }
+        } else {
+            return back()->with('alert', 'User not found!');
         }
     }
 

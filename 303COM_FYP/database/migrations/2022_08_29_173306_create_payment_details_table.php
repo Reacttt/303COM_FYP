@@ -14,12 +14,12 @@ return new class extends Migration
     public function up()
     {
         Schema::create('payment_details', function (Blueprint $table) {
-            $table->id();
+            $table->increments('payment_details_id');
             $table->integer('order_id');
-            $table->double('total');
-            $table->string('method');
-            $table->string('transaction');
-            $table->string('status');
+            $table->double('payment_total');
+            $table->string('payment_method');
+            $table->string('payment_transaction');
+            $table->string('payment_status');
             $table->timestamps();
         });
     }

@@ -36,8 +36,8 @@
 
       <div class='wrapper-category'>
          <center>
-            <img src=images/{{$category->image}} height='100' width='150'></a>
-            <h4> {{ $category->name }} </h4>
+            <img src=images/{{$category->category_image}} height='100' width='150'></a>
+            <h4> {{ $category->category_name }} </h4>
          </center>
       </div>
       <?php

@@ -16,33 +16,33 @@ class CategorySeeder extends Seeder
     public function run()
     {
         DB::table('category')->insert([
-            'name' => 'Fashion & Beauty',
-            'description' => 'All about fashion and beauty products',
-            'image' => 'brand-1.png'
+            'category_name' => 'Fashion & Beauty',
+            'category_description' => 'All about fashion and beauty products',
+            'category_image' => 'brand-1.png'
         ]);
 
         DB::table('category')->insert([
-            'name' => 'Kids & Babies',
-            'description' => 'All about kids and babies products',
-            'image' => 'brand-2.png'
+            'category_name' => 'Kids & Babies',
+            'category_description' => 'All about kids and babies products',
+            'category_image' => 'brand-2.png'
         ]);
 
         DB::table('category')->insert([
-            'name' => 'Men & Women Clothes',
-            'description' => 'All about men and women products',
-            'image' => 'brand-3.png'
+            'category_name' => 'Men & Women Clothes',
+            'category_description' => 'All about men and women products',
+            'category_image' => 'brand-3.png'
         ]);
 
         DB::table('category')->insert([
-            'name' => 'Gadgets & Accessories',
-            'description' => 'All about gadgets and accessories products',
-            'image' => 'brand-4.png'
+            'category_name' => 'Gadgets & Accessories',
+            'category_description' => 'All about gadgets and accessories products',
+            'category_image' => 'brand-4.png'
         ]);
 
         DB::table('category')->insert([
-            'name' => 'Electronic & Accessories',
-            'description' => 'All about electronic and accessories products',
-            'image' => 'brand-5.png'
+            'category_name' => 'Electronic & Accessories',
+            'category_description' => 'All about electronic and accessories products',
+            'category_image' => 'brand-5.png'
         ]);
     }
 }

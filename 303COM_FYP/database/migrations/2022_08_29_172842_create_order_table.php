@@ -14,19 +14,19 @@ return new class extends Migration
     public function up()
     {
         Schema::create('order', function (Blueprint $table) {
-            $table->id();
+            $table->increments('order_id');
             $table->integer('user_id');
-            $table->double('shipping_fee');
-            $table->double('total');
-            $table->string('status');
-            $table->string('first_name');
-            $table->string('last_name');
-            $table->string('address_line1');
-            $table->string('address_line2');
-            $table->string('city');
-            $table->string('postal_code');
-            $table->string('country');
-            $table->string('contact');
+            $table->double('order_shipping_fee');
+            $table->double('order_total');
+            $table->string('order_status');
+            $table->string('order_first_name');
+            $table->string('order_last_name');
+            $table->string('order_address_line1');
+            $table->string('order_address_line2');
+            $table->string('order_city');
+            $table->string('order_postal_code');
+            $table->string('order_country');
+            $table->string('order_contact');
             $table->timestamps();
         });
     }

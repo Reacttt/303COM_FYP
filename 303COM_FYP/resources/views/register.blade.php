@@ -29,34 +29,34 @@
 <body>
 
    <div class='container'>
-      <form action="{{route('registerUser')}}" method="post" class="form-group" action="/register" enctype="multipart/form-data" align='center'>
+      <form action="{{route('registerUser')}}" method="post" class="form-group" enctype="multipart/form-data" align='center'>
 
          <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>"><input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
 
-         <input type="text" class="form-control" placeholder="Username" name="username">
-         @error('username')
+         <input type="text" class="form-control" placeholder="Username" name="user_username" value="{{old('user_username')}}">
+         @error('user_username')
          <div class="error">
             {{ $message }}
          </div>
          @enderror
          <br>
-         <input type="password" class="form-control" placeholder="Password" name="password">
-         @error('password')
+         <input type="password" class="form-control" placeholder="Password" name="user_password">
+         @error('user_password')
          <div class="error">
             {{ $message }}
          </div>
          @enderror
          <br>
-         <input type="password" class="form-control" placeholder="Confirm Password" name="password_confirmation">
-         @error('password_confirmation')
+         <input type="password" class="form-control" placeholder="Confirm Password" name="user_password_confirmation">
+         @error('user_password_confirmation')
          <div class="error">
             {{ $message }}
          </div>
          @enderror
          <br>
-         <input type="text" class="form-control" placeholder="Email" name="email">
-         <input type="hidden" class="form-control" name="role" value="1">
-         @error('email')
+         <input type="text" class="form-control" placeholder="Email" name="user_email" value="{{old('user_email')}}">
+         <input type="hidden" class="form-control" name="user_status" value="1">
+         @error('user_email')
          <div class="error">
             {{ $message }}
          </div>
