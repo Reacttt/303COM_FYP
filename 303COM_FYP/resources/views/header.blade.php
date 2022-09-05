@@ -42,11 +42,11 @@
                <a href="#" class="nav-item nav-link">Currency</a>
                <a href="#" class="nav-item nav-link">Language</a>
                @if (Auth::user() != NULL)
-                  @php $username = Auth::user()->username; @endphp
-                  <a href="/logoutUser" class="nav-item nav-link"> {{ $username }} </a>
+               @php $username = Auth::user()->username; @endphp
+               <a href="/logoutUser" class="nav-item nav-link"> {{ $username }} </a>
                @else
-                  <a href="/register" class="nav-item nav-link">Sign Up</a>
-                  <a href="/login" class="nav-item nav-link">Login</a>
+               <a href="/register" class="nav-item nav-link">Sign Up</a>
+               <a href="/login" class="nav-item nav-link">Login</a>
                @endif
             </div>
          </nav>
