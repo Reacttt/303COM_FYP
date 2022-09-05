@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('description');
             $table->binary('image');
-            $table->integer('quantity');
+            $table->integer('stock');
             $table->double('price');
             $table->string('status');
             $table->timestamps();

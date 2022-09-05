@@ -73,14 +73,16 @@
                   <button><i class="fa fa-search"></i></button>
                </div>
             </div>
+            @if (Auth::user() != NULL)
             <div class="col-md-3">
                <div class="user">
-                  <a href="cart.html" class="btn cart">
+                  <a href="/cart" class="btn cart">
                      <i class="fa fa-shopping-cart"></i>
                      <span>(0)</span>
                   </a>
                </div>
             </div>
+            @endif
          </div>
       </div>
    </div>
