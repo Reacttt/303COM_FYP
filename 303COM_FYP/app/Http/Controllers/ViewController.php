@@ -31,6 +31,7 @@ class ViewController extends Controller
 
     public function productPage()
     {
+        return view('productList');
     }
 
     public function cartPage()

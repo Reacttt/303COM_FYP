@@ -41,7 +41,7 @@ class UserController extends Controller
 
         DB::table('user')->insert($data);
 
-        return redirect('login');
+        return redirect('login')->with('alert', 'User registered successfully!');
     }
 
     public function loginUser(Request $request)
@@ -59,7 +59,7 @@ class UserController extends Controller
             if (Hash::check($request->user_password, $user->user_password)) {
                 Session()->start();
                 Session()->put('user_username', $request->user_username);
-                
+
                 return redirect('/')->with('alert', 'User login successfully!');
             } else {
                 return back()->with('alert', 'Password does not matches!');

@@ -21,29 +21,42 @@
    <link href="lib/slick/slick-theme.css" rel="stylesheet">
 
    <!-- Template Stylesheet -->
-   <link rel="stylesheet" href="<?php echo asset('css/header.css') ?>" type="text/css">
+   <link rel="stylesheet" href="<?php echo asset('css/category.css') ?>" type="text/css">
+
+   <!-- Customized Bootstrap Stylesheet -->
+   <link href="css/category.min.css" rel="stylesheet">
 </head>
 
 @include('header')
 
 <body>
 
-   <!-- <div class="wrapper-categoryrow"> -->
-   <?php $counter = 0; ?>
-   <div class='wrapper-categoryrow'>
-
-      @foreach($category as $category)
-
-      <div class='wrapper-category'>
-         <center>
-            <img src=images/{{$category->category_image}} height='100' width='150'></a>
-            <h4> {{ $category->category_name }} </h4>
-         </center>
+   <!-- Category Start -->
+   <div class="container-xxl py-5">
+      <div class="container">
+         <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 600px;">
+            <h1 class="mb-3">Category</h1>
+         </div>
+         <!-- Cateory Button Start -->
+         <div class="row g-4">
+            @foreach($category as $category)
+            <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.1s">
+               <a class="cat-item d-block bg-light text-center rounded p-3" href="">
+                  <div class="rounded p-4">
+                     <div class="icon mb-3">
+                        <i class="fa fa-shopping-bag"></i>
+                     </div>
+                     <h6> {{ $category->category_name }}</h6>
+                     <span>100 Items</span>
+                  </div>
+               </a>
+            </div>
+            @endforeach
+            <!-- Cateory Button End -->
+         </div>
       </div>
-      <?php
-      $counter++; ?>
-      @endforeach
    </div>
+   <!-- Category End -->
 
 </body>
 
