@@ -16,7 +16,7 @@ class ProductSeeder extends Seeder
     public function run()
     {
         $category_id_list = DB::table('category')->pluck('category_id');
-        for ($i = 0; $i < 6; $i++) {
+        for ($i = 0; $i < 10; $i++) {
             $products[] = [
                 'category_id' => rand(1,6),
                 'product_name' => 'product name #' . $i+1,
