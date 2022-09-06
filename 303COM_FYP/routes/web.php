@@ -33,3 +33,5 @@ Route::get('logoutUser', [UserController::class, 'logoutUser'])->name('logoutUse
 // Admin Routers
 
 Route::get('/admin', [ViewController::class, 'adminPage']);
+
+Route::get('/addProduct', [ViewController::class, 'addProductPage']);

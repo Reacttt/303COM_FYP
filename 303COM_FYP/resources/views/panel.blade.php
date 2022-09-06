@@ -42,7 +42,7 @@
                 <ul class="nav navbar-nav">
                     <!-- Start Dashboard -->
                     <li class="active">
-                        <a href="index.html"><i class="menu-icon fa fa-laptop"></i>Dashboard </a>
+                        <a href="/admin"><i class="menu-icon fa fa-laptop"></i>Dashboard </a>
                     </li>
                     <!-- End Dashboard -->
                     
@@ -51,9 +51,10 @@
                     <li class="menu-item-has-children dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-table"></i>Products</a>
                         <ul class="sub-menu children dropdown-menu">
-                            <li><i class="fa fa-plus"></i><a href="tables-basic.html">Add Product</a></li>
-                            <li><i class="fa fa-upload"></i><a href="tables-data.html">Update Product</a></li>
-                            <li><i class="fa fa-minus"></i><a href="tables-data.html">Delete Product</a></li>
+                            <li><i class="fa fa-plus"></i><a href="/addProduct">Add New Product</a></li>
+                            <li><i class="fa fa-upload"></i><a href="/updateProduct">Update Product Details</a></li>
+                            <li><i class="fa fa-upload"></i><a href="/updateStock">Update Product Stock</a></li>
+                            <li><i class="ti ti-trash"></i><a href="/deleteProduct">Delete Product</a></li>
                         </ul>
                     </li>
                 </ul>
