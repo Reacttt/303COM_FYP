@@ -37,7 +37,7 @@
 
             <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
                <div class="navbar-nav mr-auto">
-                  <a href="#" class="nav-item nav-link">Admin Centre</a>
+                  <a href="/admin" class="nav-item nav-link">Admin Centre</a>
                </div>
                <a href="#" class="nav-item nav-link">Order History</a>
                <a href="#" class="nav-item nav-link">Currency</a>
