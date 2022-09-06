@@ -42,9 +42,9 @@
                <a href="#" class="nav-item nav-link">Order History</a>
                <a href="#" class="nav-item nav-link">Currency</a>
                <a href="#" class="nav-item nav-link">Language</a>
-               @if (Auth::user() != NULL)
-               @php $user_username = Auth::user()->user_username; @endphp
-               <a href="/logoutUser" class="nav-item nav-link"> {{ $user_username }} </a>
+               @php $username = Session::get('user_username') @endphp
+               @if ($username != NULL)
+               <a href="/logoutUser" class="nav-item nav-link"> {{ $username }} </a>
                @else
                <a href="/register" class="nav-item nav-link">Sign Up</a>
                <a href="/login" class="nav-item nav-link">Login</a>

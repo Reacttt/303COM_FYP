@@ -52,11 +52,14 @@ class UserController extends Controller
             'user_password' => 'required'
         ]);
 
+        // Check if Username Exist
         $user = User::where('user_username', '=', $request->user_username)->first();
 
         if ($user) {
             if (Hash::check($request->user_password, $user->user_password)) {
-                Auth::login($user);
+                Session()->start();
+                Session()->put('user_username', $request->user_username);
+                
                 return redirect('/')->with('alert', 'User login successfully!');
             } else {
                 return back()->with('alert', 'Password does not matches!');
@@ -69,7 +72,7 @@ class UserController extends Controller
     public function logoutUser()
     {
 
-        Auth()->logout();
+        Session()->flush();
 
         return redirect('/')->with('alert', 'You successfully logged out!');
     }
