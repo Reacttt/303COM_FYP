@@ -26,12 +26,6 @@
 
 <body>
 
-   <!-- Alert -->
-
-   @if (session('alert'))
-      {{ session('alert') }}
-   @endif
-
    <!-- Nav Bar Start -->
    <div class="nav">
       <div class="container-fluid">
@@ -106,5 +100,13 @@
    <!-- Template Javascript -->
    <script src="js/main.js"></script>
 </body>
+
+<script>
+   var msg = '{{Session::get('alert')}}';
+   var exist = '{{Session::has('alert')}}';
+   if (exist) {
+      alert(msg);
+   }
+</script>
 
 </html>
