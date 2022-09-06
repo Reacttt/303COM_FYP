@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ViewController;
+use App\Http\Controllers\ProductController;
 
 /*
 |--------------------------------------------------------------------------
@@ -35,3 +36,5 @@ Route::get('logoutUser', [UserController::class, 'logoutUser'])->name('logoutUse
 Route::get('/admin', [ViewController::class, 'adminPage']);
 
 Route::get('/addProduct', [ViewController::class, 'addProductPage']);
+
+Route::post('addProduct', [ProductController::class, 'addProduct'])->name('addProduct');

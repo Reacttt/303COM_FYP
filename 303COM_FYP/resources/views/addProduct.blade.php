@@ -120,12 +120,12 @@
                   <strong>Add Product</strong>
                </div>
                <div class="card-body card-block">
-                  <form action="#" method="post" enctype="multipart/form-data" class="form-horizontal">
+                  <form action="{{route('addProduct')}}" method="post" enctype="multipart/form-data" class="form-horizontal">
+                     <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>"><input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
                      <div class="row form-group">
                         <div class="col col-md-3"><label for="select" class=" form-control-label">Product Category</label></div>
                         <div class="col-12 col-md-9">
-                           <select name="select" id="select" class="form-control">
-                              <option value="0">Please select</option>
+                           <select name="category_id" class="form-control">
                               <option value="1">Category #1</option>
                               <option value="2">Category #2</option>
                               <option value="3">Category #3</option>
@@ -134,24 +134,60 @@
                      </div>
                      <div class="row form-group">
                         <div class="col col-md-3"><label for="text-input" class=" form-control-label">Product Name</label></div>
-                        <div class="col-12 col-md-9"><input type="text" id="text-input" name="text-input" placeholder="Text" class="form-control"><small class="form-text text-muted">This is a help text</small></div>
+                        <div class="col-12 col-md-9"><input type="text" name="product_name" placeholder="Text" class="form-control" value="{{old('product_name')}}">
+                           @error('product_name')
+                           <small>
+                              {{ $message }}
+                           </small>
+                           @enderror
+                        </div>
                      </div>
                      <div class="row form-group">
                         <div class="col col-md-3"><label for="textarea-input" class=" form-control-label">Product Description</label></div>
-                        <div class="col-12 col-md-9"><textarea name="textarea-input" id="textarea-input" rows="4" placeholder="Content..." class="form-control"></textarea></div>
+                        <div class="col-12 col-md-9"><textarea name="product_description" rows="4" placeholder="Content..." class="form-control" value="{{old('product_description')}}"></textarea>
+                           @error('product_description')
+                           <small>
+                              {{ $message }}
+                           </small>
+                           @enderror
+                        </div>
                      </div>
                      <!-- Change to Slider -->
                      <div class="row form-group">
                         <div class="col col-md-3"><label for="text-input" class=" form-control-label">Product Price</label></div>
-                        <div class="col-12 col-md-9"><input type="text" id="text-input" name="text-input" placeholder="Text" class="form-control"><small class="form-text text-muted">This is a help text</small></div>
+                        <div class="col-12 col-md-9"><input type="number" name="product_price" placeholder="0" class="form-control" value="{{old('product_price')}}">
+                           @error('product_price')
+                           <small>
+                              {{ $message }}
+                           </small>
+                           @enderror
+                        </div>
                      </div>
                      <div class="row form-group">
                         <div class="col col-md-3"><label for="text-input" class=" form-control-label">Product Stock</label></div>
-                        <div class="col-12 col-md-9"><input type="text" id="text-input" name="text-input" placeholder="Text" class="form-control"><small class="form-text text-muted">This is a help text</small></div>
+                        <div class="col-12 col-md-9"><input type="number" name="product_stock" placeholder="0" class="form-control" value="{{old('user_stock')}}">
+                           @error('product_stock')
+                           <small>
+                              {{ $message }}
+                           </small>
+                           @enderror
+                        </div>
                      </div>
                      <div class="row form-group">
                         <div class="col col-md-3"><label for="file-input" class=" form-control-label">Product images</label></div>
-                        <div class="col-12 col-md-9"><input type="file" id="file-input" name="file-input" class="form-control-file"></div>
+                        <div class="col-12 col-md-9"><input type="file" name="product_image" class="form-control-file" value="{{old('product_image')}}">
+                           @error('product_image')
+                           <small>
+                              {{ $message }}
+                           </small>
+                           @enderror
+                        </div>
+                     </div>
+                     <input type="hidden" class="form-control" name="product_status" value="1">
+                     <div>
+                        <button type="submit" class="btn btn-lg btn-info btn-block">
+                           <span>Add Product</span>
+                        </button>
                      </div>
                   </form>
                </div>
