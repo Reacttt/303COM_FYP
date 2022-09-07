@@ -29,6 +29,10 @@
                   <form action="{{route('updateProductDetails')}}" method="post" enctype="multipart/form-data" class="form-horizontal">
                      @csrf
                      <div class="row form-group">
+                        <div class="col col-md-3"><label for="text-input" class=" form-control-label">Product Image</label></div>
+                        <img class="center" width="150" height="150" src="images/{{ $product->product_image }}" alt="">
+                     </div>
+                     <div class="row form-group">
                         <div class="col col-md-3"><label for="text-input" class=" form-control-label">Product ID</label></div>
                         <div class="col-12 col-md-9"><input type="text" name="product_id" placeholder="Text" class="form-control" value="{{ $product->product_id }}" readonly>
                         </div>

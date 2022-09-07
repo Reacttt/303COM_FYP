@@ -70,8 +70,8 @@
                                  <th>Category</th>
                                  <th>Name</th>
                                  <th>Description</th>
-                                 <th>Stock</th>
                                  <th>Price</th>
+                                 <th>Stock</th>
                                  <th></th>
                               </tr>
                            </thead>
@@ -87,8 +87,8 @@
                                  <td>{{ $category_name }}</td>
                                  <td>{{ $product->product_name }}</td>
                                  <td>{{ $product->product_description}}</td>
-                                 <td>{{ $product->product_stock }}</td>
                                  <td>{{ $product->product_price }}</td>
+                                 <td>{{ $product->product_stock }}</td>
                                  <td>
                                     <form action="{{route('updateProductStatus')}}" method="post" class="form-group" action="/login" enctype="multipart/form-data">
                                        @csrf

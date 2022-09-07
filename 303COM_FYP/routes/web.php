@@ -46,3 +46,6 @@ Route::post('updateProductStatus', [ProductController::class, 'updateProductStat
 
 Route::get('/updateProduct', [ViewController::class, 'updateProductPage']);
 Route::post('updateProductDetails', [ProductController::class, 'updateProductDetails'])->name('updateProductDetails');
+
+Route::get('/updateStock', [ViewController::class, 'updateStockPage']);
+Route::post('updateProductStock', [ProductController::class, 'updateProductStock'])->name('updateProductStock');

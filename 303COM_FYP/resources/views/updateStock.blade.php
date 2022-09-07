@@ -22,9 +22,6 @@
    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lykmapipo/themify-icons@0.1.2/css/themify-icons.css">
    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pixeden-stroke-7-icon@1.2.3/pe-icon-7-stroke/dist/pe-icon-7-stroke.min.css">
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.2.0/css/flag-icon.min.css">
-   <link rel="stylesheet" href="assets/css/cs-skin-elastic.css">
-   <link rel="stylesheet" href="assets/css/lib/datatable/dataTables.bootstrap.min.css">
-   <link rel="stylesheet" href="assets/css/style.css">
 
    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800' rel='stylesheet' type='text/css'>
 
@@ -69,10 +66,7 @@
                                  <th>Image</th>
                                  <th>Category</th>
                                  <th>Name</th>
-                                 <th>Description</th>
-                                 <th>Price</th>
                                  <th>Stock</th>
-                                 <th></th>
                               </tr>
                            </thead>
                            <tbody>
@@ -86,45 +80,63 @@
                                  </td>
                                  <td>{{ $category_name }}</td>
                                  <td>{{ $product->product_name }}</td>
-                                 <td>{{ $product->product_description}}</td>
-                                 <td>{{ $product->product_price }}</td>
-                                 <td>{{ $product->product_stock }}</td>
                                  <td>
-                                    <form action="{{route('findProduct')}}" method="post" class="form-group" action="/login" enctype="multipart/form-data">
-                                       @csrf
-                                       <input type="hidden" class="form-control" name="product_id" placeholder="product_id" value="{{ $product->product_id }}">
-                                       <center><button type="submit" class='btn btn-warning'>Update</button><br><br></center>
-                                    </form>
+                                    <div class='counter'>
+                                       @if ($product->product_stock > 0)
+                                       <form action={{route("updateProductStock")}} method='post' class='form-group' enctype='multipart/form-data'>
+                                          @csrf
+                                          <input type="hidden" class="form-control" name="product_id" value="{{ $product->product_id }}">
+                                          <input type="hidden" class="form-control" name="product_stock" value="{{ $product->product_stock }}">
+                                          <input type="hidden" class="form-control" name="quantity" value=-1>
+                                          <button type="submit" class="btn btn-outline-secondary btn-sm"><i class="fa fa-minus"></i></button>
+                                       </form>
+                                       @else
+                                       <button type="submit" class="btn btn-outline-secondary btn-sm" disabled><i class="fa fa-minus"></i></button>
+                                       @endif
+                                       &nbsp; {{ $product->product_stock }} &nbsp;
+                                       @if ($product->product_stock < 50)
+                                       <form action={{route("updateProductStock")}} method='post' class='form-group' enctype='multipart/form-data'>
+                                          @csrf
+                                          <input type="hidden" class="form-control" name="product_id" value="{{ $product->product_id }}">
+                                          <input type="hidden" class="form-control" name="product_stock" value="{{ $product->product_stock }}">
+                                          <input type="hidden" class="form-control" name="quantity" value=1>
+                                          <button type="submit" class="btn btn-outline-secondary btn-sm"><i class="fa fa-plus"></i></button>
+                                       </form>
+                                       @else
+                                       <button type="submit" class="btn btn-outline-secondary btn-sm" disabled><i class="fa fa-plus"></i></button>
+                                       @endif
+                                    </div>
                                  </td>
                               </tr>
-                              @endif
-                              @endforeach
                            </tbody>
-                        </table>
                      </div>
+                     </tr>
+                     @endif
+                     @endforeach
+                     </tbody>
+                     </table>
                   </div>
-               </div>
-
-
-            </div>
-         </div><!-- .animated -->
-      </div><!-- .content -->
-
-
-      <div class="clearfix"></div>
-
-      <footer class="site-footer">
-         <div class="footer-inner bg-white">
-            <div class="row">
-               <div class="col-sm-6">
-                  Copyright &copy; 2018 Ela Admin
-               </div>
-               <div class="col-sm-6 text-right">
-                  Designed by <a href="https://colorlib.com">Colorlib</a>
                </div>
             </div>
          </div>
-      </footer>
+      </div><!-- .animated -->
+   </div><!-- .content -->
+
+
+   <div class="clearfix"></div>
+
+   <footer class="site-footer">
+      <div class="footer-inner bg-white">
+         <div class="row">
+            <div class="col-sm-6">
+               Copyright &copy; 2018 Ela Admin
+            </div>
+            <div class="col-sm-6 text-right">
+               Designed by <a href="https://colorlib.com">Colorlib</a>
+            </div>
+         </div>
+      </div>
+   </footer>
 
    </div><!-- /#right-panel -->
 
