@@ -144,8 +144,8 @@
 										<h6 class="l-through"> {{ $product_price_old }}</h6>
 									</div>
 									<div class="prd-bottom">
-										@php $username = Session::get('user_username') @endphp
-										<a href="/addCart/{{ $product->product_id }}/{{ $username }}" class="social-info">
+										@php $user_username = Session::get('user_username') @endphp
+										<a href="/addCart/{{ $product->product_id }}/{{ $user_username }}" class="social-info">
 											<i class="fa fa-shopping-bag"></i>
 											<p class="hover-text">add to bag</p>
 										</a>

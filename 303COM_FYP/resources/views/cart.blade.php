@@ -32,15 +32,17 @@
          <!-- <h5 class='Action'>Remove all</h5> -->
       </div>
 
+      @foreach($cart as $cart)
+      @php $product = DB::table('product')->where('product_id', $cart->product_id)->first(); @endphp
       <div class='Cart-Items'>
          <div class='image-box'>
-            <img src="images/brand-1.png" height='100' width='150' />
+            <img src="images/{{ $product->product_image }}" height='200' width='200' />
          </div>
          <div class='about'>
-            <h1 class='title'> Product Name </h1>
-            <h3 class='subtitle'> Product Description</h3>
+            <h1 class='title'> {{ $product->product_name }}</h1>
+            <h3 class='subtitle'> {{ $product->product_description }}</h3>
             <br><br><br><br><br>
-            <h3 class='subtitle'>Unit Price: Unit Price $</h3>
+            <h3 class='subtitle'>Unit Price: {{ $product->product_price }}</h3>
          </div>
 
          <div class='counter'>
@@ -48,7 +50,7 @@
             <!-- Decrease Button -->
             <button type="submit">-</button>
 
-            <div class='count'>1</div>
+            <div class='count'> {{ $cart->product_quantity }}</div>
 
             <!-- Increase Button -->
             <button type="submit">+</button>
@@ -56,7 +58,8 @@
          </div>
          <div class='prices'>
             <!-- Display Unit Price -->
-            <div class='amount'> Unit Price $</div>
+            @php $subTotal = $product->product_price * $cart->product_quantity; @endphp
+            <div class='amount'> {{ $subTotal }} </div>
             <br /><br /><br /><br /><br />
 
             <!-- Remove Button -->
@@ -64,6 +67,8 @@
             </form>
          </div>
       </div>
+      @endforeach
+      <!-- End Cart Item -->
 
       <hr>
       <br><br>

@@ -37,7 +37,7 @@ class ViewController extends Controller
 
     public function cartPage()
     {
-        $cart = DB::table('cart')->select('cart_id', 'user_id', 'product_id', 'product_quantity', 'product_subtotal');
+        $cart = DB::table('cart')->select('cart_id', 'user_id', 'product_id', 'product_quantity')->get();
         return view("cart", compact('cart'));
     }
 

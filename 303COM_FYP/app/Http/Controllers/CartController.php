@@ -7,11 +7,11 @@ use Illuminate\Support\Facades\DB;
 
 class CartController extends Controller
 {
-    public function addCart($product_id = null, $username = null)
+    public function addCart($product_id = null, $user_username = null)
     {
         $quantity = 1;
 
-        $user_id = DB::table('user')->where('user_username', $username)->value('user_id');
+        $user_id = DB::table('user')->where('user_username', $user_username)->value('user_id');
 
         $data = array(
             "user_id" => $user_id,

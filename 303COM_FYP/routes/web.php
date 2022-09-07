@@ -32,7 +32,7 @@ Route::post('registerUser', [UserController::class, 'registerUser'])->name('regi
 Route::post('loginUser', [UserController::class, 'loginUser'])->name('loginUser');
 Route::get('logoutUser', [UserController::class, 'logoutUser'])->name('logoutUser');
 
-Route::get('addCart/{product_id?}/{username?}', [CartController::class, 'addCart'])->name('addCart');
+Route::get('addCart/{product_id?}/{user_username?}', [CartController::class, 'addCart'])->name('addCart');
 
 // Admin Routers
 
