@@ -107,7 +107,7 @@
       </div>
    </header>
    <!-- /#header -->
-   
+
    <!-- JavaScript Libraries -->
    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
@@ -117,5 +117,13 @@
    <!-- Template Javascript -->
    <script src="js/main.js"></script>
 </body>
+
+<script>
+   var msg = '{{Session::get("alert")}}';
+   var exist = '{{Session::has("alert")}}';
+   if (exist) {
+      alert(msg);
+   }
+</script>
 
 </html>
