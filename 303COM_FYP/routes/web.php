@@ -38,6 +38,11 @@ Route::get('/admin', [ViewController::class, 'adminPage']);
 Route::get('/addProduct', [ViewController::class, 'addProductPage']);
 Route::post('addProduct', [ProductController::class, 'addProduct'])->name('addProduct');
 
+Route::post('findProduct', [ProductController::class, 'findProduct'])->name('findProduct');
+
 Route::get('/deleteProduct', [ViewController::class, 'deleteProductPage']);
 Route::get('/restoreProduct', [ViewController::class, 'restoreProductPage']);
 Route::post('updateProductStatus', [ProductController::class, 'updateProductStatus'])->name('updateProductStatus');
+
+Route::get('/updateProduct', [ViewController::class, 'updateProductPage']);
+Route::post('updateProductDetails', [ProductController::class, 'updateProductDetails'])->name('updateProductDetails');

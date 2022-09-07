@@ -7,6 +7,15 @@ use Illuminate\Support\Facades\DB;
 
 class ProductController extends Controller
 {
+    public function findProduct(Request $request)
+    {
+        $product_id = $request->input('product_id');
+
+        $product = DB::table('product')->where('product_id', $product_id)->first();
+
+        return view("editProduct", compact('product'));
+    }
+
     public function addProduct(Request $request)
     {
         $this->validate($request, [
@@ -45,8 +54,30 @@ class ProductController extends Controller
         return redirect('admin')->with('alert', 'Product added successfully!');
     }
 
-    public function updateProduct(Request $request)
+    public function updateProductDetails(Request $request)
     {
+        $product_id = $request->input('product_id');
+        $category_id = $request->input('category_id');
+        $product_name = $request->input('product_name');
+        $product_description = $request->input('product_description');
+        $product_price = $request->input('product_price');
+
+        $this->validate($request, [
+            'product_name' => 'required|max:255',
+            'product_description' => 'required|max:255',
+            'product_price' => 'required',
+        ]);
+
+        $data = array(
+            "category_id" => $category_id,
+            "product_name" => $product_name,
+            "product_description" => $product_description,
+            "product_price" => $product_price,
+        );
+
+        DB::table('product')->where('product_id', $product_id)->update($data);
+
+        return redirect('/updateProduct')->with('alert', 'Product details updated successfully! ');
     }
 
     public function updateStock(Request $request)

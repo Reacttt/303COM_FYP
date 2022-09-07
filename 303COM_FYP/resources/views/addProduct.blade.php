@@ -71,7 +71,7 @@
                      </div>
                      <div class="row form-group">
                         <div class="col col-md-3"><label for="text-input" class=" form-control-label">Product Stock</label></div>
-                        <div class="col-12 col-md-9"><input type="number" name="product_stock" placeholder="0" class="form-control" value="{{old('user_stock')}}">
+                        <div class="col-12 col-md-9"><input type="number" name="product_stock" placeholder="0" class="form-control" value="{{old('product_stock')}}">
                            @error('product_stock')
                            <small>
                               {{ $message }}

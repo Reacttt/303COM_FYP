@@ -52,6 +52,11 @@ class ViewController extends Controller
         return view("addProduct");
     }
 
+    public function updateProductPage() {
+        $product = DB::table('product')->select('product_id', 'category_id', 'product_name', 'product_description', 'product_image', 'product_stock', 'product_price', 'product_status')->get();
+        return view("updateProduct", compact('product'));
+    }
+
     public function deleteProductPage() {
         $product = DB::table('product')->select('product_id', 'category_id', 'product_name', 'product_description', 'product_image', 'product_stock', 'product_price', 'product_status')->get();
         return view("deleteProduct", compact('product'));
