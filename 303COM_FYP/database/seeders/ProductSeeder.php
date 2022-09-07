@@ -19,12 +19,12 @@ class ProductSeeder extends Seeder
         for ($i = 0; $i < 10; $i++) {
             $products[] = [
                 'category_id' => rand(1,5),
-                'product_name' => 'product name #' . $i+1,
-                'product_description' => 'product description for ' . $i+1,
+                'product_name' => 'Product #' . $i+1,
+                'product_description' => 'Product Description for ' . $i+1,
                 'product_image' => 'product-' . $i+1 . '.jpg',
                 'product_stock' => rand(5,50),
                 'product_price' => rand(5,50) . '.99',
-                'product_status' => '1'
+                'product_status' => rand(0,1)
             ];
         }
 
