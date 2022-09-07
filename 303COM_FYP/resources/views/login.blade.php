@@ -45,9 +45,9 @@
          @enderror
          <br>
          <button type="submit" name="login_submit" class='registerbtn'>Login</button><br><br>
-</div>
-         <a href="register">Sign Up here</a>
-      </form>
+   </div>
+   <a href="register">Sign Up here</a>
+   </form>
    </div>
 
 </body>

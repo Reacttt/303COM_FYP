@@ -30,9 +30,7 @@
 
    <div class='container'>
       <form action="{{route('registerUser')}}" method="post" class="form-group" enctype="multipart/form-data" align='center'>
-
-         <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>"><input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
-
+         @csrf
          <input type="text" class="form-control" placeholder="Username" name="user_username" value="{{old('user_username')}}">
          @error('user_username')
          <div class="error">
