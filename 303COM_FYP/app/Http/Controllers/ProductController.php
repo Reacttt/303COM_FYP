@@ -18,6 +18,14 @@ class ProductController extends Controller
 
     public function addProduct(Request $request)
     {
+        $category_id = $request->input('category_id');
+        $product_name = $request->input('product_name');
+        $product_description = $request->input('product_description');
+        $product_image = $request->input('product_image');
+        $product_price = $request->input('product_price');
+        $product_stock = $request->input('product_stock');
+        $product_status = $request->input('product_status');
+        
         $this->validate($request, [
             'category_id' => 'required',
             'product_name' => 'required|max:255',
@@ -27,14 +35,6 @@ class ProductController extends Controller
             'product_stock' => 'required',
             'product_status'
         ]);
-
-        $category_id = $request->input('category_id');
-        $product_name = $request->input('product_name');
-        $product_description = $request->input('product_description');
-        $product_image = $request->input('product_image');
-        $product_price = $request->input('product_price');
-        $product_stock = $request->input('product_stock');
-        $product_status = $request->input('product_status');
 
         $imageName = $request->product_image->getClientOriginalName();
         $request->product_image->move(public_path('images'), $imageName);
@@ -82,23 +82,6 @@ class ProductController extends Controller
 
     public function updateProductStock($product_id = null, $product_stock = null, $quantity = null)
     {
-        $newStock = ($product_stock) + $quantity;
-
-        $data = array(
-            "product_stock" => $newStock
-        );
-
-        DB::table('product')->where('product_id', $product_id)->update($data);
-
-        return redirect('/updateStock');
-    }
-
-    public function updateProductStockBACKUP(Request $request)
-    {
-        $product_id = $request->input('product_id');
-        $product_stock = $request->input('product_stock');
-        $quantity = $request->input('quantity');
-
         $newStock = ($product_stock) + $quantity;
 
         $data = array(

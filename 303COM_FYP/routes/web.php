@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ViewController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\CartController;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,6 +31,8 @@ Route::get('/cart', [ViewController::class, 'cartPage']);
 Route::post('registerUser', [UserController::class, 'registerUser'])->name('registerUser');
 Route::post('loginUser', [UserController::class, 'loginUser'])->name('loginUser');
 Route::get('logoutUser', [UserController::class, 'logoutUser'])->name('logoutUser');
+
+Route::get('addCart/{product_id?}/{username?}', [CartController::class, 'addCart'])->name('addCart');
 
 // Admin Routers
 

@@ -18,7 +18,6 @@ return new class extends Migration
             $table->integer('user_id');
             $table->integer('product_id');
             $table->integer('product_quantity');
-            $table->double('product_subtotal');
             $table->timestamps();
         });
     }
