@@ -59,7 +59,7 @@
                <div class="col-md-12">
                   <div class="card">
                      <div class="card-header">
-                        <strong class="card-title">Active Products</strong>
+                        <strong class="card-title">Inactive Products</strong>
                      </div>
                      <div class="card-body">
                         <table id="bootstrap-data-table" class="table table-striped table-bordered">
@@ -78,7 +78,7 @@
                            <tbody>
                               @foreach($product as $product)
                               @php $category_name = DB::table('category')->where('category_id', $product->category_id)->value('category_name'); @endphp
-                              @if($product->product_status != 0)
+                              @if($product->product_status != 1)
                               <tr>
                                  <td>{{ $product->product_id }}</td>
                                  <td>
@@ -93,8 +93,8 @@
                                     <form action="{{route('updateProductStatus')}}" method="post" class="form-group" action="/login" enctype="multipart/form-data">
                                        @csrf
                                        <input type="hidden" class="form-control" name="product_id" placeholder="product_id" value="{{ $product->product_id }}">
-                                       <input type="hidden" class="form-control" name="product_status" value=0>
-                                       <center><button type="submit" class='btn btn-danger'>Delete</button><br><br></center>
+                                       <input type="hidden" class="form-control" name="product_status" value=1>
+                                       <center><button type="submit" class='btn btn-success'>Restore</button><br><br></center>
                                     </form>
                                  </td>
                               </tr>

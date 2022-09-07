@@ -39,4 +39,5 @@ Route::get('/addProduct', [ViewController::class, 'addProductPage']);
 Route::post('addProduct', [ProductController::class, 'addProduct'])->name('addProduct');
 
 Route::get('/deleteProduct', [ViewController::class, 'deleteProductPage']);
-Route::post('deleteProduct', [ProductController::class, 'deleteProduct'])->name('deleteProduct');
+Route::get('/restoreProduct', [ViewController::class, 'restoreProductPage']);
+Route::post('updateProductStatus', [ProductController::class, 'updateProductStatus'])->name('updateProductStatus');

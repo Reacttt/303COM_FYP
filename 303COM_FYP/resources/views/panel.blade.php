@@ -45,6 +45,7 @@
                         <a href="/updateProduct"> <i class="menu-icon fa fa-table"></i>Update Product Details</a>
                         <a href="/updateStock"> <i class="menu-icon fa fa-table"></i>Update Product Stock</a>
                         <a href="/deleteProduct"> <i class="menu-icon fa fa-table"></i>Delete Product</a>
+                        <a href="/restoreProduct"> <i class="menu-icon fa fa-table"></i>Restore Product</a>
                     </li>
                 </ul>
             </div><!-- /.navbar-collapse -->
