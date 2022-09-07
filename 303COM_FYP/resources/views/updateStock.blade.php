@@ -16,13 +16,6 @@
    <link rel="apple-touch-icon" href="https://i.imgur.com/QRAUqs9.png">
    <link rel="shortcut icon" href="https://i.imgur.com/QRAUqs9.png">
 
-   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.0/normalize.min.css">
-   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/css/bootstrap.min.css">
-   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css">
-   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lykmapipo/themify-icons@0.1.2/css/themify-icons.css">
-   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pixeden-stroke-7-icon@1.2.3/pe-icon-7-stroke/dist/pe-icon-7-stroke.min.css">
-   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.2.0/css/flag-icon.min.css">
-
    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800' rel='stylesheet' type='text/css'>
 
    <!-- <script type="text/javascript" src="https://cdn.jsdelivr.net/html5shiv/3.7.3/html5shiv.min.js"></script> -->
@@ -70,6 +63,8 @@
                               </tr>
                            </thead>
                            <tbody>
+                              @php $username = Session::get('user_username') @endphp
+
                               @foreach($product as $product)
                               @php $category_name = DB::table('category')->where('category_id', $product->category_id)->value('category_name'); @endphp
                               @if($product->product_status != 0)
@@ -81,31 +76,23 @@
                                  <td>{{ $category_name }}</td>
                                  <td>{{ $product->product_name }}</td>
                                  <td>
+                                    <center>
                                     <div class='counter'>
                                        @if ($product->product_stock > 0)
-                                       <form action={{route("updateProductStock")}} method='post' class='form-group' enctype='multipart/form-data'>
-                                          @csrf
-                                          <input type="hidden" class="form-control" name="product_id" value="{{ $product->product_id }}">
-                                          <input type="hidden" class="form-control" name="product_stock" value="{{ $product->product_stock }}">
-                                          <input type="hidden" class="form-control" name="quantity" value=-1>
-                                          <button type="submit" class="btn btn-outline-secondary btn-sm"><i class="fa fa-minus"></i></button>
-                                       </form>
+                                       <a href="/updateProductStock/{{ $product->product_id }}/{{ $product->product_stock }}/-1"><button type="submit" class="btn btn-outline-secondary btn-sm"><i class="fa fa-minus"></i></button></a>
                                        @else
                                        <button type="submit" class="btn btn-outline-secondary btn-sm" disabled><i class="fa fa-minus"></i></button>
                                        @endif
+                                       
                                        &nbsp; {{ $product->product_stock }} &nbsp;
-                                       @if ($product->product_stock < 50)
-                                       <form action={{route("updateProductStock")}} method='post' class='form-group' enctype='multipart/form-data'>
-                                          @csrf
-                                          <input type="hidden" class="form-control" name="product_id" value="{{ $product->product_id }}">
-                                          <input type="hidden" class="form-control" name="product_stock" value="{{ $product->product_stock }}">
-                                          <input type="hidden" class="form-control" name="quantity" value=1>
-                                          <button type="submit" class="btn btn-outline-secondary btn-sm"><i class="fa fa-plus"></i></button>
-                                       </form>
-                                       @else
-                                       <button type="submit" class="btn btn-outline-secondary btn-sm" disabled><i class="fa fa-plus"></i></button>
+                                       
+                                       @if ($product->product_stock < 50) 
+                                       <a href="/updateProductStock/{{ $product->product_id }}/{{ $product->product_stock }}/1"><button type="submit" class="btn btn-outline-secondary btn-sm"><i class="fa fa-plus"></i></button></a>
+                                       @else 
+                                       <button type="submit" class="btn btn-outline-secondary btn-sm" disabled><i class="fa fa-plus"></i></button>   
                                        @endif
                                     </div>
+                                    </center>
                                  </td>
                               </tr>
                            </tbody>
@@ -139,36 +126,7 @@
    </footer>
 
    </div><!-- /#right-panel -->
-
    <!-- Right Panel -->
-
-   <!-- Scripts -->
-   <script src="https://cdn.jsdelivr.net/npm/jquery@2.2.4/dist/jquery.min.js"></script>
-   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.4/dist/umd/popper.min.js"></script>
-   <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/js/bootstrap.min.js"></script>
-   <script src="https://cdn.jsdelivr.net/npm/jquery-match-height@0.7.2/dist/jquery.matchHeight.min.js"></script>
-   <script src="assets/js/main.js"></script>
-
-
-   <script src="assets/js/lib/data-table/datatables.min.js"></script>
-   <script src="assets/js/lib/data-table/dataTables.bootstrap.min.js"></script>
-   <script src="assets/js/lib/data-table/dataTables.buttons.min.js"></script>
-   <script src="assets/js/lib/data-table/buttons.bootstrap.min.js"></script>
-   <script src="assets/js/lib/data-table/jszip.min.js"></script>
-   <script src="assets/js/lib/data-table/vfs_fonts.js"></script>
-   <script src="assets/js/lib/data-table/buttons.html5.min.js"></script>
-   <script src="assets/js/lib/data-table/buttons.print.min.js"></script>
-   <script src="assets/js/lib/data-table/buttons.colVis.min.js"></script>
-   <script src="assets/js/init/datatables-init.js"></script>
-
-
-   <script type="text/javascript">
-      $(document).ready(function() {
-         $('#bootstrap-data-table-export').DataTable();
-      });
-   </script>
-
-
 </body>
 
 </html>

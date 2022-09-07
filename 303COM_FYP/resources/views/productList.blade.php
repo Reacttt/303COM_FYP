@@ -145,7 +145,7 @@
 									</div>
 									<div class="prd-bottom">
 
-										<a href="" class="social-info">
+										<a href="/addCart?product_id={{ $product->product_id }}" class="social-info">
 											<i class="fa fa-shopping-bag"></i>
 											<p class="hover-text">add to bag</p>
 										</a>

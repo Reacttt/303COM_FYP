@@ -80,7 +80,20 @@ class ProductController extends Controller
         return redirect('/updateProduct')->with('alert', 'Product details updated successfully! ');
     }
 
-    public function updateProductStock(Request $request)
+    public function updateProductStock($product_id = null, $product_stock = null, $quantity = null)
+    {
+        $newStock = ($product_stock) + $quantity;
+
+        $data = array(
+            "product_stock" => $newStock
+        );
+
+        DB::table('product')->where('product_id', $product_id)->update($data);
+
+        return redirect('/updateStock');
+    }
+
+    public function updateProductStockBACKUP(Request $request)
     {
         $product_id = $request->input('product_id');
         $product_stock = $request->input('product_stock');
