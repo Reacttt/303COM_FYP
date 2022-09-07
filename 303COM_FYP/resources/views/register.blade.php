@@ -55,11 +55,11 @@
          @enderror
          <br>
          <input type="text" class="form-control" placeholder="Email" name="user_email" value="{{old('user_email')}}">
-         <input type="hidden" class="form-control" name="user_status" value="1">
          @error('user_email')
          <div class="error">
             {{ $message }}
          </div>
+         <input type="hidden" class="form-control" name="user_status" value="1">
          @enderror
          <br>
          <p>By creating an account you agree to our <a href='#'>Terms & Privacy</a>.</p>

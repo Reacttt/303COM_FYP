@@ -24,14 +24,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.2.0/css/flag-icon.min.css">
 
     <link rel="stylesheet" href=<?php echo asset('css/panel.css') ?>>
-
-    <!-- <script type="text/javascript" src="https://cdn.jsdelivr.net/html5shiv/3.7.3/html5shiv.min.js"></script> -->
-    <link href="https://cdn.jsdelivr.net/npm/chartist@0.11.0/dist/chartist.min.css" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/jqvmap@1.5.1/dist/jqvmap.min.css" rel="stylesheet">
-
-    <link href="https://cdn.jsdelivr.net/npm/weathericons@2.1.0/css/weather-icons.css" rel="stylesheet" />
-    <link href="https://cdn.jsdelivr.net/npm/fullcalendar@3.9.0/dist/fullcalendar.min.css" rel="stylesheet" />
-
 </head>
 
 <body>
@@ -46,16 +38,13 @@
                     </li>
                     <!-- End Dashboard -->
 
-                    <li class="menu-title">Menu</li><!-- /.menu-title -->
+                    <li class="menu-title">Product</li><!-- /.menu-title -->
 
-                    <li class="menu-item-has-children dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-table"></i>Products</a>
-                        <ul class="sub-menu children dropdown-menu">
-                            <li><i class="fa fa-plus"></i><a href="/addProduct">Add New Product</a></li>
-                            <li><i class="fa fa-upload"></i><a href="/updateProduct">Update Product Details</a></li>
-                            <li><i class="fa fa-upload"></i><a href="/updateStock">Update Product Stock</a></li>
-                            <li><i class="ti ti-trash"></i><a href="/deleteProduct">Delete Product</a></li>
-                        </ul>
+                    <li class="menu-item">
+                        <a href="/addProduct"> <i class="menu-icon fa fa-table"></i>Add New Product</a>
+                        <a href="/updateProduct"> <i class="menu-icon fa fa-table"></i>Update Product Details</a>
+                        <a href="/updateStock"> <i class="menu-icon fa fa-table"></i>Update Product Stock</a>
+                        <a href="/deleteProduct"> <i class="menu-icon fa fa-table"></i>Delete Product</a>
                     </li>
                 </ul>
             </div><!-- /.navbar-collapse -->

@@ -132,6 +132,7 @@
 					<div class="row">
 						<!-- Start Single Product -->
 						@foreach($product as $product)
+						@if($product->product_status != 0)
 						<div class="col-lg-4 col-md-6">
 							<div class="single-product">
 								<img class="img-fluid" src="images/{{ $product->product_image }}" alt="">
@@ -156,6 +157,7 @@
 								</div>
 							</div>
 						</div>
+						@endif
 						@endforeach
 						<!-- End Single Product -->
 					</div>

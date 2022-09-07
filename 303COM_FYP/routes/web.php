@@ -36,5 +36,7 @@ Route::get('logoutUser', [UserController::class, 'logoutUser'])->name('logoutUse
 Route::get('/admin', [ViewController::class, 'adminPage']);
 
 Route::get('/addProduct', [ViewController::class, 'addProductPage']);
-
 Route::post('addProduct', [ProductController::class, 'addProduct'])->name('addProduct');
+
+Route::get('/deleteProduct', [ViewController::class, 'deleteProductPage']);
+Route::post('deleteProduct', [ProductController::class, 'deleteProduct'])->name('deleteProduct');

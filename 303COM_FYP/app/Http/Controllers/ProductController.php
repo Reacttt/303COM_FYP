@@ -55,5 +55,16 @@ class ProductController extends Controller
 
     public function deleteProduct(Request $request)
     {
+        
+        $product_id = $request->input('product_id');
+        $product_status = $request->input('product_status');
+
+        $data=array(
+            "product_id"=>$product_id,
+            "product_status"=>$product_status);
+
+        DB::table('product')->where('product_id', $product_id)->update($data);
+            
+        return redirect('/deleteProduct')->with('alert', 'Product deleted successfully! ');
     }
 }

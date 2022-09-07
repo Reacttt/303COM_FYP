@@ -18,7 +18,7 @@ class ProductSeeder extends Seeder
         $category_id_list = DB::table('category')->pluck('category_id');
         for ($i = 0; $i < 10; $i++) {
             $products[] = [
-                'category_id' => rand(1,6),
+                'category_id' => rand(1,5),
                 'product_name' => 'product name #' . $i+1,
                 'product_description' => 'product description for ' . $i+1,
                 'product_image' => 'product-' . $i+1 . '.jpg',
