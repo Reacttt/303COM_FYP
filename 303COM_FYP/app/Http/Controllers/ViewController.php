@@ -11,7 +11,8 @@ class ViewController extends Controller
     // Customer View
     public function homePage()
     {
-        return view("home");
+        $category = DB::table('category')->get();
+        return view("home", compact('category'));
     }
 
     public function registerPage()
