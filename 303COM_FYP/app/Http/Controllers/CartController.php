@@ -41,4 +41,19 @@ class CartController extends Controller
             return redirect('product')->with('alert', 'Product quantity updated in cart!');
         }
     }
+
+    public function updateCartQuantity($user_id = null, $product_id = null, $quantity = null)
+    {
+        $product_quantity = DB::table('cart')->where('user_id', $user_id)->where('product_id', $product_id)->value('product_quantity');
+
+        $newQuantity = $product_quantity + $quantity;
+
+        $data = array(
+            "product_quantity" => $newQuantity
+        );
+
+        DB::table('cart')->where('user_id', $user_id)->where('product_id', $product_id)->update($data);
+
+        return redirect('/cart');
+    }
 }

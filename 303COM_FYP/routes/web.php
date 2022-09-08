@@ -33,6 +33,7 @@ Route::post('loginUser', [UserController::class, 'loginUser'])->name('loginUser'
 Route::get('logoutUser', [UserController::class, 'logoutUser'])->name('logoutUser');
 
 Route::get('addCart/{product_id?}/{user_username?}', [CartController::class, 'addCart'])->name('addCart');
+Route::get('updateCartQuantity/{user_id?}/{product_id?}/{quantity?}', [CartController::class, 'updateCartQuantity'])->name('updateCartQuantity');
 
 // Admin Routers
 

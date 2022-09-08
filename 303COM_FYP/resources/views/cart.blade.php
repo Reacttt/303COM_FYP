@@ -53,12 +53,12 @@
          <div class='counter'>
 
             <!-- Decrease Button -->
-            <button type="submit">-</button>
+            <a href="/updateCartQuantity/{{ $user_id }}/{{ $cart->product_id }}/-1"><button type="submit" class="btn"><i class="fa fa-minus"></i></button></a>
 
             <div class='count'> {{ $cart->product_quantity }}</div>
 
             <!-- Increase Button -->
-            <button type="submit">+</button>
+            <a href="/updateCartQuantity/{{ $user_id }}/{{ $cart->product_id }}/1"><button type="submit" class="btn"><i class="fa fa-plus"></i></button></a>
 
          </div>
          <div class='prices'>
