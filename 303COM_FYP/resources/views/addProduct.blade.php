@@ -27,7 +27,7 @@
                </div>
                <div class="card-body card-block">
                   <form action="{{route('addProduct')}}" method="post" enctype="multipart/form-data" class="form-horizontal">
-                     <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>"><input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
+                     @csrf
                      <div class="row form-group">
                         <div class="col col-md-3"><label for="select" class=" form-control-label">Product Category</label></div>
                         <div class="col-12 col-md-9">
