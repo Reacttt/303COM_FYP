@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+use Symfony\Component\VarDumper\Caster\RedisCaster;
 
 class ViewController extends Controller
 {
@@ -25,19 +26,25 @@ class ViewController extends Controller
 
     public function categoryPage()
     {
-        $category = DB::table('category')->select('category_id', 'category_name', 'category_description', 'category_image')->get();
+        $category = DB::table('category')->get();
         return view("category", compact('category'));
     }
 
-    public function productPage()
+    public function productPage($category_id = null,)
     {
-        $product = DB::table('product')->select('product_id', 'category_id', 'product_name', 'product_description', 'product_image', 'product_stock', 'product_price', 'product_status')->get();
-        return view("productList", compact('product'));
+        if ($category_id == 0 || $category_id == null)
+        {
+            $product = DB::table('product')->get();
+            return view("productList", compact('product'));
+        } else {
+            $product = DB::table('product')->where('category_id', $category_id)->get();
+            return view("productList", compact('product'));
+        }
     }
 
     public function cartPage()
     {
-        $cart = DB::table('cart')->select('cart_id', 'user_id', 'product_id', 'product_quantity')->get();
+        $cart = DB::table('cart')->get();
         return view("cart", compact('cart'));
     }
 
@@ -53,22 +60,22 @@ class ViewController extends Controller
     }
 
     public function updateProductPage() {
-        $product = DB::table('product')->select('product_id', 'category_id', 'product_name', 'product_description', 'product_image', 'product_stock', 'product_price', 'product_status')->get();
+        $product = DB::table('product')->get();
         return view("updateProduct", compact('product'));
     }
 
     public function updateStockPage() {
-        $product = DB::table('product')->select('product_id', 'category_id', 'product_name', 'product_image', 'product_stock', 'product_status')->get();
+        $product = DB::table('product')->get();
         return view("updateStock", compact('product'));
     }
 
     public function deleteProductPage() {
-        $product = DB::table('product')->select('product_id', 'category_id', 'product_name', 'product_description', 'product_image', 'product_stock', 'product_price', 'product_status')->get();
+        $product = DB::table('product')->get();
         return view("deleteProduct", compact('product'));
     }
 
     public function restoreProductPage() {
-        $product = DB::table('product')->select('product_id', 'category_id', 'product_name', 'product_description', 'product_image', 'product_stock', 'product_price', 'product_status')->get();
+        $product = DB::table('product')->get();
         return view("restoreProduct", compact('product'));
     }
 }

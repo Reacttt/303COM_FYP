@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('user_username')->unique();
             $table->string('user_password');
             $table->string('user_email')->unique();
-            $table->integer('user_status');
+            $table->boolean('user_status');
             $table->rememberToken();
             $table->timestamps();
         });

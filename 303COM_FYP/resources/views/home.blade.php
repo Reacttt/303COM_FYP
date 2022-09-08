@@ -34,22 +34,22 @@
                 <nav class="navbar bg-light">
                     <ul class="navbar-nav">
                         <li class="nav-item">
-                            <a class="nav-link" href="#"><i class="fa fa-home"></i>Home</a>
+                            <a class="nav-link" href="/product/0"><i class="fa fa-list"></i>All Products</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#"><i class="fa fa-shopping-bag"></i>Best Selling</a>
+                            <a class="nav-link" href="/product/1"><i class="fa fa-shopping-bag"></i>Best Selling</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#"><i class="fa fa-plus-square"></i>New Arrivals</a>
+                            <a class="nav-link" href="/product/2"><i class="fa fa-plus-square"></i>New Arrivals</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#"><i class="fa fa-female"></i>Fashion & Beauty</a>
+                            <a class="nav-link" href="/product/3"><i class="fa fa-female"></i>Fashion & Beauty</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#"><i class="fa fa-child"></i>Kids & Babies Clothes</a>
+                            <a class="nav-link" href="/product/4"><i class="fa fa-child"></i>Kids & Babies Clothes</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#"><i class="fa fa-tshirt"></i>Men & Women Clothes</a>
+                            <a class="nav-link" href="/product/5"><i class="fa fa-tshirt"></i>Men & Women Clothes</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#"><i class="fa fa-mobile-alt"></i>Gadgets & Accessories</a>
