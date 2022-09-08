@@ -37,6 +37,8 @@
 
       @foreach($cart as $cart)
       @php $product = DB::table('product')->where('product_id', $cart->product_id)->first(); @endphp
+      @php $user_id = DB::table('user')->where('user_username', Session::get('user_username'))->value('user_id'); @endphp
+      @if ($cart->user_id === $user_id)
       <div class='Cart-Items'>
          <div class='image-box'>
             <img src="images/{{ $product->product_image }}" height='200' width='200' />
@@ -70,7 +72,7 @@
             </form>
          </div>
       </div>
-
+      @endif
       @php $totalPrice = $totalPrice + $subTotal; @endphp
       @php $totalQuantity = $totalQuantity + $cart->product_quantity; @endphp
       @endforeach
