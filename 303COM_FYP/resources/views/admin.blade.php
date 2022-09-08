@@ -175,7 +175,7 @@
                                        <td class="serial">1.</td>
                                        <td class="avatar">
                                           <div class="round-img">
-                                             <a href="#"><img class="rounded-circle" src="images/avatar/1.jpg" alt=""></a>
+                                             <a href="#"><img class="rounded-circle" src="/images/avatar/1.jpg" alt=""></a>
                                           </div>
                                        </td>
                                        <td> #5469 </td>
@@ -190,7 +190,7 @@
                                        <td class="serial">2.</td>
                                        <td class="avatar">
                                           <div class="round-img">
-                                             <a href="#"><img class="rounded-circle" src="images/avatar/2.jpg" alt=""></a>
+                                             <a href="#"><img class="rounded-circle" src="/images/avatar/2.jpg" alt=""></a>
                                           </div>
                                        </td>
                                        <td> #5468 </td>
@@ -205,7 +205,7 @@
                                        <td class="serial">3.</td>
                                        <td class="avatar">
                                           <div class="round-img">
-                                             <a href="#"><img class="rounded-circle" src="images/avatar/3.jpg" alt=""></a>
+                                             <a href="#"><img class="rounded-circle" src="/images/avatar/3.jpg" alt=""></a>
                                           </div>
                                        </td>
                                        <td> #5467 </td>
@@ -220,7 +220,7 @@
                                        <td class="serial">4.</td>
                                        <td class="avatar">
                                           <div class="round-img">
-                                             <a href="#"><img class="rounded-circle" src="images/avatar/4.jpg" alt=""></a>
+                                             <a href="#"><img class="rounded-circle" src="/images/avatar/4.jpg" alt=""></a>
                                           </div>
                                        </td>
                                        <td> #5466 </td>
@@ -235,7 +235,7 @@
                                        <td class="serial">5.</td>
                                        <td class="avatar pb-0">
                                           <div class="round-img">
-                                             <a href="#"><img class="rounded-circle" src="images/avatar/6.jpg" alt=""></a>
+                                             <a href="#"><img class="rounded-circle" src="/images/avatar/6.jpg" alt=""></a>
                                           </div>
                                        </td>
                                        <td> #5465 </td>

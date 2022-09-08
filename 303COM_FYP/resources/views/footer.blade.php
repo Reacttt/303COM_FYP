@@ -81,15 +81,15 @@
          <div class="col-md-6">
             <div class="payment-method">
                <h2>We Accept:</h2>
-               <img src="images/payment-method.png" alt="Payment Method" />
+               <img src="/images/payment-method.png" alt="Payment Method" />
             </div>
          </div>
          <div class="col-md-6">
             <div class="payment-security">
                <h2>Secured By:</h2>
-               <img src="images/godaddy.svg" alt="Payment Security" />
-               <img src="images/norton.svg" alt="Payment Security" />
-               <img src="images/ssl.svg" alt="Payment Security" />
+               <img src="/images/godaddy.svg" alt="Payment Security" />
+               <img src="/images/norton.svg" alt="Payment Security" />
+               <img src="/images/ssl.svg" alt="Payment Security" />
             </div>
          </div>
       </div>

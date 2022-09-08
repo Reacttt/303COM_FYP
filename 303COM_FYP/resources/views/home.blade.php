@@ -63,21 +63,21 @@
             <div class="col-md-6">
                 <div class="header-slider normal-slider">
                     <div class="header-slider-item">
-                        <img src="images/slider-1.jpg" alt="Slider Image" />
+                        <img src="/images/slider-1.jpg" alt="Slider Image" />
                         <div class="header-slider-caption">
                             <p>Some text goes here that describes the image</p>
                             <a class="btn" href=""><i class="fa fa-shopping-cart"></i>Shop Now</a>
                         </div>
                     </div>
                     <div class="header-slider-item">
-                        <img src="images/slider-2.jpg" alt="Slider Image" />
+                        <img src="/images/slider-2.jpg" alt="Slider Image" />
                         <div class="header-slider-caption">
                             <p>Some text goes here that describes the image</p>
                             <a class="btn" href=""><i class="fa fa-shopping-cart"></i>Shop Now</a>
                         </div>
                     </div>
                     <div class="header-slider-item">
-                        <img src="images/slider-3.jpg" alt="Slider Image" />
+                        <img src="/images/slider-3.jpg" alt="Slider Image" />
                         <div class="header-slider-caption">
                             <p>Some text goes here that describes the image</p>
                             <a class="btn" href=""><i class="fa fa-shopping-cart"></i>Shop Now</a>
@@ -88,13 +88,13 @@
             <div class="col-md-3">
                 <div class="header-img">
                     <div class="img-item">
-                        <img src="images/category-1.jpg" />
+                        <img src="/images/category-1.jpg" />
                         <a class="img-text" href="">
                             <p>Some text goes here that describes the image</p>
                         </a>
                     </div>
                     <div class="img-item">
-                        <img src="images/category-2.jpg" />
+                        <img src="/images/category-2.jpg" />
                         <a class="img-text" href="">
                             <p>Some text goes here that describes the image</p>
                         </a>
@@ -110,12 +110,12 @@
 <div class="brand">
     <div class="container-fluid">
         <div class="brand-slider">
-            <div class="brand-item"><img src="images/brand-1.png" alt=""></div>
-            <div class="brand-item"><img src="images/brand-2.png" alt=""></div>
-            <div class="brand-item"><img src="images/brand-3.png" alt=""></div>
-            <div class="brand-item"><img src="images/brand-4.png" alt=""></div>
-            <div class="brand-item"><img src="images/brand-5.png" alt=""></div>
-            <div class="brand-item"><img src="images/brand-6.png" alt=""></div>
+            <div class="brand-item"><img src="/images/brand-1.png" alt=""></div>
+            <div class="brand-item"><img src="/images/brand-2.png" alt=""></div>
+            <div class="brand-item"><img src="/images/brand-3.png" alt=""></div>
+            <div class="brand-item"><img src="/images/brand-4.png" alt=""></div>
+            <div class="brand-item"><img src="/images/brand-5.png" alt=""></div>
+            <div class="brand-item"><img src="/images/brand-6.png" alt=""></div>
         </div>
     </div>
 </div>
@@ -172,7 +172,7 @@
         <div class="row">
             <div class="col-md-3">
                 <div class="category-item ch-400">
-                    <img src="images/category-3.jpg" />
+                    <img src="/images/category-3.jpg" />
                     <a class="category-name" href="">
                         <p>Some text goes here that describes the image</p>
                     </a>
@@ -180,13 +180,13 @@
             </div>
             <div class="col-md-3">
                 <div class="category-item ch-250">
-                    <img src="images/category-4.jpg" />
+                    <img src="/images/category-4.jpg" />
                     <a class="category-name" href="">
                         <p>Some text goes here that describes the image</p>
                     </a>
                 </div>
                 <div class="category-item ch-150">
-                    <img src="images/category-5.jpg" />
+                    <img src="/images/category-5.jpg" />
                     <a class="category-name" href="">
                         <p>Some text goes here that describes the image</p>
                     </a>
@@ -194,13 +194,13 @@
             </div>
             <div class="col-md-3">
                 <div class="category-item ch-150">
-                    <img src="images/category-6.jpg" />
+                    <img src="/images/category-6.jpg" />
                     <a class="category-name" href="">
                         <p>Some text goes here that describes the image</p>
                     </a>
                 </div>
                 <div class="category-item ch-250">
-                    <img src="images/category-7.jpg" />
+                    <img src="/images/category-7.jpg" />
                     <a class="category-name" href="">
                         <p>Some text goes here that describes the image</p>
                     </a>
@@ -208,7 +208,7 @@
             </div>
             <div class="col-md-3">
                 <div class="category-item ch-400">
-                    <img src="images/category-8.jpg" />
+                    <img src="/images/category-8.jpg" />
                     <a class="category-name" href="">
                         <p>Some text goes here that describes the image</p>
                     </a>

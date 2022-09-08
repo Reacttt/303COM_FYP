@@ -30,7 +30,7 @@
                      @csrf
                      <div class="row form-group">
                         <div class="col col-md-3"><label for="text-input" class=" form-control-label">Product Image</label></div>
-                        <img class="center" width="150" height="150" src="images/{{ $product->product_image }}" alt="">
+                        <img class="center" width="150" height="150" src="/images/{{ $product->product_image }}" alt="">
                      </div>
                      <div class="row form-group">
                         <div class="col col-md-3"><label for="text-input" class=" form-control-label">Product ID</label></div>

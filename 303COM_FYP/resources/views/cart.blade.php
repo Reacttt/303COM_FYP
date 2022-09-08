@@ -41,7 +41,7 @@
       @if ($cart->user_id === $user_id)
       <div class='Cart-Items'>
          <div class='image-box'>
-            <img src="images/{{ $product->product_image }}" height='200' width='200' />
+            <img src="/images/{{ $product->product_image }}" height='200' width='200' />
          </div>
          <div class='about'>
             <h1 class='title'> {{ $product->product_name }}</h1>

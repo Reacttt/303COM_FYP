@@ -82,7 +82,7 @@
                               <tr>
                                  <td>{{ $product->product_id }}</td>
                                  <td>
-                                    <center><img height="100" width="100" src="images/{{ $product->product_image }}"></center>
+                                    <center><img height="100" width="100" src="/images/{{ $product->product_image }}"></center>
                                  </td>
                                  <td>{{ $category_name }}</td>
                                  <td>{{ $product->product_name }}</td>

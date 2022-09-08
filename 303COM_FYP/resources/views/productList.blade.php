@@ -135,7 +135,7 @@
 						@if($product->product_status != 0)
 						<div class="col-lg-4 col-md-6">
 							<div class="single-product">
-								<img class="img-fluid" src="images/{{ $product->product_image }}" alt="">
+								<img class="img-fluid" src="/images/{{ $product->product_image }}" alt="">
 								<div class="product-details">
 									<h6> {{ $product->product_name }}</h6>
 									<div class="price">
