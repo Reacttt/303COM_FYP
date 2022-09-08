@@ -25,6 +25,7 @@ class ProductController extends Controller
         $product_price = $request->input('product_price');
         $product_stock = $request->input('product_stock');
         $product_status = $request->input('product_status');
+        $created_at = time();
         
         $this->validate($request, [
             'category_id' => 'required',
@@ -33,7 +34,6 @@ class ProductController extends Controller
             'product_image' => 'required',
             'product_price' => 'required',
             'product_stock' => 'required',
-            'product_status'
         ]);
 
         $imageName = $request->product_image->getClientOriginalName();
@@ -46,7 +46,8 @@ class ProductController extends Controller
             "product_image" => $imageName,
             "product_price" => $product_price,
             "product_stock" => $product_stock,
-            "product_status" => $product_status
+            "product_status" => $product_status,
+            "created_at" => $created_at
         );
 
         DB::table('product')->insert($data);

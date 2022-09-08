@@ -44,7 +44,7 @@
                         </li>
                         @foreach ($category as $category)
                         <li class="nav-item">
-                            <a class="nav-link" href="/product/{{ $category->category_id }}"><i class="fa fa-female"></i>{{ $category->category_name }}</a>
+                            <a class="nav-link" href="/product/{{ $category->category_id }}"><i class="fa fa-angle-right"></i>{{ $category->category_name }}</a>
                         </li>
                         @endforeach
                         </li>

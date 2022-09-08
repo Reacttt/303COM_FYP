@@ -33,10 +33,11 @@ class ViewController extends Controller
 
     public function productPage($category_id = null,)
     {
-        if ($category_id == 0 || $category_id == null)
-        {
+        if ($category_id == 0 || $category_id == null) {
             $product = DB::table('product')->get();
             return view("productList", compact('product'));
+        } elseif ($category_id == "Best") {
+        } elseif ($category_id == "New") {
         } else {
             $product = DB::table('product')->where('category_id', $category_id)->get();
             return view("productList", compact('product'));
@@ -56,26 +57,32 @@ class ViewController extends Controller
         return view("admin");
     }
 
-    public function addProductPage() {
-        return view("addProduct");
+    public function addProductPage()
+    {
+        $category = DB::table('category')->get();
+        return view("addProduct", compact('category'));
     }
 
-    public function updateProductPage() {
+    public function updateProductPage()
+    {
         $product = DB::table('product')->get();
         return view("updateProduct", compact('product'));
     }
 
-    public function updateStockPage() {
+    public function updateStockPage()
+    {
         $product = DB::table('product')->get();
         return view("updateStock", compact('product'));
     }
 
-    public function deleteProductPage() {
+    public function deleteProductPage()
+    {
         $product = DB::table('product')->get();
         return view("deleteProduct", compact('product'));
     }
 
-    public function restoreProductPage() {
+    public function restoreProductPage()
+    {
         $product = DB::table('product')->get();
         return view("restoreProduct", compact('product'));
     }

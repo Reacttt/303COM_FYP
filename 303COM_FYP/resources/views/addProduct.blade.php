@@ -32,9 +32,9 @@
                         <div class="col col-md-3"><label for="select" class=" form-control-label">Product Category</label></div>
                         <div class="col-12 col-md-9">
                            <select name="category_id" class="form-control">
-                              <option value="1">Category #1</option>
-                              <option value="2">Category #2</option>
-                              <option value="3">Category #3</option>
+                              @foreach ($category as $category)
+                              <option value="{{ $category->category_id }}">{{ $category->category_name }}</option>
+                              @endforeach
                            </select>
                         </div>
                      </div>
