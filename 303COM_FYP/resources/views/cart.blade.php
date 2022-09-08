@@ -32,6 +32,9 @@
          <!-- <h5 class='Action'>Remove all</h5> -->
       </div>
 
+      @php $totalPrice = 0; @endphp
+      @php $totalQuantity = 0; @endphp
+
       @foreach($cart as $cart)
       @php $product = DB::table('product')->where('product_id', $cart->product_id)->first(); @endphp
       <div class='Cart-Items'>
@@ -67,6 +70,9 @@
             </form>
          </div>
       </div>
+
+      @php $totalPrice = $totalPrice + $subTotal; @endphp
+      @php $totalQuantity = $totalQuantity + $cart->product_quantity; @endphp
       @endforeach
       <!-- End Cart Item -->
 
@@ -76,13 +82,13 @@
       <div class='checkout'>
          <div class='total'>
             <div>
-               <div class='Subtotal'>Sub-Total</div>
+               <div class='Subtotal'>Total</div>
             </div>
-            <div class='total-amount'> SubTotal $</div>
+            <div class='total-amount'> {{ $totalPrice }} </div>
          </div>
 
          <br>
-         <div class='items'> TotalQuantity </div>
+         <div class='items'> {{ $totalQuantity }} items </div>
          <br>
 
          <a href="/order">
