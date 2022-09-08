@@ -72,9 +72,10 @@
             </form>
          </div>
       </div>
-      @endif
+
       @php $totalPrice = $totalPrice + $subTotal; @endphp
       @php $totalQuantity = $totalQuantity + $cart->product_quantity; @endphp
+      @endif
       @endforeach
       <!-- End Cart Item -->
 
