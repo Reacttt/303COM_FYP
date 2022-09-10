@@ -40,6 +40,7 @@
          <!-- Cateory Button Start -->
          <div class="row g-4">
             @foreach($category as $category)
+            @if ($category->category_status == 1)
             <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.1s">
                <a class="cat-item d-block bg-light text-center rounded p-3" href="">
                   <div class="rounded p-4">
@@ -51,6 +52,7 @@
                   </div>
                </a>
             </div>
+            @endif
             @endforeach
             <!-- Cateory Button End -->
          </div>

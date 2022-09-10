@@ -46,9 +46,11 @@
                             <a class="nav-link" href="/product/new"><i class="fa fa-plus-square"></i>New Arrivals</a>
                         </li>
                         @foreach ($category as $category)
+                        @if ($category->category_status == 1)
                         <li class="nav-item">
                             <a class="nav-link" href="/product/{{ $category->category_id }}"><i class="fa fa-angle-right"></i>{{ $category->category_name }}</a>
                         </li>
+                        @endif
                         @endforeach
                         </li>
                     </ul>
