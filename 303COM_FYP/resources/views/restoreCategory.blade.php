@@ -75,7 +75,7 @@
                            </thead>
                            <tbody>
                               @foreach($category as $category)
-                              @if($category->category_status != 0)
+                              @if($category->category_status != 1)
                               @php $active_product = DB::table('product')->where('category_id', $category->category_id)->where('product_status', 1)->count(); @endphp
                               <tr>
                                  <td>{{ $category->category_id }}</td>

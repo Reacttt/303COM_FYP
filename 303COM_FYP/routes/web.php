@@ -49,8 +49,9 @@ Route::get('/updateCategory', [ViewController::class, 'updateCategoryPage']);
 Route::get('findCategory/{category_id?}', [CategoryController::class, 'findCategory'])->name('findCategory');
 Route::post('updateCategoryDetails', [CategoryController::class, 'updateCategoryDetails'])->name('updateCategoryDetails');
 
-Route::get('deleteCategory', [ViewController::class, 'deleteCategoryPage']);
-Route::get('/updateCategoryStatus/{category_id?}/{category_status?}', [CategoryController::class, 'updateCategoryStatus'])->name('updateCategoryStatus');
+Route::get('/deleteCategory', [ViewController::class, 'deleteCategoryPage']);
+Route::get('/restoreCategory', [ViewController::class, 'restoreCategoryPage']);
+Route::get('updateCategoryStatus/{category_id?}/{category_status?}', [CategoryController::class, 'updateCategoryStatus'])->name('updateCategoryStatus');
 
 // Admin Product
 Route::get('/addProduct', [ViewController::class, 'addProductPage']);
