@@ -58,7 +58,7 @@
                            @enderror
                         </div>
                      </div>
-                     <input type="hidden" class="form-control" name="product_status" value="1">
+                     <input type="hidden" class="form-control" name="category_status" value="1">
                      <div>
                         <button type="submit" class="btn btn-lg btn-info btn-block">
                            <span>Add Category</span>

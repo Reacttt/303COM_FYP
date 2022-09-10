@@ -11,12 +11,14 @@ class CategoryController extends Controller
     {
         $category_name = $request->input('category_name');
         $category_description = $request->input('category_description');
-        $product_image = $request->input('product_image');
+        $category_image = $request->input('category_image');
+        $category_status = $request->input('category_status');
         
         $this->validate($request, [
             'category_name' => 'required|max:255',
             'category_description' => 'required|max:255',
             'category_image' => 'required',
+            'category_status' => 'required',
         ]);
 
         $imageName = $request->category_image->getClientOriginalName();
@@ -25,7 +27,8 @@ class CategoryController extends Controller
         $data = array(
             "category_name" => $category_name,
             "category_description" => $category_description,
-            "category_image" => $imageName
+            "category_image" => $imageName,
+            "category_status" => $category_status
         );
 
         DB::table('category')->insert($data);
