@@ -27,6 +27,12 @@
    <link href="css/category.min.css" rel="stylesheet">
 </head>
 
+<style>
+   .backimg{
+      background: url(/images/logo.png)
+   }
+</style>
+
 @include('header')
 
 <body>
@@ -45,10 +51,9 @@
 
             <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.1s">
                <a class="cat-item d-block bg-light text-center rounded p-3" href="">
+                  <!-- <div class="rounded p-4" style="background-image:url(/images/{{$category->category_image}}); background-size:cover"> -->
                   <div class="rounded p-4">
-                     <div class="icon mb-3">
-                        <i class="fa fa-shopping-bag"></i>
-                     </div>
+
                      <h6> {{ $category->category_name }}</h6>
                      <span> {{ $active_product }} Items</span>
                   </div>
