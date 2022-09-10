@@ -33,15 +33,18 @@ class ViewController extends Controller
 
     public function productPage($category_id = null,)
     {
+        $product = 0;
+        $category = DB::table('category')->where('category_status', 1)->get();
         if ($category_id == 0 || $category_id == null) {
             $product = DB::table('product')->get();
-            return view("productList", compact('product'));
         } elseif ($category_id == "Best") {
         } elseif ($category_id == "New") {
         } else {
             $product = DB::table('product')->where('category_id', $category_id)->get();
-            return view("productList", compact('product'));
         }
+
+        return view("productList", compact('product', 'category'));
+
     }
 
     public function cartPage()
