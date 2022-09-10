@@ -69,6 +69,14 @@ class ViewController extends Controller
         return view("updateCategory", compact('category', 'product'));
     }
 
+    public function deleteCategoryPage()
+    {
+        $category = DB::table('category')->get();
+        return view("deleteCategory", compact('category'));
+    }
+
+    // Product View
+
     public function addProductPage()
     {
         $category = DB::table('category')->get();

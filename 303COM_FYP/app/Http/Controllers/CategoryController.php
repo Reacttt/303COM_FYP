@@ -64,4 +64,18 @@ class CategoryController extends Controller
 
         return redirect('/updateCategory')->with('alert', 'Category details updated successfully! ');
     }
+
+    public function updateCategoryStatus($category_id = null, $category_status = null)
+    {
+        $data = array(
+            "category_status" => $category_status
+        );
+
+        DB::table('category')->where('category_id', $category_id)->update($data);
+
+        if ($category_status != 0)
+            return redirect('/restoreCategory')->with('alert', 'Category restored successfully! ');
+        else
+            return redirect('/deleteCategory')->with('alert', 'Category deleted successfully! ');
+    }
 }
