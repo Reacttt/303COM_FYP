@@ -37,6 +37,9 @@
                             <a class="nav-link" href="/product/0"><i class="fa fa-list"></i>All Products</a>
                         </li>
                         <li class="nav-item">
+                            <a class="nav-link" href="/category"><i class="fa fa-folder"></i>All Categories</a>
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link" href="/product/best"><i class="fa fa-shopping-bag"></i>Best Selling</a>
                         </li>
                         <li class="nav-item">
