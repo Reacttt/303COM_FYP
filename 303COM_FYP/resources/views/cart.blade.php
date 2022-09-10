@@ -14,6 +14,12 @@
    <!-- Google Fonts -->
    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400|Source+Code+Pro:700,900&display=swap" rel="stylesheet">
 
+   <!-- CSS Libraries -->
+   <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
+   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+   <link href="lib/slick/slick.css" rel="stylesheet">
+   <link href="lib/slick/slick-theme.css" rel="stylesheet">
+
    <!-- Template Stylesheet -->
    <link rel="stylesheet" href="<?php echo asset('css/cart.css') ?>" type="text/css">
 </head>
@@ -47,12 +53,20 @@
          <div class='counter'>
 
             <!-- Decrease Button -->
+            @if($cart->product_quantity > 1)
             <a href="/updateCartQuantity/{{ $user_id }}/{{ $cart->product_id }}/-1"><button type="submit" class="btn"><i class="fa fa-minus"></i></button></a>
+            @else
+            <button type="submit" class="btn" disabled><i class="fa fa-minus"></i></button>
+            @endif
 
             <div class='count'> {{ $cart->product_quantity }}</div>
 
             <!-- Increase Button -->
-            <a href="/updateCartQuantity/{{ $user_id }}/{{ $cart->product_id }}/1"><button type="submit" class="btn"><i class="fa fa-plus"></i></button></a>
+            @if($cart->product_quantity < $product->product_stock)
+               <a href="/updateCartQuantity/{{ $user_id }}/{{ $cart->product_id }}/1"><button type="submit" class="btn"><i class="fa fa-plus"></i></button></a>
+            @else
+               <button type="submit" class="btn" disabled><i class="fa fa-plus"></i>
+            @endif
 
          </div>
          <div class='prices'>
