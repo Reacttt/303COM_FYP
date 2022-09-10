@@ -47,64 +47,25 @@
 				<div class="sidebar-categories">
 					<div class="head">Browse Categories</div>
 					<ul class="main-categories">
-						<li class="main-nav-list"><a data-toggle="collapse" href="/product/0" aria-expanded="false"><span class="lnr lnr-arrow-right"></span>All Products<span class="number">(53)</span></a>
+						@php $all_active_product = DB::table('product')->where('product_status', 1)->count(); @endphp
+						@php $all_active_category = DB::table('category')->where('category_status', 1)->count(); @endphp
+
+						<li class="main-nav-list"><a href="/product"><span class="lnr lnr-arrow-right"></span>All Products<span class="number">({{$all_active_product}})</span></a>
 						</li>
-						<li class="main-nav-list"><a data-toggle="collapse" href="/product/best" aria-expanded="false"><span class="lnr lnr-arrow-right"></span>Best Selling<span class="number">(53)</span></a>
+						<li class="main-nav-list"><a href="/product/best"><span class="lnr lnr-arrow-right"></span>Best Selling</span></a>
 						</li>
-						<li class="main-nav-list"><a data-toggle="collapse" href="/product/new" aria-expanded="false"><span class="lnr lnr-arrow-right"></span>New Arrivals<span class="number">(53)</span></a>
+						<li class="main-nav-list"><a href="/product/new"><span class="lnr lnr-arrow-right"></span>New Arrivals</span></a>
 						</li>
 
-						<li class="main-nav-list"><a data-toggle="collapse" href="#meatFish" aria-expanded="false" aria-controls="meatFish"><span class="lnr lnr-arrow-right"></span>Categories<span class="number">(53)</span></a>
+						<li class="main-nav-list"><a data-toggle="collapse" href="#meatFish" aria-expanded="false" aria-controls="meatFish"><span class="lnr lnr-arrow-right"></span>Categories<span class="number">({{$all_active_category}})</span></a>
 							<ul class="collapse" id="meatFish" data-toggle="collapse" aria-expanded="false" aria-controls="meatFish">
 								@foreach ($category as $category)
-								<li class="main-nav-list child"><a href="/product/{{ $category->category_id }}">{{ $category->category_name }}<span class="number">(13)</span></a></li>
+								@php $active_product = DB::table('product')->where('category_id', $category->category_id)->where('product_status', 1)->count(); @endphp
+								<li class="main-nav-list child"><a href="/product/{{ $category->category_id }}">{{ $category->category_name }}<span class="number">({{$active_product}})</span></a></li>
 								@endforeach
 							</ul>
 						</li>
 					</ul>
-				</div>
-				<div class="sidebar-filter mt-50">
-					<div class="top-filter-head">Product Filters</div>
-					<div class="common-filter">
-						<div class="head">Brands</div>
-						<form action="#">
-							<ul>
-								<li class="filter-list"><input class="pixel-radio" type="radio" id="apple" name="brand"><label for="apple">Apple<span>(29)</span></label></li>
-								<li class="filter-list"><input class="pixel-radio" type="radio" id="asus" name="brand"><label for="asus">Asus<span>(29)</span></label></li>
-								<li class="filter-list"><input class="pixel-radio" type="radio" id="gionee" name="brand"><label for="gionee">Gionee<span>(19)</span></label></li>
-								<li class="filter-list"><input class="pixel-radio" type="radio" id="micromax" name="brand"><label for="micromax">Micromax<span>(19)</span></label></li>
-								<li class="filter-list"><input class="pixel-radio" type="radio" id="samsung" name="brand"><label for="samsung">Samsung<span>(19)</span></label></li>
-							</ul>
-						</form>
-					</div>
-					<div class="common-filter">
-						<div class="head">Color</div>
-						<form action="#">
-							<ul>
-								<li class="filter-list"><input class="pixel-radio" type="radio" id="black" name="color"><label for="black">Black<span>(29)</span></label></li>
-								<li class="filter-list"><input class="pixel-radio" type="radio" id="balckleather" name="color"><label for="balckleather">Black
-										Leather<span>(29)</span></label></li>
-								<li class="filter-list"><input class="pixel-radio" type="radio" id="blackred" name="color"><label for="blackred">Black
-										with red<span>(19)</span></label></li>
-								<li class="filter-list"><input class="pixel-radio" type="radio" id="gold" name="color"><label for="gold">Gold<span>(19)</span></label></li>
-								<li class="filter-list"><input class="pixel-radio" type="radio" id="spacegrey" name="color"><label for="spacegrey">Spacegrey<span>(19)</span></label></li>
-							</ul>
-						</form>
-					</div>
-					<div class="common-filter">
-						<div class="head">Price</div>
-						<div class="price-range-area">
-							<div id="price-range"></div>
-							<div class="value-wrapper d-flex">
-								<div class="price">Price:</div>
-								<span>$</span>
-								<div id="lower-value"></div>
-								<div class="to">to</div>
-								<span>$</span>
-								<div id="upper-value"></div>
-							</div>
-						</div>
-					</div>
 				</div>
 			</div>
 			<!-- End Category Bar -->
@@ -113,8 +74,6 @@
 				<div class="filter-bar d-flex flex-wrap align-items-center">
 					<div class="sorting">
 						<select>
-							<option value="1">Default sorting</option>
-							<option value="1">Default sorting</option>
 							<option value="1">Default sorting</option>
 						</select>
 					</div>
@@ -125,7 +84,6 @@
 					<div class="row">
 						<!-- Start Single Product -->
 						@foreach($product as $product)
-						@if($product->product_status != 0)
 						<div class="col-lg-4 col-md-6">
 							<div class="single-product">
 								<img class="img-fluid" src="/images/{{ $product->product_image }}" alt="">
@@ -138,10 +96,12 @@
 									</div>
 									<div class="prd-bottom">
 										@php $user_username = Session::get('user_username') @endphp
+										@if ($user_username != null)
 										<a href="/addCart/{{ $product->product_id }}/{{ $user_username }}" class="social-info">
 											<i class="fa fa-shopping-bag"></i>
 											<p class="hover-text">add to bag</p>
 										</a>
+										@endif
 										<a href="" class="social-info">
 											<i class="fa fa-expand"></i>
 											<p class="hover-text">view more</p>
@@ -150,7 +110,6 @@
 								</div>
 							</div>
 						</div>
-						@endif
 						@endforeach
 						<!-- End Single Product -->
 					</div>
