@@ -7,6 +7,14 @@ use Illuminate\Support\Facades\DB;
 
 class CategoryController extends Controller
 {
+    
+    public function findCategory($category_id = null)
+    {
+        $category = DB::table('category')->where('category_id', $category_id)->first();
+
+        return view("editCategory", compact('category'));
+    }
+
     public function addCategory(Request $request)
     {
         $category_name = $request->input('category_name');
@@ -34,5 +42,26 @@ class CategoryController extends Controller
         DB::table('category')->insert($data);
 
         return redirect('admin')->with('alert', 'Product added successfully!');
+    }
+
+    public function updateCategoryDetails(Request $request)
+    {
+        $category_id = $request->input('category_id');
+        $category_name = $request->input('category_name');
+        $category_description = $request->input('category_description');
+
+        $this->validate($request, [
+            'category_name' => 'required|max:255',
+            'category_description' => 'required|max:255',
+        ]);
+
+        $data = array(
+            "category_name" => $category_name,
+            "category_description" => $category_description
+        );
+
+        DB::table('category')->where('category_id', $category_id)->update($data);
+
+        return redirect('/updateCategory')->with('alert', 'Category details updated successfully! ');
     }
 }

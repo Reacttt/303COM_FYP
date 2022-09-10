@@ -62,6 +62,13 @@ class ViewController extends Controller
         return view("addCategory");
     }
 
+    public function updateCategoryPage()
+    {
+        $category = DB::table('category')->get();
+        $product = DB::table('product')->get();
+        return view("updateCategory", compact('category', 'product'));
+    }
+
     public function addProductPage()
     {
         $category = DB::table('category')->get();
