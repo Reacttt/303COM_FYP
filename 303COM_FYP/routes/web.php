@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ViewController;
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CartController;
 
@@ -37,8 +38,14 @@ Route::get('updateCartQuantity/{user_id?}/{product_id?}/{quantity?}', [CartContr
 
 // Admin Routers
 
+// Admin Dashboard
 Route::get('/admin', [ViewController::class, 'adminPage']);
 
+// Admin Category
+Route::get('/addCategory', [ViewController::class, 'addCategoryPage']);
+Route::post('addCategory', [CategoryController::class, 'addCategory'])->name('addCategory');
+
+// Admin Product
 Route::get('/addProduct', [ViewController::class, 'addProductPage']);
 Route::post('addProduct', [ProductController::class, 'addProduct'])->name('addProduct');
 

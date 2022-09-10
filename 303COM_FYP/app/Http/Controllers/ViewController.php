@@ -57,6 +57,11 @@ class ViewController extends Controller
         return view("admin");
     }
 
+    public function addCategoryPage()
+    {
+        return view("addCategory");
+    }
+
     public function addProductPage()
     {
         $category = DB::table('category')->get();

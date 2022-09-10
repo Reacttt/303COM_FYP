@@ -38,6 +38,15 @@
                     </li>
                     <!-- End Dashboard -->
 
+                    <li class="menu-title">Category</li><!-- /.menu-title -->
+
+                    <li class="menu-item">
+                        <a href="/addCategory"> <i class="menu-icon fa fa-table"></i>Add New Category</a>
+                        <a href="/updateCategory"> <i class="menu-icon fa fa-table"></i>Update Category Details</a>
+                        <a href="/deleteCategory"> <i class="menu-icon fa fa-table"></i>Delete Category</a>
+                        <a href="/restoreCategory"> <i class="menu-icon fa fa-table"></i>Restore Category</a>
+                    </li>
+
                     <li class="menu-title">Product</li><!-- /.menu-title -->
 
                     <li class="menu-item">
@@ -47,6 +56,10 @@
                         <a href="/deleteProduct"> <i class="menu-icon fa fa-table"></i>Delete Product</a>
                         <a href="/restoreProduct"> <i class="menu-icon fa fa-table"></i>Restore Product</a>
                     </li>
+
+                    <li class="menu-title">Order</li><!-- /.menu-title -->
+
+
                 </ul>
             </div><!-- /.navbar-collapse -->
         </nav>
