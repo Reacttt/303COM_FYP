@@ -74,11 +74,13 @@
                </div>
             </div>
             @if ($username != NULL)
+            @php $user_id = DB::table('user')->where('user_username', $username)->value('user_id'); @endphp
+            @php $cart_quantity = DB::table('cart')->where('user_id', $user_id)->sum('product_quantity'); @endphp
             <div class="col-md-3">
                <div class="user">
                   <a href="/cart" class="btn cart">
                      <i class="fa fa-shopping-cart"></i>
-                     <span>(0)</span>
+                     <span>({{$cart_quantity}})</span>
                   </a>
                </div>
             </div>

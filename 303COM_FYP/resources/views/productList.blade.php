@@ -17,9 +17,7 @@
 	<link rel="stylesheet" href="<?php echo asset('css/productListing.css') ?>" type="text/css">
 </head>
 
-<!--
-            CSS
-            ============================================= -->
+<!-- CSS ============================================= -->
 <link rel="stylesheet" href="css/linearicons.css">
 <link rel="stylesheet" href="css/owl.carousel.css">
 <link rel="stylesheet" href="css/font-awesome.min.css">
