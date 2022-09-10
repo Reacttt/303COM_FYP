@@ -13,8 +13,11 @@ class ProductController extends Controller
         $product_id = $request->input('product_id');
 
         $product = DB::table('product')->where('product_id', $product_id)->first();
+        $category = DB::table('category')->get();
+        $category_name = DB::table('category')->where('category_id', $product->category_id)->value('category_name');
 
-        return view("editProduct", compact('product'));
+
+        return view("editProduct", compact('product', 'category', 'category_name'));
     }
 
     public function addProduct(Request $request)

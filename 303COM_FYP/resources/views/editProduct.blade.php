@@ -41,7 +41,11 @@
                         <div class="col col-md-3"><label for="select" class=" form-control-label">Product Category</label></div>
                         <div class="col-12 col-md-9">
                            <select name="category_id" class="form-control">
-                              <option value="1">{{ $product->category_id }}</option>
+                              <option value="{{ $product->category_id }}">{{ $product->category_id }} - {{ $category_name }}</option>
+                              <option disabled>----------------------------------------</option>
+                              @foreach ($category as $category)
+                              <option value="{{ $category->category_id }}">{{ $category->category_id }} - {{ $category->category_name }}</option>
+                              @endforeach
                            </select>
                         </div>
                      </div>
