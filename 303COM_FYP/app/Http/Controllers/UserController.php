@@ -18,6 +18,11 @@ class UserController extends Controller
 
     public function registerUser(Request $request)
     {
+        $user_username = $request->input('user_username');
+        $user_password = Hash::make($request->input('user_password'));
+        $user_email = $request->input('user_email');
+        $user_status = $request->input('user_status');
+        $created_at = \Carbon\Carbon::now()->toDateTimeString();
 
         $this->validate($request, [
             'user_username' => 'required|max:255|unique:user,user_username',
@@ -27,16 +32,12 @@ class UserController extends Controller
             'user_status'
         ]);
 
-        $user_username = $request->input('user_username');
-        $user_password = Hash::make($request->input('user_password'));
-        $user_email = $request->input('user_email');
-        $user_status = $request->input('user_status');
-
         $data = array(
             "user_username" => $user_username,
             "user_password" => $user_password,
             "user_email" => $user_email,
-            "user_status" => $user_status
+            "user_status" => $user_status,
+            "created_at" => $created_at
         );
 
         DB::table('user')->insert($data);
