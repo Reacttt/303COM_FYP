@@ -24,7 +24,8 @@ class ProductSeeder extends Seeder
                 'product_image' => 'product-' . $i+1 . '.jpg',
                 'product_stock' => rand(5,50),
                 'product_price' => rand(5,50) . '.99',
-                'product_status' => rand(0,1)
+                'product_status' => rand(0,1),
+                'created_at' => \Carbon\Carbon::now()->toDateTimeString()
             ];
         }
 

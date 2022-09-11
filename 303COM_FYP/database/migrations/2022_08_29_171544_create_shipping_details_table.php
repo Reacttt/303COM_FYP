@@ -24,6 +24,7 @@ return new class extends Migration
             $table->string('shipping_postal_code');
             $table->string('shipping_country');
             $table->string('shipping_contact');
+            $table->boolean('shipping_details_status');
             $table->timestamps();
         });
     }

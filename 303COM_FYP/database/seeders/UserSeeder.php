@@ -21,7 +21,8 @@ class UserSeeder extends Seeder
             'user_username' => 'customer',
             'user_password' => Hash::make('password'),
             'user_email' => 'customer@estore.com',
-            'user_status' => '1'
+            'user_status' => '1',
+            'created_at' => \Carbon\Carbon::now()->toDateTimeString()
         ]);
 
         for ($i = 0; $i < 3; $i++) {
@@ -29,7 +30,8 @@ class UserSeeder extends Seeder
                 'user_username' => Str::random(10),
                 'user_password' => Hash::make('password'),
                 'user_email' => Str::random(10) . '@estore.com',
-                'user_status' => '1'
+                'user_status' => '1',
+                'created_at' => \Carbon\Carbon::now()->toDateTimeString()
             ];
         }
 

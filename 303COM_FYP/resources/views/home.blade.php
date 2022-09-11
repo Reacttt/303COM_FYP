@@ -34,7 +34,7 @@
                 <nav class="navbar bg-light">
                     <ul class="navbar-nav" style="overflow-y: auto; height:400px">
                         <li class="nav-item">
-                            <a class="nav-link" href="/product/0"><i class="fa fa-list"></i>All Products</a>
+                            <a class="nav-link" href="/product"><i class="fa fa-list"></i>All Products</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="/category"><i class="fa fa-folder"></i>All Categories</a>
@@ -62,21 +62,21 @@
                         <img src="/images/slider-1.jpg" alt="Slider Image" />
                         <div class="header-slider-caption">
                             <p>Some text goes here that describes the image</p>
-                            <a class="btn" href=""><i class="fa fa-shopping-cart"></i>Shop Now</a>
+                            <a class="btn" href="/product"><i class="fa fa-shopping-cart"></i>Shop Now</a>
                         </div>
                     </div>
                     <div class="header-slider-item">
                         <img src="/images/slider-2.jpg" alt="Slider Image" />
                         <div class="header-slider-caption">
                             <p>Some text goes here that describes the image</p>
-                            <a class="btn" href=""><i class="fa fa-shopping-cart"></i>Shop Now</a>
+                            <a class="btn" href="/product"><i class="fa fa-shopping-cart"></i>Shop Now</a>
                         </div>
                     </div>
                     <div class="header-slider-item">
                         <img src="/images/slider-3.jpg" alt="Slider Image" />
                         <div class="header-slider-caption">
                             <p>Some text goes here that describes the image</p>
-                            <a class="btn" href=""><i class="fa fa-shopping-cart"></i>Shop Now</a>
+                            <a class="btn" href="/product"><i class="fa fa-shopping-cart"></i>Shop Now</a>
                         </div>
                     </div>
                 </div>

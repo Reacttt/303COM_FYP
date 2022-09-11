@@ -29,6 +29,7 @@ class ProductController extends Controller
         $product_price = $request->input('product_price');
         $product_stock = $request->input('product_stock');
         $product_status = $request->input('product_status');
+        $created_at = \Carbon\Carbon::now()->toDateTimeString();
         
         $this->validate($request, [
             'category_id' => 'required',
@@ -49,7 +50,8 @@ class ProductController extends Controller
             "product_image" => $imageName,
             "product_price" => $product_price,
             "product_stock" => $product_stock,
-            "product_status" => $product_status
+            "product_status" => $product_status,
+            "created_at" => $created_at
         );
 
         DB::table('product')->insert($data);
@@ -64,6 +66,7 @@ class ProductController extends Controller
         $product_name = $request->input('product_name');
         $product_description = $request->input('product_description');
         $product_price = $request->input('product_price');
+        $updated_at = \Carbon\Carbon::now()->toDateTimeString();
 
         $this->validate($request, [
             'product_name' => 'required|max:255',
@@ -76,6 +79,7 @@ class ProductController extends Controller
             "product_name" => $product_name,
             "product_description" => $product_description,
             "product_price" => $product_price,
+            "updated_at" => $updated_at
         );
 
         DB::table('product')->where('product_id', $product_id)->update($data);
@@ -86,9 +90,11 @@ class ProductController extends Controller
     public function updateProductStock($product_id = null, $product_stock = null, $quantity = null)
     {
         $newStock = ($product_stock) + $quantity;
+        $updated_at = \Carbon\Carbon::now()->toDateTimeString();
 
         $data = array(
-            "product_stock" => $newStock
+            "product_stock" => $newStock,
+            "updated_at" => $updated_at
         );
 
         DB::table('product')->where('product_id', $product_id)->update($data);
@@ -100,10 +106,12 @@ class ProductController extends Controller
     {
         $product_id = $request->input('product_id');
         $product_status = $request->input('product_status');
+        $updated_at = \Carbon\Carbon::now()->toDateTimeString();
 
         $data = array(
             "product_id" => $product_id,
-            "product_status" => $product_status
+            "product_status" => $product_status,
+            "updated_at" => $updated_at
         );
 
         DB::table('product')->where('product_id', $product_id)->update($data);

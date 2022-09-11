@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('category_name');
             $table->string('category_description');
             $table->binary('category_image');
-            $table->integer('category_status');
+            $table->boolean('category_status');
             $table->timestamps();
         });
     }
