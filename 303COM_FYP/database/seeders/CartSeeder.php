@@ -20,6 +20,7 @@ class CartSeeder extends Seeder
                 'user_id' => rand(1, 3),
                 'product_id' => rand(1, 3),
                 'product_quantity' => rand(1,3),
+                'created_at' => \Carbon\Carbon::now()->toDateTimeString()
             ];
         }
 
