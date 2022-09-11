@@ -21,6 +21,7 @@ class CategoryController extends Controller
         $category_description = $request->input('category_description');
         $category_image = $request->input('category_image');
         $category_status = $request->input('category_status');
+        $created_at = \Carbon\Carbon::now()->toDateTimeString();
         
         $this->validate($request, [
             'category_name' => 'required|max:255',
@@ -36,12 +37,13 @@ class CategoryController extends Controller
             "category_name" => $category_name,
             "category_description" => $category_description,
             "category_image" => $imageName,
-            "category_status" => $category_status
+            "category_status" => $category_status,
+            "created_at" => $created_at
         );
 
         DB::table('category')->insert($data);
 
-        return redirect('admin')->with('alert', 'Product added successfully!');
+        return redirect('admin')->with('alert', 'Category added successfully!');
     }
 
     public function updateCategoryDetails(Request $request)
@@ -49,6 +51,7 @@ class CategoryController extends Controller
         $category_id = $request->input('category_id');
         $category_name = $request->input('category_name');
         $category_description = $request->input('category_description');
+        $updated_at = \Carbon\Carbon::now()->toDateTimeString();
 
         $this->validate($request, [
             'category_name' => 'required|max:255',
@@ -57,7 +60,8 @@ class CategoryController extends Controller
 
         $data = array(
             "category_name" => $category_name,
-            "category_description" => $category_description
+            "category_description" => $category_description,
+            "updated_at" => $updated_at
         );
 
         DB::table('category')->where('category_id', $category_id)->update($data);
@@ -67,8 +71,11 @@ class CategoryController extends Controller
 
     public function updateCategoryStatus($category_id = null, $category_status = null)
     {
+        $updated_at = \Carbon\Carbon::now()->toDateTimeString();
+
         $data = array(
-            "category_status" => $category_status
+            "category_status" => $category_status,
+            "updated_at" => $updated_at
         );
 
         DB::table('category')->where('category_id', $category_id)->update($data);
