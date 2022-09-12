@@ -34,10 +34,12 @@ class ViewController extends Controller
     public function productPage($category_id = null)
     {
         $category = DB::table('category')->where('category_status', 1)->get();
+        
         if ($category_id == null) {
             $product = DB::table('product')->where('product_status', 1)->get();
-        } elseif ($category_id == "Best") {
-        } elseif ($category_id == "New") {
+        } elseif ($category_id == "best") {
+        } elseif ($category_id == "new") {
+            $product = DB::table('product')->orderBy('created_at', 'desc')->where('product_status', 1)->take(6)->get();
         } else {
             $product = DB::table('product')->where('category_id', $category_id)->where('product_status', 1)->get();
         }
