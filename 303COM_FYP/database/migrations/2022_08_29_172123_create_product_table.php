@@ -15,7 +15,8 @@ return new class extends Migration
     {
         Schema::create('product', function (Blueprint $table) {
             $table->increments('product_id');
-            $table->integer('category_id');
+            $table->integer('category_id')->unsigned()->default(0);
+            $table->foreign('category_id')->references('category_id')->on('category')->onDelete('cascade');
             $table->string('product_name');
             $table->string('product_description');
             $table->binary('product_image');

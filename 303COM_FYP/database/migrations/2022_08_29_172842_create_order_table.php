@@ -15,7 +15,8 @@ return new class extends Migration
     {
         Schema::create('order', function (Blueprint $table) {
             $table->increments('order_id');
-            $table->integer('user_id');
+            $table->integer('user_id')->unsigned()->default(0);
+            $table->foreign('user_id')->references('user_id')->on('user')->onDelete('cascade');
             $table->double('order_shipping_fee');
             $table->double('order_total');
             $table->string('order_status');

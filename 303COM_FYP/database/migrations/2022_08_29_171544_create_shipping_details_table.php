@@ -15,7 +15,8 @@ return new class extends Migration
     {
         Schema::create('shipping_details', function (Blueprint $table) {
             $table->increments('shipping_details_id');
-            $table->integer('user_id');
+            $table->integer('user_id')->unsigned()->default(0);
+            $table->foreign('user_id')->references('user_id')->on('user')->onDelete('cascade');
             $table->string('shipping_first_name');
             $table->string('shipping_last_name');
             $table->string('shipping_address_line1');

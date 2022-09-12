@@ -15,8 +15,10 @@ return new class extends Migration
     {
         Schema::create('order_item', function (Blueprint $table) {
             $table->increments('order_item_id');
-            $table->integer('order_id');
-            $table->integer('product_id');
+            $table->integer('order_id')->unsigned()->default(0);
+            $table->foreign('order_id')->references('order_id')->on('order')->onDelete('cascade');
+            $table->integer('product_id')->unsigned()->default(0);
+            $table->foreign('product_id')->references('product_id')->on('product')->onDelete('cascade');
             $table->string('order_item_name');
             $table->string('order_item_description');
             $table->binary('order_item_image');

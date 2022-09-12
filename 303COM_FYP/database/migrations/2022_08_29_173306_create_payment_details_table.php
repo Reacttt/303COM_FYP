@@ -15,7 +15,8 @@ return new class extends Migration
     {
         Schema::create('payment_details', function (Blueprint $table) {
             $table->increments('payment_details_id');
-            $table->integer('order_id');
+            $table->integer('order_id')->unsigned()->default(0);
+            $table->foreign('order_id')->references('order_id')->on('order')->onDelete('cascade');
             $table->double('payment_total');
             $table->string('payment_method');
             $table->string('payment_transaction');
