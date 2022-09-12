@@ -17,17 +17,6 @@
 	<link rel="stylesheet" href="<?php echo asset('css/productListing.css') ?>" type="text/css">
 </head>
 
-<!-- CSS ============================================= -->
-<link rel="stylesheet" href="css/linearicons.css">
-<link rel="stylesheet" href="css/owl.carousel.css">
-<link rel="stylesheet" href="css/font-awesome.min.css">
-<link rel="stylesheet" href="css/themify-icons.css">
-<link rel="stylesheet" href="css/nice-select.css">
-<link rel="stylesheet" href="css/nouislider.min.css">
-<link rel="stylesheet" href="css/bootstrap.css">
-<link rel="stylesheet" href="css/main.css">
-</head>
-
 @include('header')
 
 <body>
@@ -93,7 +82,7 @@
 											<p class="hover-text">add to bag</p>
 										</a>
 										@endif
-										<a href="" class="social-info">
+										<a href="/singleProduct/{{ $product->product_id }}" class="social-info">
 											<i class="fa fa-expand"></i>
 											<p class="hover-text">view more</p>
 										</a>

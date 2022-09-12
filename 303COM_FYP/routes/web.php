@@ -27,6 +27,7 @@ Route::get('/register', [ViewController::class, 'registerPage']);
 Route::get('/login', [ViewController::class, 'loginPage']);
 Route::get('/category', [ViewController::class, 'categoryPage']);
 Route::get('/product/{category_id?}', [ViewController::class, 'productPage']);
+Route::get('/singleProduct/{product_id?}', [ViewController::class, 'singleProductPage']);
 Route::get('/cart', [ViewController::class, 'cartPage']);
 
 Route::post('registerUser', [UserController::class, 'registerUser'])->name('registerUser');

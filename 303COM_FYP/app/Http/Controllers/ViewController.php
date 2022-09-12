@@ -34,7 +34,7 @@ class ViewController extends Controller
     public function productPage($category_id = null)
     {
         $category = DB::table('category')->where('category_status', 1)->get();
-        
+
         if ($category_id == null) {
             $product = DB::table('product')->where('product_status', 1)->get();
         } elseif ($category_id == "best") {
@@ -45,7 +45,14 @@ class ViewController extends Controller
         }
 
         return view("productList", compact('product', 'category'));
+    }
 
+    public function singleProductPage($product_id = null)
+    {
+        $product = DB::table('product')->where('product_id', $product_id)->first();
+        $category_name = DB::table('category')->where('category_id', $product->category_id)->value('category_name'); 
+
+        return view("singleProduct", compact('product', 'category_name'));
     }
 
     public function cartPage()
