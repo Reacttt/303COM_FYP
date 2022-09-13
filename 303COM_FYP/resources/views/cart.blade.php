@@ -80,15 +80,15 @@
             <!-- Display Unit Price -->
             @php $subTotal = $product->product_price * $cart->product_quantity; @endphp
             <div class='amount'> {{ $subTotal }} </div>
+                  
+            @php $totalPrice = $totalPrice + $subTotal; @endphp
+            @php $totalQuantity = $totalQuantity + $cart->product_quantity; @endphp
          @endif
             <br /><br /><br /><br /><br />
             <!-- Remove Button -->
             <a href="/removeCart/{{ $user_id }}/{{ $cart->product_id }}"><button type='submit'>Remove</button></a>
          </div>
       </div>
-      
-      @php $totalPrice = $totalPrice + $subTotal; @endphp
-      @php $totalQuantity = $totalQuantity + $cart->product_quantity; @endphp
 
       @endif
       @endforeach
