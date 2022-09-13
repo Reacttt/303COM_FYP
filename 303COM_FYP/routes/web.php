@@ -7,6 +7,7 @@ use App\Http\Controllers\ViewController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\AdminController;
 
 /*
 |--------------------------------------------------------------------------
@@ -38,6 +39,9 @@ Route::get('addCart/{product_id?}/{user_username?}', [CartController::class, 'ad
 Route::get('updateCartQuantity/{user_id?}/{product_id?}/{quantity?}', [CartController::class, 'updateCartQuantity'])->name('updateCartQuantity');
 
 // Admin Routers
+
+Route::post('loginAdmin', [AdminController::class, 'loginAdmin'])->name('loginAdmin');
+Route::get('logoutAdmin', [AdminController::class, 'logoutAdmin'])->name('logoutAdmin');
 
 // Admin Dashboard
 Route::get('/admin', [ViewController::class, 'adminPage']);

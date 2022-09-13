@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Symfony\Component\VarDumper\Caster\RedisCaster;
+use App\Http\Controllers\Session;
 
 class ViewController extends Controller
 {
@@ -50,7 +51,7 @@ class ViewController extends Controller
     public function singleProductPage($product_id = null)
     {
         $product = DB::table('product')->where('product_id', $product_id)->first();
-        $category_name = DB::table('category')->where('category_id', $product->category_id)->value('category_name'); 
+        $category_name = DB::table('category')->where('category_id', $product->category_id)->value('category_name');
 
         return view("singleProduct", compact('product', 'category_name'));
     }
@@ -65,7 +66,13 @@ class ViewController extends Controller
 
     public function adminPage()
     {
-        return view("admin");
+        $admin = Session()->get('admin_username');
+
+        if ($admin == null) {
+            return view("adminLogin");
+        } else {
+            return view("admin");
+        }
     }
 
     public function addCategoryPage()
