@@ -23,7 +23,6 @@ class AdminController extends Controller
 
         if ($admin) {
             if (Hash::check($request->admin_password, $admin->admin_password)) {
-                Session()->start();
                 Session()->put('admin_username', $request->admin_username);
 
                 return redirect('/')->with('alert', 'Admin login successfully!');
@@ -37,7 +36,7 @@ class AdminController extends Controller
 
     public function logoutAdmin()
     {
-        Session()->flush('admin_username');
+        Session()->forget('admin_username');
 
         return redirect('/')->with('alert', 'Admin successfully logged out!');
     }

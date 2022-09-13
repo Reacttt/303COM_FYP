@@ -58,7 +58,6 @@ class UserController extends Controller
 
         if ($user) {
             if (Hash::check($request->user_password, $user->user_password)) {
-                Session()->start();
                 Session()->put('user_username', $request->user_username);
 
                 return redirect('/')->with('alert', 'User login successfully!');
@@ -73,7 +72,7 @@ class UserController extends Controller
     public function logoutUser()
     {
 
-        Session()->flush();
+        Session()->forget('user_username');
 
         return redirect('/')->with('alert', 'You successfully logged out!');
     }
