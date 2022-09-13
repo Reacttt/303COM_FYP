@@ -25,7 +25,7 @@ class AdminController extends Controller
             if (Hash::check($request->admin_password, $admin->admin_password)) {
                 Session()->put('admin_username', $request->admin_username);
 
-                return redirect('/')->with('alert', 'Admin login successfully!');
+                return redirect('/admin')->with('alert', 'Admin login successfully!');
             } else {
                 return back()->with('alert', 'Password does not matches!');
             }
