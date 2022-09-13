@@ -10,6 +10,7 @@ use App\Http\Controllers\Session;
 class ViewController extends Controller
 {
     // Customer View
+
     public function homePage()
     {
         $category = DB::table('category')->get();
@@ -26,11 +27,15 @@ class ViewController extends Controller
         return view("login");
     }
 
+    // Category View
+
     public function categoryPage()
     {
         $category = DB::table('category')->get();
         return view("category", compact('category'));
     }
+
+    // Product View
 
     public function productPage($category_id = null)
     {
@@ -56,6 +61,8 @@ class ViewController extends Controller
         return view("singleProduct", compact('product', 'category_name'));
     }
 
+    // Cart View
+
     public function cartPage()
     {
         $cart = DB::table('cart')->get();
@@ -74,6 +81,8 @@ class ViewController extends Controller
             return view("admin");
         }
     }
+
+    // Category Manage View
 
     public function addCategoryPage()
     {
@@ -99,7 +108,7 @@ class ViewController extends Controller
         return view("restoreCategory", compact('category'));
     }
 
-    // Product View
+    // Product Manage View
 
     public function addProductPage()
     {

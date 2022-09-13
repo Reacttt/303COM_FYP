@@ -37,6 +37,7 @@
 
       @foreach($cart as $cart)
       @php $product = DB::table('product')->where('product_id', $cart->product_id)->first(); @endphp
+      @php $category = DB::table('category')->where('category_id', $product->category_id)->first(); @endphp
       @php $user_id = DB::table('user')->where('user_username', Session::get('user_username'))->value('user_id'); @endphp
       @if ($cart->user_id === $user_id)
       <div class='Cart-Items'>
@@ -53,19 +54,23 @@
          <div class='counter'>
 
             <!-- Decrease Button -->
-            @if($cart->product_quantity > 1)
-            <a href="/updateCartQuantity/{{ $user_id }}/{{ $cart->product_id }}/-1"><button type="submit" class="btn"><i class="fa fa-minus"></i></button></a>
-            @else
-            <button type="submit" class="btn" disabled><i class="fa fa-minus"></i></button>
-            @endif
+            @if($category->category_status == 1 && $product->product_status == 1)
+               @if($cart->product_quantity > 1 )
+               <a href="/updateCartQuantity/{{ $user_id }}/{{ $cart->product_id }}/-1"><button type="submit" class="btn"><i class="fa fa-minus"></i></button></a>
+               @else
+               <button type="submit" class="btn" disabled><i class="fa fa-minus"></i></button>
+               @endif
 
-            <div class='count'> {{ $cart->product_quantity }}</div>
+               <div class='count'> {{ $cart->product_quantity }}</div>
 
-            <!-- Increase Button -->
-            @if($cart->product_quantity < $product->product_stock)
-               <a href="/updateCartQuantity/{{ $user_id }}/{{ $cart->product_id }}/1"><button type="submit" class="btn"><i class="fa fa-plus"></i></button></a>
+               <!-- Increase Button -->
+               @if($cart->product_quantity < $product->product_stock)
+                  <a href="/updateCartQuantity/{{ $user_id }}/{{ $cart->product_id }}/1"><button type="submit" class="btn"><i class="fa fa-plus"></i></button></a>
+               @else
+                  <button type="submit" class="btn" disabled><i class="fa fa-plus"></i>
+               @endif
             @else
-               <button type="submit" class="btn" disabled><i class="fa fa-plus"></i>
+            <div class='count'> Not Available </div>
             @endif
 
          </div>
