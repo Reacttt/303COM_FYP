@@ -36,5 +36,9 @@ class DatabaseSeeder extends Seeder
         $this->call([
             CartSeeder::class
         ]);
+
+        $this->call([
+            AdminSeeder::class
+        ]);
     }
 }
