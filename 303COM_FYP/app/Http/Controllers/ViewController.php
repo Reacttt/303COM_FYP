@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Symfony\Component\VarDumper\Caster\RedisCaster;
 use App\Http\Controllers\Session;
+use App\Http\Controllers\Collection;
 
 class ViewController extends Controller
 {
@@ -67,6 +68,13 @@ class ViewController extends Controller
     {
         $cart = DB::table('cart')->get();
         return view("cart", compact('cart'));
+    }
+
+    public function checkoutPage()
+    {
+        $user = DB::table('user')->where('user_username', Session()->get('user_username'))->first();
+        $cart = DB::table('cart')->where('user_id', $user->user_id)->get();
+        return view("checkout", compact('cart', 'user'));
     }
 
     // Admin View
