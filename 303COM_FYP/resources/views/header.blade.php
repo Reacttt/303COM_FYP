@@ -38,6 +38,7 @@
             <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
                <div class="navbar-nav mr-auto">
                   <a href="/admin" class="nav-item nav-link">Admin Centre</a>
+                  <a href="#" class="nav-item nav-link">Refresh API</a>
                </div>
                <a href="#" class="nav-item nav-link">Order History</a>
                <a href="#" class="nav-item nav-link">Currency</a>
@@ -68,10 +69,12 @@
                </div>
             </div>
             <div class="col-md-6">
+               <!--
                <div class="search">
                   <input type="text" placeholder="Search">
                   <button><i class="fa fa-search"></i></button>
                </div>
+               -->
             </div>
             @if ($username != NULL)
             @php $user_id = DB::table('user')->where('user_username', $username)->value('user_id'); @endphp
