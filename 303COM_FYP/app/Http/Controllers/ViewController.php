@@ -16,12 +16,12 @@ class ViewController extends Controller
         return view("home", compact('category'));
     }
 
-    public function registerPage()
+    public function registerUserPage()
     {
         return view("register");
     }
 
-    public function loginPage()
+    public function loginUserPage()
     {
         return view("login");
     }

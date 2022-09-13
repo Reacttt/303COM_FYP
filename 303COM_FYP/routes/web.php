@@ -20,56 +20,57 @@ use App\Http\Controllers\AdminController;
 |
 */
 
-// Index Router
+// Default Router
 Route::get('/', [ViewController::class, 'homePage']);
 
 // Customer Routers
-Route::get('/register', [ViewController::class, 'registerPage']);
-Route::get('/login', [ViewController::class, 'loginPage']);
-Route::get('/category', [ViewController::class, 'categoryPage']);
-Route::get('/product/{category_id?}', [ViewController::class, 'productPage']);
-Route::get('/singleProduct/{product_id?}', [ViewController::class, 'singleProductPage']);
-Route::get('/cart', [ViewController::class, 'cartPage']);
 
+// Customer Account
+Route::get('/register', [ViewController::class, 'registerUserPage']);
+Route::get('/login', [ViewController::class, 'loginUserPage']);
 Route::post('registerUser', [UserController::class, 'registerUser'])->name('registerUser');
 Route::post('loginUser', [UserController::class, 'loginUser'])->name('loginUser');
 Route::get('logoutUser', [UserController::class, 'logoutUser'])->name('logoutUser');
 
+// Customer Category
+Route::get('/category', [ViewController::class, 'categoryPage']);
+
+// Customer Product
+Route::get('/product/{category_id?}', [ViewController::class, 'productPage']);
+Route::get('/singleProduct/{product_id?}', [ViewController::class, 'singleProductPage']);
+
+// Customer Cart
+Route::get('/cart', [ViewController::class, 'cartPage']);
 Route::get('addCart/{product_id?}/{user_username?}', [CartController::class, 'addCart'])->name('addCart');
 Route::get('updateCartQuantity/{user_id?}/{product_id?}/{quantity?}', [CartController::class, 'updateCartQuantity'])->name('updateCartQuantity');
 
 // Admin Routers
 
+// Admin Account
 Route::post('loginAdmin', [AdminController::class, 'loginAdmin'])->name('loginAdmin');
 Route::get('logoutAdmin', [AdminController::class, 'logoutAdmin'])->name('logoutAdmin');
 
 // Admin Dashboard
 Route::get('/admin', [ViewController::class, 'adminPage']);
 
-// Admin Category
+// Admin Manage Category
 Route::get('/addCategory', [ViewController::class, 'addCategoryPage']);
 Route::post('addCategory', [CategoryController::class, 'addCategory'])->name('addCategory');
-
 Route::get('/updateCategory', [ViewController::class, 'updateCategoryPage']);
 Route::get('findCategory/{category_id?}', [CategoryController::class, 'findCategory'])->name('findCategory');
 Route::post('updateCategoryDetails', [CategoryController::class, 'updateCategoryDetails'])->name('updateCategoryDetails');
-
 Route::get('/deleteCategory', [ViewController::class, 'deleteCategoryPage']);
 Route::get('/restoreCategory', [ViewController::class, 'restoreCategoryPage']);
 Route::get('updateCategoryStatus/{category_id?}/{category_status?}', [CategoryController::class, 'updateCategoryStatus'])->name('updateCategoryStatus');
 
-// Admin Product
+// Admin Manage Product
 Route::get('/addProduct', [ViewController::class, 'addProductPage']);
 Route::post('addProduct', [ProductController::class, 'addProduct'])->name('addProduct');
-
 Route::post('findProduct', [ProductController::class, 'findProduct'])->name('findProduct');
-
 Route::get('/updateProduct', [ViewController::class, 'updateProductPage']);
 Route::post('updateProductDetails', [ProductController::class, 'updateProductDetails'])->name('updateProductDetails');
-
 Route::get('updateStock', [ViewController::class, 'updateStockPage']);
 Route::get('updateProductStock/{product_id?}/{product_stock?}/{quantity?}', [ProductController::class, 'updateProductStock'])->name('updateProductStock');
-
 Route::get('/deleteProduct', [ViewController::class, 'deleteProductPage']);
 Route::get('/restoreProduct', [ViewController::class, 'restoreProductPage']);
 Route::post('updateProductStatus', [ProductController::class, 'updateProductStatus'])->name('updateProductStatus');

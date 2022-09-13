@@ -71,7 +71,6 @@ class UserController extends Controller
 
     public function logoutUser()
     {
-
         Session()->forget('user_username');
 
         return redirect('/')->with('alert', 'You successfully logged out!');
