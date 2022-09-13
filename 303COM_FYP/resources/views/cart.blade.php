@@ -34,6 +34,7 @@
 
       @php $totalPrice = 0; @endphp
       @php $totalQuantity = 0; @endphp
+      @php $subTotal = 0; @endphp
 
       @foreach($cart as $cart)
       @php $product = DB::table('product')->where('product_id', $cart->product_id)->first(); @endphp
@@ -52,10 +53,9 @@
          </div>
 
          <div class='counter'>
-
-            <!-- Decrease Button -->
             @if($category->category_status == 1 && $product->product_status == 1)
                @if($cart->product_quantity > 1 )
+               <!-- Decrease Button -->
                <a href="/updateCartQuantity/{{ $user_id }}/{{ $cart->product_id }}/-1"><button type="submit" class="btn"><i class="fa fa-minus"></i></button></a>
                @else
                <button type="submit" class="btn" disabled><i class="fa fa-minus"></i></button>
@@ -69,25 +69,27 @@
                @else
                   <button type="submit" class="btn" disabled><i class="fa fa-plus"></i>
                @endif
+               
             @else
             <div class='count'> Not Available </div>
             @endif
-
          </div>
+
          <div class='prices'>
+         @if($category->category_status == 1 && $product->product_status == 1)
             <!-- Display Unit Price -->
             @php $subTotal = $product->product_price * $cart->product_quantity; @endphp
             <div class='amount'> {{ $subTotal }} </div>
+         @endif
             <br /><br /><br /><br /><br />
-
             <!-- Remove Button -->
-            <button type='submit'>Remove</button>
-            </form>
+            <a href="/removeCart/{{ $user_id }}/{{ $cart->product_id }}"><button type='submit'>Remove</button></a>
          </div>
       </div>
-
+      
       @php $totalPrice = $totalPrice + $subTotal; @endphp
       @php $totalQuantity = $totalQuantity + $cart->product_quantity; @endphp
+
       @endif
       @endforeach
       <!-- End Cart Item -->
@@ -107,7 +109,7 @@
          <div class='items'> {{ $totalQuantity }} items </div>
          <br>
 
-         <a href="/order">
+         <a href="/checkout">
             <div><button class='button'>Checkout</button></div>
          </a>
          </form>

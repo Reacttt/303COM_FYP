@@ -62,4 +62,13 @@ class CartController extends Controller
 
         return redirect('/cart');
     }
+
+    public function removeCart($user_id = null, $product_id = null)
+    {
+        DB::table('cart')->where('user_id', $user_id)->where('product_id', $product_id)->delete();
+
+        return redirect('/cart');
+    }
+
+    
 }

@@ -41,8 +41,11 @@ Route::get('/singleProduct/{product_id?}', [ViewController::class, 'singleProduc
 
 // Customer Cart
 Route::get('/cart', [ViewController::class, 'cartPage']);
-Route::get('addCart/{product_id?}/{user_username?}', [CartController::class, 'addCart'])->name('addCart');
-Route::get('updateCartQuantity/{user_id?}/{product_id?}/{quantity?}', [CartController::class, 'updateCartQuantity'])->name('updateCartQuantity');
+Route::get('addCart/{product_id?}/{user_username?}', [CartController::class, 'addCart']);
+Route::get('updateCartQuantity/{user_id?}/{product_id?}/{quantity?}', [CartController::class, 'updateCartQuantity']);
+Route::get('removeCart/{user_id?}/{product_id?}', [CartController::class, 'removeCart']);
+
+Route::get('checkout', [ViewController::class, 'checkoutPage']);
 
 // Admin Routers
 
