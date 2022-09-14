@@ -90,7 +90,7 @@
                      <td></td>
                      <td></td>
                      <td>
-                        <a>
+                        <a href="viewOrder/{{ $order->order_id}}">
                            <center><button type="submit" class='btn btn-danger'>View</button><br><br></center>
                         </a>
                      </td>

@@ -49,6 +49,7 @@ Route::get('checkout', [ViewController::class, 'checkoutPage']);
 
 // Customer Order
 Route::get('placeOrder/{user_id?}', [OrderController::class, 'placeOrder']);
+Route::get('viewOrder/{order_id?}', [ViewController::class, 'viewOrderPage']);
 
 // Customer Order
 Route::get('order', [ViewController::class, 'orderPage']);

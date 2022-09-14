@@ -86,6 +86,12 @@ class ViewController extends Controller
         return view("order", compact('order', 'order_item'));
     }
 
+    public function viewOrderPage($order_id = null)
+    {
+        $order_item = DB::table('order_item')->where('order_id', $order_id)->get();
+        return view("viewOrder", compact('order_item', 'order_id'));
+    }
+
     // Admin View
 
     public function adminPage()
