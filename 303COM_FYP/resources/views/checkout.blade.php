@@ -58,7 +58,6 @@
             <div class='amount'> {{ $subTotal }} </div>
             @endif
             <br /><br /><br /><br /><br />
-            <!-- Remove Button -->
          </div>
       </div>
 
@@ -83,8 +82,8 @@
          <div class='items'> {{ $totalQuantity }} items </div>
          <br>
 
-         <a href="/checkout">
-            <div><button class='button'>Checkout</button></div>
+         <a href="/placeOrder">
+            <div><button class='button'>Place Order</button></div>
          </a>
          </form>
       </div>

@@ -262,6 +262,13 @@ h2 {
     background: #f8f9fa;
 }
 
+.nav .dropdown-item {
+    margin-top: 0;
+    border: 0;
+    border-radius: 0;
+    background: #f8f9fa;
+}
+
 @media (min-width: 768px) {
     .nav,
     .nav .navbar {

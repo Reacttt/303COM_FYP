@@ -40,17 +40,27 @@
                   <a href="/admin" class="nav-item nav-link">Admin Centre</a>
                   <a href="#" class="nav-item nav-link">Refresh API</a>
                </div>
-               <a href="#" class="nav-item nav-link">Order History</a>
                <a href="#" class="nav-item nav-link">Currency</a>
                <a href="#" class="nav-item nav-link">Language</a>
                @php $username = Session::get('user_username') @endphp
                @if ($username != NULL)
-               <a href="/logoutUser" class="nav-item nav-link"> {{ $username }} </a>
+               <div class="nav-item dropdown">
+                  <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown"> {{ $username }}</a>
+                  <div class="dropdown-menu">
+                     <a href="/shippingDetails" class="dropdown-item">Shipping Details</a>
+                     <a href="/orderHistory" class="dropdown-item">Order History</a>
+                     <a href="/logoutUser" class="dropdown-item">Logout</a>
+                  </div>
+               </div>
                @else
-               <a href="/register" class="nav-item nav-link">Sign Up</a>
-               <a href="/login" class="nav-item nav-link">Login</a>
+               <div class="nav-item dropdown">
+                  <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown"> User Account </a>
+                  <div class="dropdown-menu">
+                     <a href="/login" class="dropdown-item">Login</a>
+                     <a href="/register" class="dropdown-item">Sign Up</a>
+                  </div>
+               </div>
                @endif
-            </div>
          </nav>
       </div>
    </div>
