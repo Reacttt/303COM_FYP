@@ -75,12 +75,10 @@
                      <td> {{ $details->shipping_country }} </td>
                      <td> {{ $details->shipping_contact }} </td>
                      <td>
-                        <a>
-                           <center>
-                              <button type="submit" class='btn btn-warning'><i class="fa fa-edit"></i> Edit</button><br><br>
-                              <button type="submit" class='btn btn-danger'><i class="fa fa-trash"></i> Delete</button><br><br>
-                           </center>
-                        </a>
+                        <center>
+                           <a><button type="submit" class='btn btn-warning'><i class="fa fa-edit"></i> Edit</button><br><br></a>
+                           <a href="/removeShippingDetails/{{ $details->shipping_details_id }}"><button type="submit" class='btn btn-danger'><i class="fa fa-trash"></i> Delete</button><br><br></a>
+                        </center>
                      </td>
                   </tr>
                   @endforeach
@@ -94,11 +92,9 @@
                      <td></td>
                      <td></td>
                      <td>
-                        <a>
-                           <center>
-                              <button type="submit" class='btn btn-success'><i class="fa fa-plus"></i> Add</button><br><br>
-                           </center>
-                        </a>
+                        <center>
+                           <a><button type="submit" class='btn btn-success'><i class="fa fa-plus"></i> Add</button><br><br></a>
+                        </center>
                      </td>
                   </tr>
                </tbody>

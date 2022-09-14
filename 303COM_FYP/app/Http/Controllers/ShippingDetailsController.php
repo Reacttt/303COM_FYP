@@ -49,4 +49,11 @@ class ShippingDetailsController extends Controller
 
         return redirect('shippingDetails')->with('alert', 'Shipping Details added successfully!');
     }
+
+    public function removeShippingDetails($shipping_details_id = null)
+    {
+        DB::table('shipping_details')->where('shipping_details_id', $shipping_details_id)->delete();
+
+        return redirect('shippingDetails')->with('alert', 'Shipping Details removed successfully!');
+    }
 }

@@ -9,6 +9,7 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\ShippingDetailsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -49,6 +50,7 @@ Route::get('checkout', [ViewController::class, 'checkoutPage']);
 
 // Customer Shipping
 Route::get('/shippingDetails', [ViewController::class, 'shippingDetailsPage']);
+Route::get('removeShippingDetails/{shipping_details_id?}', [ShippingDetailsController::class, 'removeShippingDetails']);
 
 // Customer Order
 Route::get('placeOrder/{user_id?}', [OrderController::class, 'placeOrder']);
