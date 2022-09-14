@@ -52,6 +52,7 @@ Route::get('checkout', [ViewController::class, 'checkoutPage']);
 Route::get('/shippingDetails', [ViewController::class, 'shippingDetailsPage']);
 Route::get('shippingDetailsForm/{action?}/{shipping_details_id?}', [ViewController::class, 'shippingDetailsForm']);
 Route::post('addShippingDetails', [ShippingDetailsController::class, 'addShippingDetails'])->name('addShippingDetails');
+Route::post('updateShippingDetails', [ShippingDetailsController::class, 'updateShippingDetails'])->name('updateShippingDetails');
 Route::get('removeShippingDetails/{shipping_details_id?}', [ShippingDetailsController::class, 'removeShippingDetails']);
 
 // Customer Order

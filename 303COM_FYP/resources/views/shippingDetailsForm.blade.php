@@ -90,7 +90,31 @@
       </form>
    </div>
    @else
-   <p> {{ $shipping_details->shipping_address_line1 }} </p>
+   <div class='container'>
+      <form action="{{route('updateShippingDetails')}}" method="post" class="form-group" enctype="multipart/form-data" align='center'>
+         @csrf
+         <input type="hidden" class="form-control" name="shipping_details_id" value="{{ $shipping_details->shipping_details_id }}">
+
+         <input type="text" class="form-control" placeholder="First Name" name="shipping_first_name" value="{{ $shipping_details->shipping_first_name }}">
+         <br>
+         <input type="text" class="form-control" placeholder="Last Name" name="shipping_last_name" value="{{ $shipping_details->shipping_last_name }}">
+         <br>
+         <input type="text" class="form-control" placeholder="Address Line 1" name="shipping_address_line1" value="{{ $shipping_details->shipping_address_line1 }}">
+         <br>
+         <input type="text" class="form-control" placeholder="Address Line 2" name="shipping_address_line2" value="{{ $shipping_details->shipping_address_line2 }}">
+         <br>
+         <input type="text" class="form-control" placeholder="City" name="shipping_city" value="{{ $shipping_details->shipping_city }}">
+         <br>
+         <input type="text" class="form-control" placeholder="Postal Code" name="shipping_postal_code" value="{{ $shipping_details->shipping_postal_code }}">
+         <br>
+         <input type="text" class="form-control" placeholder="Country" name="shipping_country" value="{{ $shipping_details->shipping_country }}">
+         <br>
+         <input type="text" class="form-control" placeholder="Contact" name="shipping_contact" value="{{ $shipping_details->shipping_contact }}">
+         <br>
+         <button type='submit' class='registerbtn'>Add Shipping Details</button>
+         <br>
+      </form>
+   </div>
    @endif
 
 </body>
