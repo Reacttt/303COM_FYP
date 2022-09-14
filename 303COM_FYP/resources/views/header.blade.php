@@ -48,7 +48,7 @@
                   <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown"> {{ $username }}</a>
                   <div class="dropdown-menu">
                      <a href="/shippingDetails" class="dropdown-item">Shipping Details</a>
-                     <a href="/orderHistory" class="dropdown-item">Order History</a>
+                     <a href="/order" class="dropdown-item">Order</a>
                      <a href="/logoutUser" class="dropdown-item">Logout</a>
                   </div>
                </div>

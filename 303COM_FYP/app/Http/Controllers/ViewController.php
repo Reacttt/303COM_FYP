@@ -77,6 +77,15 @@ class ViewController extends Controller
         return view("checkout", compact('cart', 'user'));
     }
 
+    // Order View
+
+    public function orderPage()
+    {
+        $order = DB::table('order')->get();
+        $order_item = DB::table('order_item')->get();
+        return view("order", compact('order', 'order_item'));
+    }
+
     // Admin View
 
     public function adminPage()

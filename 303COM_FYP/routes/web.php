@@ -50,6 +50,9 @@ Route::get('checkout', [ViewController::class, 'checkoutPage']);
 // Customer Order
 Route::get('placeOrder/{user_id?}', [OrderController::class, 'placeOrder']);
 
+// Customer Order
+Route::get('order', [ViewController::class, 'orderPage']);
+
 // Admin Routers
 
 // Admin Account
