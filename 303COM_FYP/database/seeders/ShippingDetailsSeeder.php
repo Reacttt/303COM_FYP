@@ -25,7 +25,6 @@ class ShippingDetailsSeeder extends Seeder
             "shipping_postal_code" => '1069',
             "shipping_country" => 'Malaysia',
             "shipping_contact" => '012-3456789',
-            "shipping_details_status" => 1,
             "created_at" => \Carbon\Carbon::now()->toDateTimeString()
         ]);
 
@@ -39,7 +38,6 @@ class ShippingDetailsSeeder extends Seeder
             "shipping_postal_code" => '1162',
             "shipping_country" => 'Malaysia',
             "shipping_contact" => '012-9876543',
-            "shipping_details_status" => 1,
             "created_at" => \Carbon\Carbon::now()->toDateTimeString()
         ]);
 
