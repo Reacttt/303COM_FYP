@@ -76,7 +76,7 @@
                      <td> {{ $details->shipping_contact }} </td>
                      <td>
                         <center>
-                           <a><button type="submit" class='btn btn-warning'><i class="fa fa-edit"></i> Edit</button><br><br></a>
+                           <a href="/shippingDetailsForm/edit/{{ $details->shipping_details_id }}"><button type="submit" class='btn btn-warning'><i class="fa fa-edit"></i> Edit</button><br><br></a>
                            @if ($counts != 1)
                            <a href="/removeShippingDetails/{{ $details->shipping_details_id }}"><button type="submit" class='btn btn-danger'><i class="fa fa-trash"></i> Delete</button><br><br></a>
                            @endif
@@ -95,7 +95,7 @@
                      <td></td>
                      <td>
                         <center>
-                           <a><button type="submit" class='btn btn-success'><i class="fa fa-plus"></i> Add</button><br><br></a>
+                           <a href="/shippingDetailsForm/new"><button type="submit" class='btn btn-success'><i class="fa fa-plus"></i> Add</button><br><br></a>
                         </center>
                      </td>
                   </tr>

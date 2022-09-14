@@ -81,7 +81,7 @@ class ViewController extends Controller
     public function shippingDetailsPage()
     {
         $user = DB::table('user')->where('user_username', Session()->get('user_username'))->first();
-        
+
         $counts = DB::table('shipping_details')->where('user_id', $user->user_id)->count();
 
         if ($counts != 0) {
@@ -89,6 +89,17 @@ class ViewController extends Controller
             return view("shippingDetails", compact('shipping_details', 'counts'));
         } else {
             return view("addShippingDetails")->with('alert', 'Please create a new shipping details');
+        }
+    }
+
+    public function shippingDetailsForm($action = null, $shipping_details_id = null)
+    {
+        if ($action == "edit") {
+            $shipping_details = DB::table('shipping_details')->where('shipping_details_id', $shipping_details_id)->first();
+            return view("shippingDetailsForm", compact('shipping_details'));
+        } else {
+            $shipping_details = NULL;
+            return view("shippingDetailsForm", compact('shipping_details'));
         }
     }
 
