@@ -14,6 +14,10 @@ class OrderController extends Controller
 
         $shipping_details = DB::table('shipping_details')->where('user_id', $user_id)->first();
 
+        if ($shipping_details == NULL) {
+            return redirect('/')->with('alert', 'Please Create Shipping Details');
+        }
+
         // Create New Order
         $data = array(
             "user_id" => $user_id,
