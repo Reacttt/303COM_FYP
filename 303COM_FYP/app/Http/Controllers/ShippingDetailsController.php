@@ -54,6 +54,6 @@ class ShippingDetailsController extends Controller
     {
         DB::table('shipping_details')->where('shipping_details_id', $shipping_details_id)->delete();
 
-        return redirect('shippingDetails')->with('alert', 'Shipping Details removed successfully!');
+        return redirect('/shippingDetails')->with('alert', 'Shipping Details removed successfully!');
     }
 }

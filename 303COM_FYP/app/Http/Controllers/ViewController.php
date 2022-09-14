@@ -86,7 +86,7 @@ class ViewController extends Controller
 
         if ($counts != 0) {
             $shipping_details = DB::table('shipping_details')->where('user_id', $user->user_id)->get();
-            return view("shippingDetails", compact('shipping_details'));
+            return view("shippingDetails", compact('shipping_details', 'counts'));
         } else {
             return view("addShippingDetails")->with('alert', 'Please create a new shipping details');
         }

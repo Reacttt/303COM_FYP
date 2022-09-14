@@ -77,7 +77,9 @@
                      <td>
                         <center>
                            <a><button type="submit" class='btn btn-warning'><i class="fa fa-edit"></i> Edit</button><br><br></a>
+                           @if ($counts != 1)
                            <a href="/removeShippingDetails/{{ $details->shipping_details_id }}"><button type="submit" class='btn btn-danger'><i class="fa fa-trash"></i> Delete</button><br><br></a>
+                           @endif
                         </center>
                      </td>
                   </tr>
