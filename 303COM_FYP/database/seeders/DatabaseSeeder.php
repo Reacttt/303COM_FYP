@@ -26,6 +26,10 @@ class DatabaseSeeder extends Seeder
         ]);
 
         $this->call([
+            ShippingDetailsSeeder::class
+        ]);
+
+        $this->call([
             CategorySeeder::class
         ]);
 
