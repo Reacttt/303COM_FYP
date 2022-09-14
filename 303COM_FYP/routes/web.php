@@ -47,6 +47,9 @@ Route::get('updateCartQuantity/{user_id?}/{product_id?}/{quantity?}', [CartContr
 Route::get('removeCart/{user_id?}/{product_id?}', [CartController::class, 'removeCart']);
 Route::get('checkout', [ViewController::class, 'checkoutPage']);
 
+// Customer Shipping
+Route::get('/shippingDetails', [ViewController::class, 'shippingDetailsPage']);
+
 // Customer Order
 Route::get('placeOrder/{user_id?}', [OrderController::class, 'placeOrder']);
 Route::get('viewOrder/{order_id?}', [ViewController::class, 'viewOrderPage']);

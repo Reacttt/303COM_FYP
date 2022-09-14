@@ -77,6 +77,21 @@ class ViewController extends Controller
         return view("checkout", compact('cart', 'user'));
     }
 
+    // Shipping View
+    public function shippingDetailsPage()
+    {
+        $user = DB::table('user')->where('user_username', Session()->get('user_username'))->first();
+        
+        $counts = DB::table('shipping_details')->where('user_id', $user->user_id)->count();
+
+        if ($counts != 0) {
+            $shipping_details = DB::table('shipping_details')->where('user_id', $user->user_id)->get();
+            return view("shippingDetails", compact('shipping_details'));
+        } else {
+            return view("addShippingDetails")->with('alert', 'Please create a new shipping details');
+        }
+    }
+
     // Order View
 
     public function orderPage()
