@@ -7,6 +7,7 @@ use App\Http\Controllers\ViewController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\AdminController;
 
 /*
@@ -44,8 +45,10 @@ Route::get('/cart', [ViewController::class, 'cartPage']);
 Route::get('addCart/{product_id?}/{user_username?}', [CartController::class, 'addCart']);
 Route::get('updateCartQuantity/{user_id?}/{product_id?}/{quantity?}', [CartController::class, 'updateCartQuantity']);
 Route::get('removeCart/{user_id?}/{product_id?}', [CartController::class, 'removeCart']);
-
 Route::get('checkout', [ViewController::class, 'checkoutPage']);
+
+// Customer Order
+Route::get('placeOrder/{user_id?}', [OrderController::class, 'placeOrder']);
 
 // Admin Routers
 

@@ -82,7 +82,8 @@
          <div class='items'> {{ $totalQuantity }} items </div>
          <br>
 
-         <a href="/placeOrder">
+         @php $user_id = DB::table('user')->where('user_username', Session::get('user_username'))->value('user_id'); @endphp
+         <a href="/placeOrder/{{ $user_id }}">
             <div><button class='button'>Place Order</button></div>
          </a>
          </form>
