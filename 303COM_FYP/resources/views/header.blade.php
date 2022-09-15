@@ -54,7 +54,7 @@
                </div>
                @else
                <div class="nav-item dropdown">
-                  <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown"> User Account </a>
+                  <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown"> Account </a>
                   <div class="dropdown-menu">
                      <a href="/login" class="dropdown-item">Login</a>
                      <a href="/register" class="dropdown-item">Sign Up</a>
