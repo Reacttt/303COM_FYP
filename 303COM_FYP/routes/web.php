@@ -93,3 +93,6 @@ Route::get('/deleteProduct', [ViewController::class, 'deleteProductPage']);
 Route::get('/restoreProduct', [ViewController::class, 'restoreProductPage']);
 Route::post('updateProductStatus', [ProductController::class, 'updateProductStatus'])->name('updateProductStatus');
 
+// Admin Manage Order
+Route::get('/orderList/{filter?}', [ViewController::class, 'orderListPage']);
+

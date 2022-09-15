@@ -15,7 +15,7 @@
 
     <link rel="apple-touch-icon" href="https://i.imgur.com/QRAUqs9.png">
     <link rel="shortcut icon" href="https://i.imgur.com/QRAUqs9.png">
-    
+
     <link rel="stylesheet" href=<?php echo asset('css/panel.css') ?>>
 </head>
 
@@ -51,6 +51,13 @@
                     </li>
 
                     <li class="menu-title">Order</li><!-- /.menu-title -->
+
+                    <li class="menu-item">
+                        <a href="/orderList/pendingPayment"> <i class="menu-icon fa fa-table"></i>Pending Payment Order</a>
+                        <a href="/orderList/pendingShipment"> <i class="menu-icon fa fa-table"></i>Pending Shipment Order</a>
+                        <a href="/orderList/completed"> <i class="menu-icon fa fa-table"></i>Completed Order</a>
+                        <a href="/orderList/cancelled"> <i class="menu-icon fa fa-table"></i>Cancelled Order</a>
+                    </li>
 
 
                 </ul>
