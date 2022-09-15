@@ -85,6 +85,7 @@
                         <b>Address Line 2: </b> {{ $order->order_address_line2 }} <br>
                         <b>City: </b> {{ $order->order_city }}<br>
                         <b>Postal Code: </b> {{ $order->order_postal_code }}<br>
+                        <b>Country: </b> {{ $order->order_country }}<br>
                         <b>Contact: </b> {{ $order->order_contact }}<br>
                      </td>
                      <td></td>
