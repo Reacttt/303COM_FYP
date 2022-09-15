@@ -37,7 +37,7 @@ class OrderSeeder extends Seeder
         ]);
 
         for ($i = 0; $i < 2; $i++) {
-            $product = DB::table('product')->where('product_id', ($i + 1))->first();
+            $product = DB::table('product')->where('product_id', rand(1, 5))->first();
 
             DB::table('order_item')->insert([
                 "order_id" => 1,
@@ -71,7 +71,7 @@ class OrderSeeder extends Seeder
         ]);
 
         for ($i = 0; $i < 2; $i++) {
-            $product = DB::table('product')->where('product_id', ($i + 1))->first();
+            $product = DB::table('product')->where('product_id', rand(1, 5))->first();
 
             DB::table('order_item')->insert([
                 "order_id" => 2,
@@ -105,7 +105,7 @@ class OrderSeeder extends Seeder
         ]);
 
         for ($i = 0; $i < 2; $i++) {
-            $product = DB::table('product')->where('product_id', ($i + 1))->first();
+            $product = DB::table('product')->where('product_id', rand(1, 5))->first();
 
             DB::table('order_item')->insert([
                 "order_id" => 3,
@@ -139,7 +139,7 @@ class OrderSeeder extends Seeder
         ]);
 
         for ($i = 0; $i < 2; $i++) {
-            $product = DB::table('product')->where('product_id', ($i + 1))->first();
+            $product = DB::table('product')->where('product_id', rand(1, 5))->first();
 
             DB::table('order_item')->insert([
                 "order_id" => 4,
