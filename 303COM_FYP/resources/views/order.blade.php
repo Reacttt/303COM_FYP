@@ -91,9 +91,10 @@
                      <td></td>
                      <td></td>
                      <td>
-                        <a href="viewOrder/{{ $order->order_id}}">
-                           <center><button type="submit" class='btn btn-danger'>View</button><br><br></center>
-                        </a>
+                        <center>
+                           <a href="/viewOrder/{{ $order->order_id }}"><button type="submit" class='btn btn-success'>View</button><br><br></a>
+                           <a href="/payment/{{ $order->order_id }}"><button type="submit" class='btn btn-warning'>Pay</button><br><br></a>
+                        </center>
                      </td>
                   </tr>
                   @endforeach
