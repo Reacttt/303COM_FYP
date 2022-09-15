@@ -118,6 +118,19 @@ class ViewController extends Controller
         return view("viewOrder", compact('order_item', 'order_id'));
     }
 
+    // Payment View
+
+    public function paymentPage($order_id = null)
+    {
+        if ($order_id != null) {
+            $order = DB::table('order')->where('order_id', $order_id)->first();
+            $order_item = DB::table('order_item')->get();
+            return view("payment", compact('order', 'order_item'));
+        } else {
+            return back()->with('alert', 'No Order Found!');
+        }
+    }
+
     // Admin View
 
     public function adminPage()

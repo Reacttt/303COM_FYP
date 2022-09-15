@@ -56,11 +56,13 @@ Route::post('updateShippingDetails', [ShippingDetailsController::class, 'updateS
 Route::get('removeShippingDetails/{shipping_details_id?}', [ShippingDetailsController::class, 'removeShippingDetails']);
 
 // Customer Order
+Route::get('order', [ViewController::class, 'orderPage']);
 Route::get('placeOrder/{user_id?}', [OrderController::class, 'placeOrder']);
 Route::get('viewOrder/{order_id?}', [ViewController::class, 'viewOrderPage']);
 
-// Customer Order
-Route::get('order', [ViewController::class, 'orderPage']);
+// Customer Payment
+Route::get('payment/{order_id?}', [ViewController::class, 'paymentPage']);
+
 
 // Admin Routers
 
