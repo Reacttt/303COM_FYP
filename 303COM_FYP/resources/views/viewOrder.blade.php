@@ -36,7 +36,7 @@
       @php $totalQuantity = 0; @endphp
       @php $subTotal = 0; @endphp
 
-      @foreach($shipping_details as $details)
+      @foreach($order_item as $items)
       <div class='Cart-Items'>
          <div class='image-box'>
             <img src="/images/{{ $items->order_item_image }}" height='200' width='200' />

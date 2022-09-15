@@ -188,4 +188,23 @@ class ViewController extends Controller
         $product = DB::table('product')->get();
         return view("restoreProduct", compact('product'));
     }
+
+    // Order Manage Page
+    public function orderListPage($filter = null)
+    {
+        $order = DB::table('order')->get();
+
+        if ($filter == "pendingPayment") {
+            $order = DB::table('order')->where('order_status', "Pending Payment")->get();
+        } else if ($filter == "pendingShipment") {
+            $order = DB::table('order')->where('order_status', "Pending Shipment")->get();
+        } else if ($filter == "completed") {
+            $order = DB::table('order')->where('order_status', "Completed")->get();
+        } else if ($filter == "cancelled") {
+            $order = DB::table('order')->where('order_status', "Cancelled")->get();
+        }
+
+        $order_item = DB::table('order_item')->get();
+        return view("orderList", compact('order', 'order_item', 'filter'));
+    }
 }
