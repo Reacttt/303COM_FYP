@@ -84,7 +84,7 @@
                                  @elseif ($filter == "inactive")
                                  <td>
                                     <center>
-                                       <a><button type="submit" class='btn btn-success'>Restore User</button><br><br></a>
+                                    <a href="/updateUserStatus/{{ $user->user_id }}/1"><button type="submit" class='btn btn-success'>Restore User</button><br><br></a>
                                     </center>
                                  </td>
                                  @endif

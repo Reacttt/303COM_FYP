@@ -88,8 +88,8 @@ class UserController extends Controller
         DB::table('user')->where('user_id', $user_id)->update($data);
 
         if ($user_status != 0)
-            return redirect('/restoreUser')->with('alert', 'User restored successfully! ');
+            return redirect('/userList/inactive')->with('alert', 'User restored successfully! ');
         else
-            return redirect('/deleteUser')->with('alert', 'User deleted successfully! ');
+            return redirect('/userList/active')->with('alert', 'User deleted successfully! ');
     }
 }
