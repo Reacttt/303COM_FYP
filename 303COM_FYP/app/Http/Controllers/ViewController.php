@@ -220,4 +220,18 @@ class ViewController extends Controller
         $order_item = DB::table('order_item')->get();
         return view("orderList", compact('order', 'order_item', 'filter'));
     }
+
+    // User Manage Page
+    public function userListPage($filter = null)
+    {
+        $user = DB::table('user')->get();
+
+        if ($filter == "active") {
+            $user = DB::table('user')->where('user_status', 1)->get();
+        } else if ($filter == "inactive") {
+            $user = DB::table('order')->where('user_status', 0)->get();
+        }
+
+        return view("userList", compact('user', 'filter'));
+    }
 }

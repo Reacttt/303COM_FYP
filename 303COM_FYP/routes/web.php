@@ -98,3 +98,6 @@ Route::post('updateProductStatus', [ProductController::class, 'updateProductStat
 // Admin Manage Order
 Route::get('/orderList/{filter?}', [ViewController::class, 'orderListPage']);
 
+// Admin Manage User
+Route::get('/userList/{filter?}', [ViewController::class, 'userListPage']);
+

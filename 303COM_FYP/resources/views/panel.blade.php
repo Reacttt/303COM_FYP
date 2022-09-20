@@ -67,8 +67,8 @@
                     <li class="menu-item-has-children dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-list"></i>User</a>
                         <ul class="sub-menu children dropdown-menu">
-                            <li><i class="fa fa-table"></i><a href="/deleteUser">Delete User</a></li>
-                            <li><i class="fa fa-table"></i><a href="/restoreUser">Restore User</a></li>
+                            <li><i class="fa fa-table"></i><a href="/userList/active">Delete User</a></li>
+                            <li><i class="fa fa-table"></i><a href="/userList/inactive">Restore User</a></li>
                         </ul>
                     </li>
                 </ul>
