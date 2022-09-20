@@ -59,6 +59,7 @@
                         <ul class="sub-menu children dropdown-menu">
                             <li><i class="fa fa-table"></i><a href="/orderList/pendingPayment">Pending Payment</a></li>
                             <li><i class="fa fa-table"></i><a href="/orderList/pendingShipment">Pending Shipment</a></li>
+                            <li><i class="fa fa-table"></i><a href="/orderList/pendingReceive">Pending Receive</a></li>
                             <li><i class="fa fa-table"></i><a href="/orderList/completed">Completed</a></li>
                             <li><i class="fa fa-table"></i><a href="/orderList/cancelled">Cancelled</a></li>
                         </ul>

@@ -78,9 +78,11 @@ class OrderController extends Controller
 
         DB::table('order')->where('order_id', $order_id)->update($data);
 
-        if ($order_status = "Shipped")
+        if ($order_status == "Shipped")
             return redirect('/orderList/pendingShipment')->with('alert', 'Order shipped successfully! ');
-        else if ($order_status = "Received")
+        else if ($order_status == "Received")
             return redirect('/order')->with('alert', 'Order received successfully! ');
+        else if ($order_status == "Cancelled")
+            return redirect('/order')->with('alert', 'Order cancelled successfully! ');
     }
 }

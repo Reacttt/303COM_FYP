@@ -83,17 +83,22 @@
                         <b>Name: </b> {{ $order->order_first_name }} {{ $order->order_last_name }} <br>
                         <b>Address Line 1: </b> {{ $order->order_address_line1 }} <br>
                         <b>Address Line 2: </b> {{ $order->order_address_line2 }} <br>
-                        <b>City: </b> {{ $order->order_city }}<br>
-                        <b>Postal Code: </b> {{ $order->order_postal_code }}<br>
-                        <b>Country: </b> {{ $order->order_country }}<br>
-                        <b>Contact: </b> {{ $order->order_contact }}<br>
+                        <b>City: </b> {{ $order->order_city }} <br>
+                        <b>Postal Code: </b> {{ $order->order_postal_code }} <br>
+                        <b>Country: </b> {{ $order->order_country }} <br>
+                        <b>Contact: </b> {{ $order->order_contact }} <br>
                      </td>
-                     <td></td>
+                     <td> {{ $order->order_status }} </td>
                      <td></td>
                      <td>
                         <center>
                            <a href="/viewOrder/{{ $order->order_id }}"><button type="submit" class='btn btn-success'>View</button><br><br></a>
+                           @if ($order->order_status == "Pending Payment")
                            <a href="/payment/{{ $order->order_id }}"><button type="submit" class='btn btn-warning'>Pay</button><br><br></a>
+                           <a href="/updateOrderStatus/{{ $order->order_id }}/Cancelled"><button type="submit" class='btn btn-danger'>Cancel</button><br><br></a>
+                           @elseif ($order->order_status == "Shipped")
+                           <a href="/updateOrderStatus/{{ $order->order_id }}/Received"><button type="submit" class='btn btn-warning'>Received</button><br><br></a>
+                           @endif
                         </center>
                      </td>
                   </tr>
