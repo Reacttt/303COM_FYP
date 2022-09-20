@@ -100,4 +100,5 @@ Route::get('/orderList/{filter?}', [ViewController::class, 'orderListPage']);
 
 // Admin Manage User
 Route::get('/userList/{filter?}', [ViewController::class, 'userListPage']);
+Route::get('updateUserStatus/{user_id?}/{user_status?}', [UserController::class, 'updateUserStatus'])->name('updateUserStatus');
 

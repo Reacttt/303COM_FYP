@@ -75,4 +75,21 @@ class UserController extends Controller
 
         return redirect('/')->with('alert', 'You successfully logged out!');
     }
+
+    public function updateUserStatus($user_id = null, $user_status = null)
+    {
+        $updated_at = \Carbon\Carbon::now()->toDateTimeString();
+
+        $data = array(
+            "user_status" => $user_status,
+            "updated_at" => $updated_at
+        );
+
+        DB::table('user')->where('user_id', $user_id)->update($data);
+
+        if ($user_status != 0)
+            return redirect('/restoreUser')->with('alert', 'User restored successfully! ');
+        else
+            return redirect('/deleteUser')->with('alert', 'User deleted successfully! ');
+    }
 }

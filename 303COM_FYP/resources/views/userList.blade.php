@@ -78,7 +78,7 @@
                                  @if ($filter == "active")
                                  <td>
                                     <center>
-                                       <a><button type="submit" class='btn btn-danger'>Delete User</button><br><br></a>
+                                       <a href="/updateUserStatus/{{ $user->user_id }}/0"><button type="submit" class='btn btn-danger'>Delete User</button><br><br></a>
                                     </center>
                                  </td>
                                  @elseif ($filter == "inactive")
