@@ -10,6 +10,8 @@ use App\Http\Controllers\CartController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ShippingDetailsController;
+use App\Http\Controllers\PaymentController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -62,6 +64,8 @@ Route::get('viewOrder/{order_id?}', [ViewController::class, 'viewOrderPage']);
 
 // Customer Payment
 Route::get('payment/{order_id?}', [ViewController::class, 'paymentPage']);
+Route::post('makePayment', [PaymentController::class, 'addPayment'])->name('makePayment');
+
 
 
 // Admin Routers
