@@ -89,7 +89,20 @@
                         <b>Contact: </b> {{ $order->order_contact }} <br>
                      </td>
                      <td> {{ $order->order_status }} </td>
-                     <td></td>
+                     @php $payment = DB::table('payment_details')->where('order_id', $order->order_id)->first() @endphp
+                     <td>
+                        @if ($order->order_status != "Cancelled")
+                        @if ($payment != null)
+                        <b>Method: </b> {{ $payment->payment_method }} <br>
+                        <b>Status: </b> {{ $payment->payment_status }} <br>
+                        <b>Transaction: </b> <small> {{ $payment->payment_transaction }} </small><br>
+                        @else
+                        Pending Payment
+                        @endif
+                        @else
+                        Order Cancelled
+                        @endif
+                     </td>
                      <td>
                         <center>
                            <a href="/viewOrder/{{ $order->order_id }}"><button type="submit" class='btn btn-success'>View</button><br><br></a>
