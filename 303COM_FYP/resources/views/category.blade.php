@@ -44,7 +44,7 @@
             @php $active_product = DB::table('product')->where('category_id', $category->category_id)->where('product_status', 1)->count(); @endphp
 
             <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.1s">
-               <a class="cat-item d-block bg-light text-center rounded p-3" href="">
+               <a class="cat-item d-block bg-light text-center rounded p-3" href="/product/{{ $category->category_id }}">
                   <!-- <div class="rounded p-4" style="background-image:url(/images/{{$category->category_image}}); background-size:cover"> -->
                   <div class="rounded p-4">
 
