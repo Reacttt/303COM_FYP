@@ -31,35 +31,46 @@
                     </li>
                     <!-- End Dashboard -->
 
-                    <li class="menu-title">Category</li><!-- /.menu-title -->
+                    <li class="menu-title">Admin Controls</li><!-- /.menu-title -->
 
-                    <li class="menu-item">
-                        <a href="/addCategory"> <i class="menu-icon fa fa-table"></i>Add New Category</a>
-                        <a href="/updateCategory"> <i class="menu-icon fa fa-table"></i>Update Category Details</a>
-                        <a href="/deleteCategory"> <i class="menu-icon fa fa-table"></i>Delete Category</a>
-                        <a href="/restoreCategory"> <i class="menu-icon fa fa-table"></i>Restore Category</a>
+                    <li class="menu-item-has-children dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-list"></i>Category</a>
+                        <ul class="sub-menu children dropdown-menu">
+                            <li><i class="fa fa-table"></i><a href="/addCategory">Add Category</a></li>
+                            <li><i class="fa fa-table"></i><a href="/updateCategory">Update Category</a></li>
+                            <li><i class="fa fa-table"></i><a href="/deleteCategory">Delete Category</a></li>
+                            <li><i class="fa fa-table"></i><a href="/restoreCategory">Restore Category</a></li>
+                        </ul>
                     </li>
 
-                    <li class="menu-title">Product</li><!-- /.menu-title -->
-
-                    <li class="menu-item">
-                        <a href="/addProduct"> <i class="menu-icon fa fa-table"></i>Add New Product</a>
-                        <a href="/updateProduct"> <i class="menu-icon fa fa-table"></i>Update Product Details</a>
-                        <a href="/updateStock"> <i class="menu-icon fa fa-table"></i>Update Product Stock</a>
-                        <a href="/deleteProduct"> <i class="menu-icon fa fa-table"></i>Delete Product</a>
-                        <a href="/restoreProduct"> <i class="menu-icon fa fa-table"></i>Restore Product</a>
+                    <li class="menu-item-has-children dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-list"></i>Product</a>
+                        <ul class="sub-menu children dropdown-menu">
+                            <li><i class="fa fa-table"></i><a href="/addProduct">Add Product</a></li>
+                            <li><i class="fa fa-table"></i><a href="/updateProduct">Update Product</a></li>
+                            <li><i class="fa fa-table"></i><a href="/updateStock">Update Stock</a></li>
+                            <li><i class="fa fa-table"></i><a href="/deleteProduct">Delete Product</a></li>
+                            <li><i class="fa fa-table"></i><a href="/restoreProduct">Restore Product</a></li>
+                        </ul>
                     </li>
 
-                    <li class="menu-title">Order</li><!-- /.menu-title -->
-
-                    <li class="menu-item">
-                        <a href="/orderList/pendingPayment"> <i class="menu-icon fa fa-table"></i>Pending Payment Order</a>
-                        <a href="/orderList/pendingShipment"> <i class="menu-icon fa fa-table"></i>Pending Shipment Order</a>
-                        <a href="/orderList/completed"> <i class="menu-icon fa fa-table"></i>Completed Order</a>
-                        <a href="/orderList/cancelled"> <i class="menu-icon fa fa-table"></i>Cancelled Order</a>
+                    <li class="menu-item-has-children dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-list"></i>Order</a>
+                        <ul class="sub-menu children dropdown-menu">
+                            <li><i class="fa fa-table"></i><a href="/orderList/pendingPayment">Pending Payment</a></li>
+                            <li><i class="fa fa-table"></i><a href="/orderList/pendingShipment">Pending Shipment</a></li>
+                            <li><i class="fa fa-table"></i><a href="/orderList/completed">Completed</a></li>
+                            <li><i class="fa fa-table"></i><a href="/orderList/cancelled">Cancelled</a></li>
+                        </ul>
                     </li>
 
-
+                    <li class="menu-item-has-children dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-list"></i>User</a>
+                        <ul class="sub-menu children dropdown-menu">
+                            <li><i class="fa fa-table"></i><a href="/deleteUser">Delete User</a></li>
+                            <li><i class="fa fa-table"></i><a href="/restoreUser">Restore User</a></li>
+                        </ul>
+                    </li>
                 </ul>
             </div><!-- /.navbar-collapse -->
         </nav>
