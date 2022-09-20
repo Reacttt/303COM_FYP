@@ -229,7 +229,7 @@ class ViewController extends Controller
         if ($filter == "active") {
             $user = DB::table('user')->where('user_status', 1)->get();
         } else if ($filter == "inactive") {
-            $user = DB::table('order')->where('user_status', 0)->get();
+            $user = DB::table('user')->where('user_status', 0)->get();
         }
 
         return view("userList", compact('user', 'filter'));
