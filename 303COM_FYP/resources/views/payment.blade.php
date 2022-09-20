@@ -69,7 +69,7 @@
                                     Unit Price: {{ $item->order_item_price }} <br>
                                     Quantity: {{ $item->order_item_quantity }} <br>
                                     @php $subTotal = $item->order_item_price * $item->order_item_quantity; @endphp
-                                    @php $totalQuantity = $totalQuantity + $item->order_item_price; @endphp
+                                    @php $totalQuantity = $totalQuantity + $item->order_item_quantity; @endphp
                                     @php $grandTotal = $grandTotal + $subTotal; @endphp
                                     Subtotal: {{ $subTotal }} <br>
                                  </div>
