@@ -45,7 +45,7 @@
 
 							<li><a class="active" href="#"><span>Category</span> : {{ $category_name }}</a></li>
 							@if ($product->product_status == 1)
-							<li><a href="#"><span>Availibility</span> : In Stock</a></li>
+							<li><a href="#"><span>Availibility</span> : In Stock ({{ $product->product_stock }})</a></li>
 							@else
 							<li><a href="#"><span>Availibility</span> : Not Available</a></li>
 							@endif
