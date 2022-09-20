@@ -97,7 +97,7 @@
                            <a href="/payment/{{ $order->order_id }}"><button type="submit" class='btn btn-warning'>Pay</button><br><br></a>
                            <a href="/updateOrderStatus/{{ $order->order_id }}/Cancelled"><button type="submit" class='btn btn-danger'>Cancel</button><br><br></a>
                            @elseif ($order->order_status == "Shipped")
-                           <a href="/updateOrderStatus/{{ $order->order_id }}/Received"><button type="submit" class='btn btn-warning'>Received</button><br><br></a>
+                           <a href="/updateOrderStatus/{{ $order->order_id }}/Completed"><button type="submit" class='btn btn-warning'>Received</button><br><br></a>
                            @endif
                         </center>
                      </td>
