@@ -97,8 +97,9 @@ Route::post('updateProductStatus', [ProductController::class, 'updateProductStat
 
 // Admin Manage Order
 Route::get('/orderList/{filter?}', [ViewController::class, 'orderListPage']);
+Route::get('/updateOrderStatus/{order_id?}/{order_status?}', [OrderController::class, 'updateOrderStatus']);
 
 // Admin Manage User
 Route::get('/userList/{filter?}', [ViewController::class, 'userListPage']);
-Route::get('updateUserStatus/{user_id?}/{user_status?}', [UserController::class, 'updateUserStatus'])->name('updateUserStatus');
+Route::get('updateUserStatus/{user_id?}/{user_status?}', [UserController::class, 'updateUserStatus']);
 

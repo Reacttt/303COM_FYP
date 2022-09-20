@@ -66,4 +66,21 @@ class OrderController extends Controller
 
         return redirect('/')->with('alert', 'Order Placed Successfully!');
     }
+
+    public function updateOrderStatus($order_id, $order_status = null)
+    {
+        $updated_at = \Carbon\Carbon::now()->toDateTimeString();
+
+        $data = array(
+            "order_status" => $order_status,
+            "updated_at" => $updated_at
+        );
+
+        DB::table('order')->where('order_id', $order_id)->update($data);
+
+        if ($order_status = "Shipped")
+            return redirect('/orderList/pendingShipment')->with('alert', 'Order shipped successfully! ');
+        else if ($order_status = "Received")
+            return redirect('/order')->with('alert', 'Order received successfully! ');
+    }
 }

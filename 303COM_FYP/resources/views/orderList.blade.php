@@ -110,7 +110,7 @@
                                  @if ($filter == "pendingShipment")
                                  <td>
                                     <center>
-                                       <a><button type="submit" class='btn btn-success'>Complete Order</button><br><br></a>
+                                       <a href="/updateOrderStatus/{{ $order->order_id }}/Shipped"><button type="submit" class='btn btn-success'>Complete Shipment</button><br><br></a>
                                     </center>
                                  </td>
                                  @endif
