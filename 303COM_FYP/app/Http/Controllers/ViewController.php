@@ -107,14 +107,14 @@ class ViewController extends Controller
 
     public function orderPage()
     {
-        $order = DB::table('order')->get();
+        $order = DB::table('order')->orderBy('order_id', 'DESC')->get();
         $order_item = DB::table('order_item')->get();
         return view("order", compact('order', 'order_item'));
     }
 
     public function viewOrderPage($order_id = null)
     {
-        $order_item = DB::table('order_item')->where('order_id', $order_id)->get();
+        $order_item = DB::table('order_item')->where('order_id', $order_id)->orderBy('order_id', 'DESC')->get();
         return view("viewOrder", compact('order_item', 'order_id'));
     }
 
