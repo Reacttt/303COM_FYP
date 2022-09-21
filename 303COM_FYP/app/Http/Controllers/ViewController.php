@@ -45,6 +45,29 @@ class ViewController extends Controller
         if ($category_id == null) {
             $product = DB::table('product')->where('product_status', 1)->get();
         } elseif ($category_id == "best") {
+            // $product = DB::table('product')->where('product_status', 1)->get();
+            // $order = DB::table('order')->where('order_status', "Completed")->get();
+            // $order_item = DB::table('order_item')->get();
+
+            // // Option 1 -> Create Temporary Table for Best Selling
+            // // Option 2 -> Return new collection with Total Sales Calculated
+
+            // $sale = resolve(Illuminate\Database\Eloquent\Collection::class);
+
+            // foreach ($order_item as $item) {
+            //     $order_status = DB::table('order')->where('order_item', $item->order_id)->value('order_status');
+            //     if ($order_status == "Completed") {
+
+                    
+            //     $data = array(
+            //         "product_id" => $product->product_id,
+            //         "total_sales" => 
+            //     );
+
+            //     $sale -> push($data);
+
+            //     }
+            // }
         } elseif ($category_id == "new") {
             $product = DB::table('product')->orderBy('created_at', 'desc')->where('product_status', 1)->take(6)->get();
         } else {
@@ -74,7 +97,8 @@ class ViewController extends Controller
     {
         $user = DB::table('user')->where('user_username', Session()->get('user_username'))->first();
         $cart = DB::table('cart')->where('user_id', $user->user_id)->get();
-        return view("checkout", compact('cart', 'user'));
+        $shipping_details = DB::table('shipping_details')->where('user_id', $user->user_id)->get();
+        return view("checkout", compact('cart', 'user', 'shipping_details'));
     }
 
     // Shipping View

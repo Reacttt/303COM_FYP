@@ -35,6 +35,7 @@
       @php $totalPrice = 0; @endphp
       @php $totalQuantity = 0; @endphp
       @php $subTotal = 0; @endphp
+      @php $address_select = 0; @endphp
 
       @foreach($cart as $cart)
       @php $product = DB::table('product')->where('product_id', $cart->product_id)->first(); @endphp
@@ -70,6 +71,17 @@
       <hr>
       <br><br>
 
+      <center>
+         <h1 class='title'>Shipping Details</h1>
+         @foreach($shipping_details as $address)
+         <input type="radio" name="shipping_address" value="{{ $address->shipping_details_id }}" id="{{ $address->shipping_details_id }}">
+         {{ $address->shipping_address_line1 }}, {{ $address->shipping_city }}, {{ $address->shipping_postal_code }}, {{ $address->shipping_country }} <br>
+         @endforeach
+      </center>
+
+      <br>
+      <br>
+
       <div class='checkout'>
          <div class='total'>
             <div>
@@ -83,7 +95,7 @@
          <br>
 
          @php $user_id = DB::table('user')->where('user_username', Session::get('user_username'))->value('user_id'); @endphp
-         <a href="/placeOrder/{{ $user_id }}">
+         <a href="/placeOrder/{{ $user_id }}/{{ $address_select }}">
             <div><button class='button'>Place Order</button></div>
          </a>
          </form>
@@ -92,5 +104,7 @@
 
 <!-- Template Javascript -->
 <script src="js/main.js"></script>
+<script>
+</script>
 
 </html>
