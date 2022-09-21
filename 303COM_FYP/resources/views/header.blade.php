@@ -30,6 +30,18 @@
    <link rel="stylesheet" href="<?php echo asset('css/header.css') ?>" type="text/css">
 </head>
 
+<?php
+
+if (!isset($_COOKIE['fiat-currency'])) {
+   $_COOKIE['fiat-currency'] = "MYR";
+}
+
+if (!isset($_COOKIE['crypto-currency'])) {
+   $_COOKIE['crypto-currency'] = "ETH";
+}
+
+?>
+
 <body>
 
    <!-- Nav Bar Start -->
@@ -46,8 +58,21 @@
                   <a href="/admin" class="nav-item nav-link">Admin Centre</a>
                   <a href="#" class="nav-item nav-link">Refresh API</a>
                </div>
-               <a href="#" class="nav-item nav-link">Currency</a>
-               <a href="#" class="nav-item nav-link">Language</a>
+               <div class="nav-item dropdown">
+                  <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown"> Fiat ({{ $_COOKIE['fiat-currency'] }}) </a>
+                  <div class="dropdown-menu">
+                     <a href="" class="dropdown-item"> MYR </a>
+                     <a href="" class="dropdown-item"> SGD </a>
+                     <a href="" class="dropdown-item"> USD </a>
+                  </div>
+               </div>
+               <div class="nav-item dropdown">
+                  <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown"> Crypto ({{ $_COOKIE['crypto-currency'] }}) </a>
+                  <div class="dropdown-menu">
+                     <a href="" class="dropdown-item"> ETH </a>
+                     <a href="" class="dropdown-item"> BTC </a>
+                  </div>
+               </div>
                @php $username = Session::get('user_username') @endphp
                @if ($username != NULL)
                <div class="nav-item dropdown">
