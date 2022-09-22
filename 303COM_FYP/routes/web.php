@@ -11,6 +11,7 @@ use App\Http\Controllers\OrderController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ShippingDetailsController;
 use App\Http\Controllers\PaymentController;
+use App\Http\Controllers\CookieController;
 
 
 /*
@@ -65,6 +66,9 @@ Route::get('viewOrder/{order_id?}', [ViewController::class, 'viewOrderPage']);
 // Customer Payment
 Route::get('payment/{order_id?}', [ViewController::class, 'paymentPage']);
 Route::post('makePayment', [PaymentController::class, 'addPayment'])->name('makePayment');
+
+// Customer Cookie
+Route::get('/updateCookie/{type?}/{value?}', [CookieController::class, 'updateCookie']);
 
 
 

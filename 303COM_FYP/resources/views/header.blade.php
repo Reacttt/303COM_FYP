@@ -61,16 +61,16 @@ if (!isset($_COOKIE['crypto-currency'])) {
                <div class="nav-item dropdown">
                   <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown"> Fiat ({{ $_COOKIE['fiat-currency'] }}) </a>
                   <div class="dropdown-menu">
-                     <a href="" class="dropdown-item"> MYR </a>
-                     <a href="" class="dropdown-item"> SGD </a>
-                     <a href="" class="dropdown-item"> USD </a>
+                     <a href="/updateCookie/fiat-currency/MYR" class="dropdown-item"> MYR </a>
+                     <a href="/updateCookie/fiat-currency/SGD" class="dropdown-item"> SGD </a>
+                     <a href="/updateCookie/fiat-currency/USD" class="dropdown-item"> USD </a>
                   </div>
                </div>
                <div class="nav-item dropdown">
                   <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown"> Crypto ({{ $_COOKIE['crypto-currency'] }}) </a>
                   <div class="dropdown-menu">
-                     <a href="" class="dropdown-item"> ETH </a>
-                     <a href="" class="dropdown-item"> BTC </a>
+                     <a href="/updateCookie/crypto-currency/ETH" class="dropdown-item"> ETH </a>
+                     <a href="/updateCookie/crypto-currency/BTC" class="dropdown-item"> BTC </a>
                   </div>
                </div>
                @php $username = Session::get('user_username') @endphp
