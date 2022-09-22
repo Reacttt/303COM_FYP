@@ -60,7 +60,7 @@ Route::get('removeShippingDetails/{shipping_details_id?}', [ShippingDetailsContr
 
 // Customer Order
 Route::get('order', [ViewController::class, 'orderPage']);
-Route::get('placeOrder/{user_id?}', [OrderController::class, 'placeOrder']);
+Route::post('placeOrder', [OrderController::class, 'placeOrder'])->name('placeOrder');
 Route::get('viewOrder/{order_id?}', [ViewController::class, 'viewOrderPage']);
 
 // Customer Payment

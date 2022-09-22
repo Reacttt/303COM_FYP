@@ -8,11 +8,13 @@ use Illuminate\Support\Facades\DB;
 
 class OrderController extends Controller
 {
-    public function placeOrder($user_id = null, $shipping_details_id = null)
+    public function placeOrder(Request $request)
     {
+        $user_id = $request->input('user_id');
+        $shipping_details_id = $request->input('shipping_details_id');
         $action_at = \Carbon\Carbon::now()->toDateTimeString();
 
-        $shipping_details = DB::table('shipping_details')->where('user_id', $user_id)->first();
+        $shipping_details = DB::table('shipping_details')->where('shipping_details_id', $shipping_details_id)->first();
 
         if ($shipping_details == NULL) {
             return redirect('/')->with('alert', 'Please Create Shipping Details');
@@ -56,6 +58,7 @@ class OrderController extends Controller
                     "order_item_image" => $product->product_image,
                     "order_item_price" => $product->product_price,
                     "order_item_quantity" => $cart->product_quantity,
+                    "order_item_status" => 0,
                     "created_at" => $action_at
                 );
 
