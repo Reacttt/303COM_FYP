@@ -45,29 +45,13 @@ class ViewController extends Controller
         if ($category_id == null) {
             $product = DB::table('product')->where('product_status', 1)->get();
         } elseif ($category_id == "best") {
-            // $product = DB::table('product')->where('product_status', 1)->get();
-            // $order = DB::table('order')->where('order_status', "Completed")->get();
-            // $order_item = DB::table('order_item')->get();
+            // Retrieve Product that is in Order Items Table
+            $product = DB::table('product')->where('product_status', 1)->whereExists(function ($query) {
+                $query->select(DB::raw(1))->from('order_item')->whereRaw('order_item.product_id = product.product_id')->where('order_item.order_item_status', '=', '1');
+            })->get();
 
-            // // Option 1 -> Create Temporary Table for Best Selling
-            // // Option 2 -> Return new collection with Total Sales Calculated
-
-            // $sale = resolve(Illuminate\Database\Eloquent\Collection::class);
-
-            // foreach ($order_item as $item) {
-            //     $order_status = DB::table('order')->where('order_item', $item->order_id)->value('order_status');
-            //     if ($order_status == "Completed") {
-
-                    
-            //     $data = array(
-            //         "product_id" => $product->product_id,
-            //         "total_sales" => 
-            //     );
-
-            //     $sale -> push($data);
-
-            //     }
-            // }
+            // TO DO sort by sales
+            
         } elseif ($category_id == "new") {
             $product = DB::table('product')->orderBy('created_at', 'desc')->where('product_status', 1)->take(6)->get();
         } else {
