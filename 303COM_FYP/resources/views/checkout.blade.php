@@ -71,40 +71,69 @@
       <hr>
       <br><br>
 
-      <center>
-         <h1 class='title'>Shipping Details</h1>
-         @foreach($shipping_details as $address)
-         <input type="radio" name="shipping_address" value="{{ $address->shipping_details_id }}" id="{{ $address->shipping_details_id }}">
-         {{ $address->shipping_address_line1 }}, {{ $address->shipping_city }}, {{ $address->shipping_postal_code }}, {{ $address->shipping_country }} <br>
-         @endforeach
-      </center>
+      <form action="{{route('placeOrder')}}" method="post" enctype="multipart/form-data">
+         @csrf
+         <center>
+            <h1 class='title'>Shipping Details</h1>
+            <br>
+            @php $flag = true; @endphp
+            @if (!$shipping_details->isEmpty())
+            @foreach($shipping_details as $address )
+            @if ($flag)
+            <input type="radio" name="shipping_details_id" value="{{ $address->shipping_details_id }}" id="{{ $address->shipping_details_id }}" checked>
+            {{ $address->shipping_address_line1 }}, {{ $address->shipping_city }}, {{ $address->shipping_postal_code }}, {{ $address->shipping_country }} <br><br>
+            @php $flag = false; @endphp
+            @else
+            <input type="radio" name="shipping_details_id" value="{{ $address->shipping_details_id }}" id="{{ $address->shipping_details_id }}">
+            {{ $address->shipping_address_line1 }}, {{ $address->shipping_city }}, {{ $address->shipping_postal_code }}, {{ $address->shipping_country }} <br><br>
+            @endif
+            @endforeach
+            @else
+            No Address Available <br><br>
+            @endif
+            <a href="/shippingDetailsForm/new">
+               <button type="submit">Add Shipping Address</button><br><br>
+            </a>
+         </center>
 
-      <br>
-      <br>
+         <br>
+         <br>
 
-      <div class='checkout'>
-         <div class='total'>
-            <div>
-               <div class='Subtotal'>Total</div>
+         <div class='checkout'>
+            <div class='total'>
+               <div>
+                  <div class='Subtotal'>Total</div>
+               </div>
+               <div class='total-amount'> {{ $totalPrice }} </div>
             </div>
-            <div class='total-amount'> {{ $totalPrice }} </div>
+
+            <br>
+            <div class='items'> {{ $totalQuantity }} items </div>
+            <br>
+
+            @php $user_id = DB::table('user')->where('user_username', Session::get('user_username'))->value('user_id'); @endphp
+            <input type="hidden" name="user_id" value="{{ $user_id }}" readonly>
+            <div><button type="submit" class='button'>Place Order</button></div>
          </div>
-
-         <br>
-         <div class='items'> {{ $totalQuantity }} items </div>
-         <br>
-
-         @php $user_id = DB::table('user')->where('user_username', Session::get('user_username'))->value('user_id'); @endphp
-         <a href="/placeOrder/{{ $user_id }}/{{ $address_select }}">
-            <div><button class='button'>Place Order</button></div>
-         </a>
-         </form>
-      </div>
+      </form>
+   </div>
 </body>
 
 <!-- Template Javascript -->
-<script src="js/main.js"></script>
-<script>
-</script>
+<?php
+'<script>
+   var shipping_address = document.getElementsByName("shipping_address");
+   var address_select;
+   for (var i = 0; i < shipping_address.length; i++) {
+      if (shipping_address[i].checked) {
+         address_select = shipping_address[i].value;
+      }
+   }
+</script>';
+?>
+
+<?php
+echo "<script>;</script>";
+?>
 
 </html>
