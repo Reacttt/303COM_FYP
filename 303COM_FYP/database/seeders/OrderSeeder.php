@@ -17,7 +17,7 @@ class OrderSeeder extends Seeder
     public function run()
     {
 
-        // Order Seeder 1
+        // Order Seeder 1 (Pending Payment)
 
         $shipping_details = DB::table('shipping_details')->where('shipping_details_id', 1)->first();
 
@@ -47,11 +47,12 @@ class OrderSeeder extends Seeder
                 "order_item_image" => $product->product_image,
                 "order_item_price" => $product->product_price,
                 "order_item_quantity" => rand(1, 3),
+                "order_item_status" => 0,
                 "created_at" => \Carbon\Carbon::now()->toDateTimeString()
             ]);
         };
 
-        // Order Seeder 2
+        // Order Seeder 2 (Pending Shipment)
 
         $shipping_details = DB::table('shipping_details')->where('shipping_details_id', 2)->first();
 
@@ -81,11 +82,12 @@ class OrderSeeder extends Seeder
                 "order_item_image" => $product->product_image,
                 "order_item_price" => $product->product_price,
                 "order_item_quantity" => rand(1, 3),
+                "order_item_status" => 0,
                 "created_at" => \Carbon\Carbon::now()->toDateTimeString()
             ]);
         };
 
-        // Order Seeder 3
+        // Order Seeder 3 (Completed)
 
         $shipping_details = DB::table('shipping_details')->where('shipping_details_id', 1)->first();
 
@@ -115,11 +117,12 @@ class OrderSeeder extends Seeder
                 "order_item_image" => $product->product_image,
                 "order_item_price" => $product->product_price,
                 "order_item_quantity" => rand(1, 3),
+                "order_item_status" => 1,
                 "created_at" => \Carbon\Carbon::now()->toDateTimeString()
             ]);
         };
 
-        // Order Seeder 4
+        // Order Seeder 4 (Cancelled)
 
         $shipping_details = DB::table('shipping_details')->where('shipping_details_id', 2)->first();
 
@@ -149,6 +152,7 @@ class OrderSeeder extends Seeder
                 "order_item_image" => $product->product_image,
                 "order_item_price" => $product->product_price,
                 "order_item_quantity" => rand(1, 3),
+                "order_item_status" => 0,
                 "created_at" => \Carbon\Carbon::now()->toDateTimeString()
             ]);
         };

@@ -24,6 +24,7 @@ return new class extends Migration
             $table->binary('order_item_image');
             $table->integer('order_item_quantity');
             $table->double('order_item_price');
+            $table->integer('order_item_status');
             $table->timestamps();
         });
     }

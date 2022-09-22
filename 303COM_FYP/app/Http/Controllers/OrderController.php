@@ -69,14 +69,26 @@ class OrderController extends Controller
 
     public function updateOrderStatus($order_id = null, $order_status = null)
     {
-        $updated_at = \Carbon\Carbon::now()->toDateTimeString();
-
         $data = array(
             "order_status" => $order_status,
-            "updated_at" => $updated_at
+            "updated_at" => \Carbon\Carbon::now()->toDateTimeString()
         );
 
         DB::table('order')->where('order_id', $order_id)->update($data);
+
+        if ($order_status == "Completed") {
+            $order_item = DB::table('order_item')->where('order_id', $order_id)->get();
+
+            foreach ($order_item as $order_item) {
+                $data = array(
+
+                    "order_item_status" => 1,
+                    "updated_at" => \Carbon\Carbon::now()->toDateTimeString()
+                );
+
+                DB::table('order_item')->where('order_item_id', $order_item->order_item_id)->update($data);
+            }
+        }
 
         if ($order_status == "Shipped")
             return redirect('/orderList/pendingShipment')->with('alert', 'Order shipped successfully! ');
