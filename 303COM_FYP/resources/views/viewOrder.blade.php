@@ -27,7 +27,7 @@
 <body>
    <div class='CartContainer'>
       <div class='Header'>
-         <h3 class='Heading'>Order Details #{{ $order_id }}</h3>
+         <h3 class='Heading'>Order Details #{{ $order->order_id }}</h3>
          <a href="/order">Back To Order</a>
          <!-- <h5 class='Action'>Remove all</h5> -->
       </div>
@@ -62,6 +62,26 @@
 
       <hr>
       <br><br>
+
+      <center>
+         <h1 class='title'>Shipping Details</h1>
+         <br>
+         <table style="width: 40%;">
+            <tr>
+               <td>Name - </td>
+               <td>{{ $order->order_first_name }}, {{ $order->order_last_name }} </td>
+            </tr>
+            <tr>
+               <td>Address - </td>
+               <td>{{ $order->order_address_line1 }}, {{ $order->order_city }}, {{ $order->order_postal_code }}, {{ $order->order_country }}</td>
+            </tr>
+            <tr>
+               <td>Contact - </td>
+               <td>{{ $order->order_contact }}</td>
+            </tr>
+         </table>
+         <br><br><br>
+      </center>
 
       <div class='checkout'>
          <div class='total'>

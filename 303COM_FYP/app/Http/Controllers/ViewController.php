@@ -122,8 +122,9 @@ class ViewController extends Controller
 
     public function viewOrderPage($order_id = null)
     {
+        $order = DB::table('order')->where('order_id', $order_id)->first();
         $order_item = DB::table('order_item')->where('order_id', $order_id)->orderBy('order_id', 'DESC')->get();
-        return view("viewOrder", compact('order_item', 'order_id'));
+        return view("viewOrder", compact('order', 'order_item'));
     }
 
     // Payment View
