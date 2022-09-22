@@ -80,24 +80,35 @@
             @if (!$shipping_details->isEmpty())
             @foreach($shipping_details as $address )
             @if ($flag)
-            <input type="radio" name="shipping_details_id" value="{{ $address->shipping_details_id }}" id="{{ $address->shipping_details_id }}" checked>
-            {{ $address->shipping_address_line1 }}, {{ $address->shipping_city }}, {{ $address->shipping_postal_code }}, {{ $address->shipping_country }} <br><br>
+            <table style="width: 30%;">
+               <tr>
+                  <td>
+                     <input type="radio" name="shipping_details_id" value="{{ $address->shipping_details_id }}" id="{{ $address->shipping_details_id }}" checked>
+                  </td>
+                  <td>{{ $address->shipping_address_line1 }}, {{ $address->shipping_city }}, {{ $address->shipping_postal_code }}, {{ $address->shipping_country }}</td>
+               </tr>
+
             @php $flag = false; @endphp
             @else
-            <input type="radio" name="shipping_details_id" value="{{ $address->shipping_details_id }}" id="{{ $address->shipping_details_id }}">
-            {{ $address->shipping_address_line1 }}, {{ $address->shipping_city }}, {{ $address->shipping_postal_code }}, {{ $address->shipping_country }} <br><br>
+            <tr>
+                  <td>
+                  <input type="radio" name="shipping_details_id" value="{{ $address->shipping_details_id }}" id="{{ $address->shipping_details_id }}">
+                  </td>
+                  <td>{{ $address->shipping_address_line1 }}, {{ $address->shipping_city }}, {{ $address->shipping_postal_code }}, {{ $address->shipping_country }}</td>
+               </tr>
             @endif
             @endforeach
             @else
             No Address Available <br><br>
             @endif
+            </table>
+            <br>
             <a href="/shippingDetailsForm/new">
                <button type="submit">Add Shipping Address</button><br><br>
             </a>
          </center>
 
-         <br>
-         <br>
+         <br><br><br>
 
          <div class='checkout'>
             <div class='total'>
