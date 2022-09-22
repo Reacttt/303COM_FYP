@@ -70,9 +70,9 @@
 								<div class="product-details">
 									<h6> {{ $product->product_name }}</h6>
 									<div class="price">
-										<h6>{{ $product->product_price }}</h6>
+										<h6>{{ $product->product_price }} {{ $_COOKIE['fiat-currency'] }} </h6>
 										@php $product_price_old = $product->product_price + rand(5,10); @endphp
-										<h6 class="l-through"> {{ $product_price_old }}</h6>
+										<h6 class="l"> {{ $product->product_price }} {{ $_COOKIE['crypto-currency'] }}</h6>
 									</div>
 									<div class="prd-bottom">
 										@php $user_username = Session::get('user_username') @endphp
