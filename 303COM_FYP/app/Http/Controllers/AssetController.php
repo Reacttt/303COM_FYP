@@ -31,7 +31,7 @@ class AssetController extends Controller
             ) {
                 $data = array(
                     "asset_quote" => $row->asset_id_quote,
-                    "asset_rate" => $row->rate,
+                    "asset_rate" => sprintf('%f', floatval($row->rate)),
                     "updated_at" => \Carbon\Carbon::now()->toDateTimeString()
                 );
 
