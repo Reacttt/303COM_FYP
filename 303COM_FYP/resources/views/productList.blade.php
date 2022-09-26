@@ -70,9 +70,18 @@
 								<div class="product-details">
 									<h6> {{ $product->product_name }}</h6>
 									<div class="price">
-										<h6>{{ $product->product_price }} {{ $_COOKIE['fiat-currency'] }} </h6>
-										@php $product_price_old = $product->product_price + rand(5,10); @endphp
-										<h6 class="l"> {{ $product->product_price }} {{ $_COOKIE['crypto-currency'] }}</h6>
+										@php $fiat_price = $product->product_price; @endphp
+
+										@if ($_COOKIE['fiat-currency'] != "MYR")
+										@php $fiat_rate = DB::table('asset')->where('asset_quote', $_COOKIE['fiat-currency'])->value('asset_rate'); @endphp
+										@php $fiat_price = round(($product->product_price * $fiat_rate), 2); @endphp
+										@endif
+
+										@php $crypto_rate = DB::table('asset')->where('asset_quote', $_COOKIE['crypto-currency'])->value('asset_rate'); @endphp
+										@php $crypto_price = round(($product->product_price * $crypto_rate), 6); @endphp
+
+										<h6>{{ $fiat_price }} {{ $_COOKIE['fiat-currency'] }} </h6>
+										<h6 class="l"> {{ $crypto_price }} {{ $_COOKIE['crypto-currency'] }}</h6>
 									</div>
 									<div class="prd-bottom">
 										@php $user_username = Session::get('user_username') @endphp
