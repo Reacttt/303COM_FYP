@@ -51,7 +51,7 @@ class ViewController extends Controller
             })->get();
 
             // TO DO sort by sales
-            
+
         } elseif ($category_id == "new") {
             $product = DB::table('product')->orderBy('created_at', 'desc')->where('product_status', 1)->take(6)->get();
         } else {
@@ -249,8 +249,9 @@ class ViewController extends Controller
     // Asset Page
     public function assetListPage($filter = null)
     {
-        $asset = DB::table('asset')->get();
+        if ($filter != NULL) $asset = DB::table('asset')->where('asset_type', $filter)->get();
+        else $asset = DB::table('asset')->get();
 
-        return view("assetList", compact('asset'));
+        return view("assetList", compact('asset', 'filter'));
     }
 }
