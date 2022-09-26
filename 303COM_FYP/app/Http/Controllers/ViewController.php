@@ -245,4 +245,12 @@ class ViewController extends Controller
 
         return view("userList", compact('user', 'filter'));
     }
+
+    // Asset Page
+    public function assetListPage($filter = null)
+    {
+        $asset = DB::table('asset')->get();
+
+        return view("assetList", compact('asset'));
+    }
 }
