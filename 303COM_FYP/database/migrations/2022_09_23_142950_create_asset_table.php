@@ -15,7 +15,8 @@ return new class extends Migration
     {
         Schema::create('asset', function (Blueprint $table) {
             $table->increments('asset_id');
-            $table->float('asset_rate');
+            $table->string('asset_quote');
+            $table->string('asset_rate');
             $table->timestamps();
         });
     }
