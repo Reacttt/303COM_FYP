@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('asset', function (Blueprint $table) {
             $table->increments('asset_id');
             $table->string('asset_quote');
-            $table->string('asset_rate');
+            $table->double('asset_rate');
             $table->timestamps();
         });
     }
