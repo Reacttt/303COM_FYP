@@ -76,7 +76,8 @@
                     <li class="menu-item-has-children dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-list"></i>Currency</a>
                         <ul class="sub-menu children dropdown-menu">
-                            <li><i class="fa fa-table"></i><a href="/assetList">View Currency</a></li>
+                            <li><i class="fa fa-table"></i><a href="/assetList/fiat">Fiat Currency</a></li>
+                            <li><i class="fa fa-table"></i><a href="/assetList/crypto">Crypto Currency</a></li>
                         </ul>
                     </li>
 

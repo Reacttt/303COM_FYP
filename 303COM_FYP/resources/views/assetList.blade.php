@@ -49,13 +49,20 @@
                <div class="col-md-12">
                   <div class="card">
                      <div class="card-header">
+                        @if ($filter == "fiat")
+                        <strong class="card-title">List of Fiat Currencies</strong>
+                        @elseif ($filter == "crypto")
+                        <strong class="card-title">List of Crypto Currencies</strong>
+                        @else
                         <strong class="card-title">List of Currencies</strong>
+                        @endif
                      </div>
                      <div class="card-body">
                         <table id="bootstrap-data-table" class="table table-striped table-bordered">
                            <thead>
                               <tr>
                                  <th>ID</th>
+                                 <th>Type</th>
                                  <th>Quote</th>
                                  <th>Rate (From MYR)</th>
                                  <th>Updated Date</th>
@@ -66,6 +73,7 @@
                               @foreach($asset as $asset)
                               <tr>
                                  <td> {{ $asset->asset_id }} </td>
+                                 <td> {{ $asset->asset_type }} </td>
                                  <td> {{ $asset->asset_quote }} </td>
                                  @php $rate = sprintf('%f', floatval($asset->asset_rate)) @endphp
                                  <td> 1 MYR = {{$rate}} {{$asset->asset_quote}} </td>

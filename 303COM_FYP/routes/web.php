@@ -115,5 +115,5 @@ Route::get('/userList/{filter?}', [ViewController::class, 'userListPage']);
 Route::get('updateUserStatus/{user_id?}/{user_status?}', [UserController::class, 'updateUserStatus']);
 
 // Asset
-Route::get('/assetList', [ViewController::class, 'assetListPage']);
+Route::get('/assetList/{filter?}', [ViewController::class, 'assetListPage']);
 
