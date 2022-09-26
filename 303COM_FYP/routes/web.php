@@ -9,6 +9,7 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\AssetController;
 use App\Http\Controllers\ShippingDetailsController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\CookieController;
@@ -27,6 +28,9 @@ use App\Http\Controllers\CookieController;
 
 // Default Router
 Route::get('/', [ViewController::class, 'homePage']);
+
+// API Router
+Route::get('/updateAPI', [AssetController::class, 'updateAPI']);
 
 // Customer Routers
 
@@ -69,7 +73,6 @@ Route::post('makePayment', [PaymentController::class, 'addPayment'])->name('make
 
 // Customer Cookie
 Route::get('/updateCookie/{type?}/{value?}', [CookieController::class, 'updateCookie']);
-
 
 
 // Admin Routers
