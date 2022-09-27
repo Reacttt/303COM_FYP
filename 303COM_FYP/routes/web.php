@@ -68,7 +68,7 @@ Route::post('placeOrder', [OrderController::class, 'placeOrder'])->name('placeOr
 Route::get('viewOrder/{order_id?}', [ViewController::class, 'viewOrderPage']);
 
 // Customer Payment
-Route::get('payment/{order_id?}', [ViewController::class, 'paymentPage']);
+Route::get('payment/{order_id?}/{method?}', [ViewController::class, 'paymentPage']);
 Route::post('makePayment', [PaymentController::class, 'addPayment'])->name('makePayment');
 
 // Customer Cookie

@@ -110,7 +110,7 @@
                               <strong> &nbsp; Total Items: </strong> {{ $totalQuantity }} items <br>
                               <strong> &nbsp; Grand Total: </strong> {{ $fiat_grandTotal }} {{ $fiat_currency }} </strong> ({{ $crypto_grandTotal }} {{ $crypto_currency }}) <br>
                               <strong> &nbsp; Receiver: </strong> {{ $order->order_first_name }} {{ $order->order_last_name }} <br>
-                              <strong> &nbsp; Shipping Address: </strong> {{ $order->order_address_line1 }}, {{ $order->order_city }}, {{ $order->order_postal_code }}, {{ $order->order_country }}  
+                              <strong> &nbsp; Shipping Address: </strong> {{ $order->order_address_line1 }}, {{ $order->order_city }}, {{ $order->order_postal_code }}, {{ $order->order_country }}
                            </div>
                         </div>
                      </div>
@@ -124,6 +124,7 @@
                   <div class="card-header">
                      <strong class="card-title">Payment Method</strong>
                   </div>
+                  @if ($method == "creditcard")
                   <div class="card-body">
                      <!-- Credit Card -->
                      <div id="pay-invoice">
@@ -196,8 +197,45 @@
                               </div>
                            </form>
                         </div>
+                        <center>
+                           <a href="/payment/{{ $order->order_id }}/crypto"><button type="submit" class='btn btn-warning'>Pay With Crypto Currency</button><br><br></a>
+                        </center>
                      </div>
                   </div>
+                  @elseif ($method == "crypto")
+                  <div class="card-body">
+                     <!-- Crypto -->
+                     <div id="pay-invoice">
+                        <div class="card-body">
+                           <div class="card-title">
+                              <h3 class="text-center">Crypto Currency</h3>
+                           </div>
+                           <hr>
+                           <form action="{{route('makePayment')}}" method="post" enctype="multipart/form-data">
+                              <div class="form-group text-center">
+                                 @csrf
+                                 <input type="hidden" class="form-control" name="order_id" value="{{ $order->order_id }}" readonly>
+                                 <input type="hidden" name="payment_method" class="form-control" value="Credit Card" readonly>
+                              </div>
+                              <div class="form-group">
+                                 <label class="control-label mb-1">Payment Amount ({{ $crypto_currency }})</label>
+                                 <input type="text" name="payment_amount" class="form-control" value=" {{ $crypto_grandTotal }}" readonly>
+                              </div>
+                              <div>
+                                 <button type="submit" class="btn btn-lg btn-info btn-block">
+                                    <i class="fa fa-lock"></i>&nbsp;
+                                    <span>Pay {{ $crypto_grandTotal }} {{ $crypto_currency }}</span>
+                                    <span style="display:none;">Sending…</span>
+                                 </button>
+                              </div>
+                           </form>
+                        </div>
+                        <center>
+                           <a href="/payment/{{ $order->order_id }}/creditcard"><button type="submit" class='btn btn-warning'>Pay With Credit Card</button><br><br></a>
+                        </center>
+                     </div>
+                  </div>
+                  @endif
                </div> <!-- /.card -->
             </div> <!-- /.col-lg-8 -->
          </div>

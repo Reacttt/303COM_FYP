@@ -129,12 +129,12 @@ class ViewController extends Controller
 
     // Payment View
 
-    public function paymentPage($order_id = null)
+    public function paymentPage($order_id = null, $method = null)
     {
         if ($order_id != null) {
             $order = DB::table('order')->where('order_id', $order_id)->first();
             $order_item = DB::table('order_item')->get();
-            return view("payment", compact('order', 'order_item'));
+            return view("payment", compact('order', 'order_item', 'method'));
         } else {
             return back()->with('alert', 'No Order Found!');
         }

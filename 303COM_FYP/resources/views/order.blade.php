@@ -127,7 +127,7 @@
                         <center>
                            <a href="/viewOrder/{{ $order->order_id }}"><button type="submit" class='btn btn-success'>View</button><br><br></a>
                            @if ($order->order_status == "Pending Payment")
-                           <a href="/payment/{{ $order->order_id }}"><button type="submit" class='btn btn-warning'>Pay</button><br><br></a>
+                           <a href="/payment/{{ $order->order_id }}/creditcard"><button type="submit" class='btn btn-warning'>Pay</button><br><br></a>
                            <a href="/updateOrderStatus/{{ $order->order_id }}/Cancelled"><button type="submit" class='btn btn-danger'>Cancel</button><br><br></a>
                            @elseif ($order->order_status == "Shipped")
                            <a href="/updateOrderStatus/{{ $order->order_id }}/Completed"><button type="submit" class='btn btn-warning'>Received</button><br><br></a>
