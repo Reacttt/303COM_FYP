@@ -30,7 +30,7 @@
    <link rel="stylesheet" href="<?php echo asset('css/header.css') ?>" type="text/css">
 </head>
 
-<?php
+@php
 // Logout User is the User Account is Deleted by Admin
 if (session()->get('user_username') != NULL) {
    $user_status = DB::table('user')->where('user_username', session()->get('user_username'))->value('user_status');
@@ -63,7 +63,7 @@ if (!isset($_COOKIE['crypto-currency'])) {
    $_COOKIE['crypto-currency'] = "ETH";
 }
 
-?>
+@endphp
 
 <body>
 
