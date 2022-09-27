@@ -52,6 +52,9 @@ if ($asset != NULL) {
       header('location: http://127.0.0.1:8000/updateAPI');
       die;
    }
+} else {
+   header('location: http://127.0.0.1:8000/updateAPI');
+   die;
 }
 
 
