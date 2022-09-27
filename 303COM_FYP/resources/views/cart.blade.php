@@ -31,16 +31,29 @@
          <a href="/">Back To Home</a>
          <!-- <h5 class='Action'>Remove all</h5> -->
       </div>
-
-      @php $totalPrice = 0; @endphp
+      @php $fiat_currency = $_COOKIE['fiat-currency']; @endphp
+      @php $crypto_currency = $_COOKIE['crypto-currency']; @endphp
+      @php $fiat_totalPrice = 0; @endphp
+      @php $crypto_totalPrice = 0; @endphp
+      @php $fiat_subTotal = 0; @endphp
+      @php $crypto_subTotal = 0; @endphp
       @php $totalQuantity = 0; @endphp
-      @php $subTotal = 0; @endphp
 
       @foreach($cart as $cart)
       @php $product = DB::table('product')->where('product_id', $cart->product_id)->first(); @endphp
       @php $category = DB::table('category')->where('category_id', $product->category_id)->first(); @endphp
       @php $user_id = DB::table('user')->where('user_username', Session::get('user_username'))->value('user_id'); @endphp
       @if ($cart->user_id === $user_id)
+
+      @php $fiat_price = $product->product_price; @endphp
+
+      @if ($fiat_currency != "MYR")
+      @php $fiat_rate = DB::table('asset')->where('asset_quote', $fiat_currency)->value('asset_rate'); @endphp
+      @php $fiat_price = round(($product->product_price * $fiat_rate), 2); @endphp
+      @endif
+
+      @php $crypto_rate = DB::table('asset')->where('asset_quote', $_COOKIE['crypto-currency'])->value('asset_rate'); @endphp
+      @php $crypto_price = round(($product->product_price * $crypto_rate), 6); @endphp
       <div class='Cart-Items'>
          <div class='image-box'>
             <img src="/images/{{ $product->product_image }}" height='200' width='200' />
@@ -49,41 +62,47 @@
             <h1 class='title'> {{ $product->product_name }}</h1>
             <h3 class='subtitle'> {{ $product->product_description }}</h3>
             <br><br><br><br><br>
-            <h3 class='subtitle'>Unit Price: {{ $product->product_price }}</h3>
+            <h3 class='subtitle'>Unit Price: {{ $fiat_price }} {{ $fiat_currency }} | {{ $crypto_price }} {{ $crypto_currency }}</h3>
          </div>
 
          <div class='counter'>
             @if($category->category_status == 1 && $product->product_status == 1)
-               @if($cart->product_quantity > 1 )
-               <!-- Decrease Button -->
-               <a href="/updateCartQuantity/{{ $user_id }}/{{ $cart->product_id }}/-1"><button type="submit" class="btn"><i class="fa fa-minus"></i></button></a>
-               @else
-               <button type="submit" class="btn" disabled><i class="fa fa-minus"></i></button>
-               @endif
-
-               <div class='count'> {{ $cart->product_quantity }}</div>
-
-               <!-- Increase Button -->
-               @if($cart->product_quantity < $product->product_stock)
-                  <a href="/updateCartQuantity/{{ $user_id }}/{{ $cart->product_id }}/1"><button type="submit" class="btn"><i class="fa fa-plus"></i></button></a>
-               @else
-                  <button type="submit" class="btn" disabled><i class="fa fa-plus"></i>
-               @endif
-               
+            @if($cart->product_quantity > 1 )
+            <!-- Decrease Button -->
+            <a href="/updateCartQuantity/{{ $user_id }}/{{ $cart->product_id }}/-1"><button type="submit" class="btn"><i class="fa fa-minus"></i></button></a>
             @else
-            <div class='count'> Not Available </div>
+            <button type="submit" class="btn" disabled><i class="fa fa-minus"></i></button>
             @endif
+
+            <div class='count'> {{ $cart->product_quantity }}</div>
+
+            <!-- Increase Button -->
+            @if($cart->product_quantity < $product->product_stock)
+               <a href="/updateCartQuantity/{{ $user_id }}/{{ $cart->product_id }}/1"><button type="submit" class="btn"><i class="fa fa-plus"></i></button></a>
+               @else
+               <button type="submit" class="btn" disabled><i class="fa fa-plus"></i>
+                  @endif
+
+                  @else
+                  <div class='count'> Not Available </div>
+                  @endif
          </div>
 
          <div class='prices'>
-         @if($category->category_status == 1 && $product->product_status == 1)
+            @if($category->category_status == 1 && $product->product_status == 1)
             <!-- Display Unit Price -->
-            @php $subTotal = $product->product_price * $cart->product_quantity; @endphp
-            <div class='amount'> {{ $subTotal }} </div>
-                  
-            @php $totalPrice = $totalPrice + $subTotal; @endphp
+            @php $fiat_subTotal = $fiat_price * $cart->product_quantity; @endphp
+            @php $crypto_subTotal = $crypto_price * $cart->product_quantity; @endphp
+
+            <div class='amount'>
+               {{ $fiat_subTotal }} {{ $fiat_currency }} <br>
+               {{ $crypto_subTotal }} {{ $crypto_currency }}
+            </div>
+
+            @php $fiat_totalPrice = $fiat_totalPrice + $fiat_subTotal; @endphp
+            @php $crypto_totalPrice = $crypto_totalPrice + $crypto_subTotal; @endphp
             @php $totalQuantity = $totalQuantity + $cart->product_quantity; @endphp
-         @endif
+            @endif
             <br /><br /><br /><br /><br />
             <!-- Remove Button -->
             <a href="/removeCart/{{ $user_id }}/{{ $cart->product_id }}"><button type='submit'>Remove</button></a>
@@ -102,7 +121,10 @@
             <div>
                <div class='Subtotal'>Total</div>
             </div>
-            <div class='total-amount'> {{ $totalPrice }} </div>
+            <div class='total-amount'>
+               {{ $fiat_totalPrice }} {{ $fiat_currency }} <br>
+               {{ $crypto_totalPrice }} {{ $crypto_currency }} 
+            </div>
          </div>
 
          <br>
