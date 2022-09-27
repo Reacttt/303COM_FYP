@@ -93,7 +93,7 @@
                                  </td>
                                  @php $order_quantity = DB::table('order_item')->where('order_id', $order->order_id)->sum('order_item_quantity'); @endphp
                                  <td> {{ $order_quantity }} items</td>
-                                 <td> {{ $order_total }} </td>
+                                 <td> {{ $order_total }} MYR </td>
                                  <td>
                                     <b>Name: </b> {{ $order->order_first_name }} {{ $order->order_last_name }} <br>
                                     <b>Address Line 1: </b> {{ $order->order_address_line1 }} <br>
