@@ -77,7 +77,7 @@
                                  <td>{{ $category_name }}</td>
                                  <td>{{ $product->product_name }}</td>
                                  <td>{{ $product->product_description}}</td>
-                                 <td>{{ $product->product_price }}</td>
+                                 <td>{{ $product->product_price }} MYR</td>
                                  <td>{{ $product->product_stock }}</td>
                                  <td>
                                     <form action="{{route('findProduct')}}" method="post" class="form-group" action="/login" enctype="multipart/form-data">

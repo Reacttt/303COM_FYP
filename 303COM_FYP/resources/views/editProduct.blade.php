@@ -61,7 +61,7 @@
                      </div>
                      <!-- Change to Slider -->
                      <div class="row form-group">
-                        <div class="col col-md-3"><label for="text-input" class=" form-control-label">Product Price</label></div>
+                        <div class="col col-md-3"><label for="text-input" class=" form-control-label">Product Price (MYR)</label></div>
                         <div class="col-12 col-md-9"><input type="number" name="product_price" placeholder="0" class="form-control" value="{{ $product->product_price }}">
                         </div>
                      </div>
