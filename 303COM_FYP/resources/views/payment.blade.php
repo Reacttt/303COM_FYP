@@ -80,14 +80,21 @@
                                  <div><img src="/images/{{ $item->order_item_image }}" height='100' width='100' /></div>
                                  <div>
                                     <strong> {{ $item->order_item_name }} </strong> <br>
-                                    Unit Price: {{ $fiat_price }} {{ $fiat_currency }} | {{ $crypto_price }} {{ $crypto_currency }} <br>
-                                    Quantity: {{ $item->order_item_quantity }} item <br>
+                                    @if ($method != "crypto")
+                                    Unit Price: {{ $fiat_price }} {{ $fiat_currency }} <br>
                                     @php $fiat_subTotal = $fiat_price * $item->order_item_quantity; @endphp
-                                    @php $crypto_subTotal = $crypto_price * $item->order_item_quantity; @endphp
-                                    @php $totalQuantity = $totalQuantity + $item->order_item_quantity; @endphp
                                     @php $fiat_grandTotal = $fiat_grandTotal + $fiat_subTotal; @endphp
+                                    Quantity: {{ $item->order_item_quantity }} item <br>
+                                    Subtotal: {{ $fiat_subTotal }} {{ $fiat_currency }} <br>
+                                    @php $totalQuantity = $totalQuantity + $item->order_item_quantity; @endphp
+                                    @else
+                                    Unit Price: {{ $crypto_price }} {{ $crypto_currency }} <br>
+                                    @php $crypto_subTotal = $crypto_price * $item->order_item_quantity; @endphp
                                     @php $crypto_grandTotal = $crypto_grandTotal + $crypto_subTotal; @endphp
-                                    Subtotal: {{ $fiat_subTotal }} {{ $fiat_currency }} | {{ $crypto_subTotal }} {{ $crypto_currency }} <br>
+                                    Quantity: {{ $item->order_item_quantity }} item <br>
+                                    Subtotal: {{ $crypto_subTotal }} {{ $crypto_currency }} <br>
+                                    @php $totalQuantity = $totalQuantity + $item->order_item_quantity; @endphp
+                                    @endif
                                  </div>
                               </div>
                               <br>
@@ -108,7 +115,11 @@
                         <div class="row">
                            <div>
                               <strong> &nbsp; Total Items: </strong> {{ $totalQuantity }} items <br>
-                              <strong> &nbsp; Grand Total: </strong> {{ $fiat_grandTotal }} {{ $fiat_currency }} </strong> ({{ $crypto_grandTotal }} {{ $crypto_currency }}) <br>
+                              @if ($method != "crypto")
+                              <strong> &nbsp; Grand Total: </strong> {{ $fiat_grandTotal }} {{ $fiat_currency }} <br>
+                              @else
+                              <strong> &nbsp; Grand Total: </strong> {{ $crypto_grandTotal }} {{ $crypto_currency }} <br>
+                              @endif
                               <strong> &nbsp; Receiver: </strong> {{ $order->order_first_name }} {{ $order->order_last_name }} <br>
                               <strong> &nbsp; Shipping Address: </strong> {{ $order->order_address_line1 }}, {{ $order->order_city }}, {{ $order->order_postal_code }}, {{ $order->order_country }}
                            </div>
@@ -124,7 +135,7 @@
                   <div class="card-header">
                      <strong class="card-title">Payment Method</strong>
                   </div>
-                  @if ($method == "creditcard")
+                  @if ($method != "crypto")
                   <div class="card-body">
                      <!-- Credit Card -->
                      <div id="pay-invoice">
@@ -202,7 +213,7 @@
                         </center>
                      </div>
                   </div>
-                  @elseif ($method == "crypto")
+                  @else
                   <div class="card-body">
                      <!-- Crypto -->
                      <div id="pay-invoice">
@@ -215,7 +226,7 @@
                               <div class="form-group text-center">
                                  @csrf
                                  <input type="hidden" class="form-control" name="order_id" value="{{ $order->order_id }}" readonly>
-                                 <input type="hidden" name="payment_method" class="form-control" value="Credit Card" readonly>
+                                 <input type="hidden" name="payment_method" class="form-control" value="Crypto " readonly>
                               </div>
                               <div class="form-group">
                                  <label class="control-label mb-1">Payment Amount ({{ $crypto_currency }})</label>
