@@ -57,16 +57,14 @@ class UserController extends Controller
         $user = User::where('user_username', '=', $request->user_username)->first();
 
         if ($user) {
-            if (Hash::check($request->user_password, $user->user_password)) {
-                Session()->put('user_username', $request->user_username);
+            if ($user->user_status == 1) {
+                if (Hash::check($request->user_password, $user->user_password)) {
+                    Session()->put('user_username', $request->user_username);
 
-                return redirect('/')->with('alert', 'User login successfully!');
-            } else {
-                return back()->with('alert', 'Password does not matches!');
-            }
-        } else {
-            return back()->with('alert', 'User not found!');
-        }
+                    return redirect('/')->with('alert', 'User login successfully!');
+                } else return back()->with('alert', 'Password does not matches!');
+            } else return back()->with('alert', 'User has been deactivated!');
+        } else return back()->with('alert', 'User not found!');
     }
 
     public function logoutUser()
