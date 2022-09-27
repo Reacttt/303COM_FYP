@@ -52,7 +52,7 @@
       @php $fiat_price = round(($product->product_price * $fiat_rate), 2); @endphp
       @endif
 
-      @php $crypto_rate = DB::table('asset')->where('asset_quote', $_COOKIE['crypto-currency'])->value('asset_rate'); @endphp
+      @php $crypto_rate = DB::table('asset')->where('asset_quote', $crypto_currency)->value('asset_rate'); @endphp
       @php $crypto_price = round(($product->product_price * $crypto_rate), 6); @endphp
       <div class='Cart-Items'>
          <div class='image-box'>
