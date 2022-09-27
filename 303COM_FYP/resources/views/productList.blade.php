@@ -75,6 +75,8 @@
 										@if ($_COOKIE['fiat-currency'] != "MYR")
 										@php $fiat_rate = DB::table('asset')->where('asset_quote', $_COOKIE['fiat-currency'])->value('asset_rate'); @endphp
 										@php $fiat_price = round(($product->product_price * $fiat_rate), 2); @endphp
+										@else
+										@php $fiat_rate = 1; @endphp
 										@endif
 
 										@php $crypto_rate = DB::table('asset')->where('asset_quote', $_COOKIE['crypto-currency'])->value('asset_rate'); @endphp
