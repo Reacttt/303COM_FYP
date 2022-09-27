@@ -31,11 +31,26 @@
 </head>
 
 <?php
+// Logout User is the User Account is Deleted by Admin
 if (session()->get('user_username') != NULL) {
    $user_status = DB::table('user')->where('user_username', session()->get('user_username'))->value('user_status');
    if ($user_status == 0) {
       Session()->forget('user_username');
       Session()->put('alert', "User status has been updated by Admin. Please login again!");
+   }
+}
+
+$asset = DB::table('asset')->first();
+
+if ($asset != NULL) {
+   $current_time = time();
+   $updated_at = strtotime($asset->updated_at);
+   $difference = abs($current_time - $updated_at);
+
+   // If difference is more or equal to 15 minutes
+   if ($difference >= (60 * 15)) {
+      header('location: http://127.0.0.1:8000/updateAPI');
+      die;
    }
 }
 
