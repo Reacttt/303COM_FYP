@@ -58,20 +58,36 @@
                         <!-- Order Item -->
                         <div id="order-item">
                            <div class="card-body" style="height: 300px; overflow-y: auto">
+                              @php $fiat_currency = $_COOKIE['fiat-currency']; @endphp
+                              @php $crypto_currency = $_COOKIE['crypto-currency']; @endphp
+                              @php $fiat_rate = 1; @endphp
+                              @php $crypto_rate = 0; @endphp
+
+                              @if ($fiat_currency != "MYR")
+                              @php $fiat_rate = DB::table('asset')->where('asset_quote', $fiat_currency)->value('asset_rate'); @endphp
+                              @endif
+
+                              @php $crypto_rate = DB::table('asset')->where('asset_quote', $crypto_currency)->value('asset_rate'); @endphp
+
                               @php $totalQuantity = 0; @endphp
-                              @php $grandTotal = 0; @endphp
+                              @php $fiat_grandTotal = 0; @endphp
+                              @php $crypto_grandTotal = 0; @endphp
                               @foreach ($order_item as $item)
                               @if ($order->order_id === $item->order_id)
+                              @php $fiat_price = round(($item->order_item_price * $fiat_rate), 2); @endphp
+                              @php $crypto_price = round(($item->order_item_price * $crypto_rate), 6); @endphp
                               <div class="row">
                                  <div><img src="/images/{{ $item->order_item_image }}" height='100' width='100' /></div>
                                  <div>
                                     <strong> {{ $item->order_item_name }} </strong> <br>
-                                    Unit Price: {{ $item->order_item_price }} <br>
-                                    Quantity: {{ $item->order_item_quantity }} <br>
-                                    @php $subTotal = $item->order_item_price * $item->order_item_quantity; @endphp
+                                    Unit Price: {{ $fiat_price }} {{ $fiat_currency }} | {{ $crypto_price }} {{ $crypto_currency }} <br>
+                                    Quantity: {{ $item->order_item_quantity }} item <br>
+                                    @php $fiat_subTotal = $fiat_price * $item->order_item_quantity; @endphp
+                                    @php $crypto_subTotal = $crypto_price * $item->order_item_quantity; @endphp
                                     @php $totalQuantity = $totalQuantity + $item->order_item_quantity; @endphp
-                                    @php $grandTotal = $grandTotal + $subTotal; @endphp
-                                    Subtotal: {{ $subTotal }} <br>
+                                    @php $fiat_grandTotal = $fiat_grandTotal + $fiat_subTotal; @endphp
+                                    @php $crypto_grandTotal = $crypto_grandTotal + $crypto_subTotal; @endphp
+                                    Subtotal: {{ $fiat_subTotal }} {{ $fiat_currency }} | {{ $crypto_subTotal }} {{ $crypto_currency }} <br>
                                  </div>
                               </div>
                               <br>
@@ -91,8 +107,8 @@
                      <div class="card-body">
                         <div class="row">
                            <div>
-                              <strong> &nbsp; Total Items: {{ $totalQuantity }} </strong><br>
-                              <strong> &nbsp; Grand Total: {{ $grandTotal }} </strong><br>
+                              <strong> &nbsp; Total Items: {{ $totalQuantity }} items </strong><br>
+                              <strong> &nbsp; Grand Total: {{ $fiat_grandTotal }} {{ $fiat_currency }} </strong> ({{ $crypto_grandTotal }} {{ $crypto_currency }}) <br>
                            </div>
                         </div>
                      </div>
@@ -117,12 +133,12 @@
                            <form action="{{route('makePayment')}}" method="post" enctype="multipart/form-data">
                               <div class="form-group text-center">
                                  @csrf
-                                 <input type="text" class="form-control" name="order_id" value="{{ $order->order_id }}" readonly>
-                                 <input type="text" name="payment_method" class="form-control" value="Credit Card" readonly>
+                                 <input type="hidden" class="form-control" name="order_id" value="{{ $order->order_id }}" readonly>
+                                 <input type="hidden" name="payment_method" class="form-control" value="Credit Card" readonly>
                               </div>
                               <div class="form-group">
-                                 <label class="control-label mb-1">Payment Amount</label>
-                                 <input type="text" name="payment_amount" class="form-control" value=" {{ $grandTotal }}" readonly>
+                                 <label class="control-label mb-1">Payment Amount ({{ $fiat_currency }})</label>
+                                 <input type="text" name="payment_amount" class="form-control" value=" {{ $fiat_grandTotal }}" readonly>
                               </div>
                               <div class="form-group">
                                  <label class="control-label mb-1">Card Holder</label>
@@ -172,7 +188,7 @@
                               <div>
                                  <button type="submit" class="btn btn-lg btn-info btn-block">
                                     <i class="fa fa-lock"></i>&nbsp;
-                                    <span>Pay ${{ $grandTotal }}</span>
+                                    <span>Pay {{ $fiat_grandTotal }} {{ $fiat_currency }}</span>
                                     <span style="display:none;">Sending…</span>
                                  </button>
                               </div>
