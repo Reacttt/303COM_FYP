@@ -107,8 +107,10 @@
                      <div class="card-body">
                         <div class="row">
                            <div>
-                              <strong> &nbsp; Total Items: {{ $totalQuantity }} items </strong><br>
-                              <strong> &nbsp; Grand Total: {{ $fiat_grandTotal }} {{ $fiat_currency }} </strong> ({{ $crypto_grandTotal }} {{ $crypto_currency }}) <br>
+                              <strong> &nbsp; Total Items: </strong> {{ $totalQuantity }} items <br>
+                              <strong> &nbsp; Grand Total: </strong> {{ $fiat_grandTotal }} {{ $fiat_currency }} </strong> ({{ $crypto_grandTotal }} {{ $crypto_currency }}) <br>
+                              <strong> &nbsp; Receiver: </strong> {{ $order->order_first_name }} {{ $order->order_last_name }} <br>
+                              <strong> &nbsp; Shipping Address: </strong> {{ $order->order_address_line1 }}, {{ $order->order_city }}, {{ $order->order_postal_code }}, {{ $order->order_country }}  
                            </div>
                         </div>
                      </div>
