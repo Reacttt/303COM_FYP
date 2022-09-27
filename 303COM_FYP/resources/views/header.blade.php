@@ -31,6 +31,14 @@
 </head>
 
 <?php
+if (session()->get('user_username') != NULL) {
+   $user_status = DB::table('user')->where('user_username', session()->get('user_username'))->value('user_status');
+   if ($user_status == 0) {
+      Session()->forget('user_username');
+      Session()->put('alert', "User status has been updated by Admin. Please login again!");
+   }
+}
+
 
 if (!isset($_COOKIE['fiat-currency'])) {
    $_COOKIE['fiat-currency'] = "MYR";
