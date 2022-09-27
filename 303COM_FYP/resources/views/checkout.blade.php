@@ -32,15 +32,29 @@
          <!-- <h5 class='Action'>Remove all</h5> -->
       </div>
 
-      @php $totalPrice = 0; @endphp
+      @php $fiat_currency = $_COOKIE['fiat-currency']; @endphp
+      @php $crypto_currency = $_COOKIE['crypto-currency']; @endphp
+      @php $fiat_totalPrice = 0; @endphp
+      @php $crypto_totalPrice = 0; @endphp
+      @php $fiat_subTotal = 0; @endphp
+      @php $crypto_subTotal = 0; @endphp
       @php $totalQuantity = 0; @endphp
-      @php $subTotal = 0; @endphp
       @php $address_select = 0; @endphp
 
       @foreach($cart as $cart)
       @php $product = DB::table('product')->where('product_id', $cart->product_id)->first(); @endphp
       @php $category = DB::table('category')->where('category_id', $product->category_id)->first(); @endphp
       @if ($product->product_status === 1 && $category->category_status === 1)
+
+      @php $fiat_price = $product->product_price; @endphp
+
+      @if ($fiat_currency != "MYR")
+      @php $fiat_rate = DB::table('asset')->where('asset_quote', $fiat_currency)->value('asset_rate'); @endphp
+      @php $fiat_price = round(($product->product_price * $fiat_rate), 2); @endphp
+      @endif
+
+      @php $crypto_rate = DB::table('asset')->where('asset_quote', $_COOKIE['crypto-currency'])->value('asset_rate'); @endphp
+      @php $crypto_price = round(($product->product_price * $crypto_rate), 6); @endphp
       <div class='Cart-Items'>
          <div class='image-box'>
             <img src="/images/{{ $product->product_image }}" height='200' width='200' />
@@ -49,20 +63,28 @@
             <h1 class='title'> {{ $product->product_name }}</h1>
             <h3 class='subtitle'> {{ $product->product_description }}</h3>
             <br><br><br><br><br>
-            <h3 class='subtitle'>Unit Price: {{ $product->product_price }}</h3>
+            <h3 class='subtitle'>Unit Price: {{ $fiat_price }} {{ $fiat_currency }} | {{ $crypto_price }} {{ $crypto_currency }}</h3>
          </div>
 
          <div class='prices'>
             @if($category->category_status == 1 && $product->product_status == 1)
             <!-- Display Unit Price -->
-            @php $subTotal = $product->product_price * $cart->product_quantity; @endphp
-            <div class='amount'> {{ $subTotal }} </div>
+            @php $fiat_subTotal = $fiat_price * $cart->product_quantity; @endphp
+            @php $crypto_subTotal = $crypto_price * $cart->product_quantity; @endphp
+            <div class='amount'>
+               x {{$cart->product_quantity}} items <br>
+            </div>
+            <div class='amount'>
+               {{ $fiat_subTotal }} {{ $fiat_currency }} <br>
+               {{ $crypto_subTotal }} {{ $crypto_currency }}
+            </div>
             @endif
             <br /><br /><br /><br /><br />
          </div>
       </div>
 
-      @php $totalPrice = $totalPrice + $subTotal; @endphp
+      @php $fiat_totalPrice = $fiat_totalPrice + $fiat_subTotal; @endphp
+      @php $crypto_totalPrice = $crypto_totalPrice + $crypto_subTotal; @endphp
       @php $totalQuantity = $totalQuantity + $cart->product_quantity; @endphp
       <!-- End Cart Item -->
       @endif
@@ -88,19 +110,19 @@
                   <td>{{ $address->shipping_address_line1 }}, {{ $address->shipping_city }}, {{ $address->shipping_postal_code }}, {{ $address->shipping_country }}</td>
                </tr>
 
-            @php $flag = false; @endphp
-            @else
-            <tr>
+               @php $flag = false; @endphp
+               @else
+               <tr>
                   <td>
-                  <input type="radio" name="shipping_details_id" value="{{ $address->shipping_details_id }}" id="{{ $address->shipping_details_id }}">
+                     <input type="radio" name="shipping_details_id" value="{{ $address->shipping_details_id }}" id="{{ $address->shipping_details_id }}">
                   </td>
                   <td>{{ $address->shipping_address_line1 }}, {{ $address->shipping_city }}, {{ $address->shipping_postal_code }}, {{ $address->shipping_country }}</td>
                </tr>
-            @endif
-            @endforeach
-            @else
-            No Address Available <br><br>
-            @endif
+               @endif
+               @endforeach
+               @else
+               No Address Available <br><br>
+               @endif
             </table>
             <br>
             <a href="/shippingDetailsForm/new">
@@ -115,7 +137,10 @@
                <div>
                   <div class='Subtotal'>Total</div>
                </div>
-               <div class='total-amount'> {{ $totalPrice }} </div>
+               <div class='total-amount'>
+                  {{ $fiat_totalPrice }} {{ $fiat_currency }} <br>
+                  {{ $crypto_totalPrice }} {{ $crypto_currency }}
+               </div>
             </div>
 
             <br>
