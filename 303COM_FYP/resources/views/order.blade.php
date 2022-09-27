@@ -63,22 +63,42 @@
                   </tr>
                </thead>
                <tbody>
+                  @php $fiat_currency = $_COOKIE['fiat-currency']; @endphp
+                  @php $crypto_currency = $_COOKIE['crypto-currency']; @endphp
+
+                  @if ($fiat_currency != "MYR")
+                  @php $fiat_rate = DB::table('asset')->where('asset_quote', $fiat_currency)->value('asset_rate'); @endphp
+                  @else
+                  @php $fiat_rate = 1; @endphp
+                  @endif
+
+                  @php $crypto_rate = DB::table('asset')->where('asset_quote', $_COOKIE['crypto-currency'])->value('asset_rate'); @endphp
+
                   @foreach($order as $order)
-                  @php $order_total = 0; @endphp
+                  @php $fiat_orderTotal = 0; @endphp
+                  @php $crypto_orderTotal = 0; @endphp
                   <tr>
                      <td> {{ $order->order_id }} </td>
                      <td>
                         @foreach($order_item as $items)
                         @if($items->order_id === $order->order_id)
+                        @php $fiat_price = round(($items->order_item_price * $fiat_rate), 2); @endphp
+                        @php $crypto_price = round(($items->order_item_price * $crypto_rate), 6); @endphp
+
                         {{ $items->order_item_name }} ({{ $items->order_item_quantity }} items)
-                        @php $order_total = $order_total + ($items->order_item_quantity * $items->order_item_price); @endphp
+
+                        @php $fiat_orderTotal = $fiat_orderTotal + ($items->order_item_quantity * $fiat_price); @endphp
+                        @php $crypto_orderTotal = $crypto_orderTotal + ($items->order_item_quantity * $crypto_price); @endphp
                         <br>
                         @endif
                         @endforeach
                      </td>
                      @php $order_quantity = DB::table('order_item')->where('order_id', $order->order_id)->sum('order_item_quantity'); @endphp
                      <td> {{ $order_quantity }} items</td>
-                     <td> {{ $order_total }} </td>
+                     <td>
+                        {{ $fiat_orderTotal }} {{ $fiat_currency }} <br>
+                        {{ $crypto_orderTotal }} {{ $crypto_currency }} <br>
+                     </td>
                      <td>
                         <b>Name: </b> {{ $order->order_first_name }} {{ $order->order_last_name }} <br>
                         <b>Address Line 1: </b> {{ $order->order_address_line1 }} <br>
