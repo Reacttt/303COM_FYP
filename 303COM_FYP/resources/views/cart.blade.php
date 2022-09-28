@@ -39,21 +39,22 @@
       @php $crypto_subTotal = 0; @endphp
       @php $totalQuantity = 0; @endphp
 
+      @php $checkoutFlag = 0; @endphp
+
+      @if ($fiat_currency != "MYR")
+      @php $fiat_rate = DB::table('asset')->where('asset_quote', $fiat_currency)->value('asset_rate'); @endphp
+      @endif
+      @php $crypto_rate = DB::table('asset')->where('asset_quote', $crypto_currency)->value('asset_rate'); @endphp
+
       @foreach($cart as $cart)
       @php $product = DB::table('product')->where('product_id', $cart->product_id)->first(); @endphp
       @php $category = DB::table('category')->where('category_id', $product->category_id)->first(); @endphp
       @php $user_id = DB::table('user')->where('user_username', Session::get('user_username'))->value('user_id'); @endphp
       @if ($cart->user_id === $user_id)
 
-      @php $fiat_price = $product->product_price; @endphp
-
-      @if ($fiat_currency != "MYR")
-      @php $fiat_rate = DB::table('asset')->where('asset_quote', $fiat_currency)->value('asset_rate'); @endphp
       @php $fiat_price = round(($product->product_price * $fiat_rate), 2); @endphp
-      @endif
-
-      @php $crypto_rate = DB::table('asset')->where('asset_quote', $crypto_currency)->value('asset_rate'); @endphp
       @php $crypto_price = round(($product->product_price * $crypto_rate), 6); @endphp
+
       <div class='Cart-Items'>
          <div class='image-box'>
             <img src="/images/{{ $product->product_image }}" height='200' width='200' />
@@ -109,6 +110,7 @@
          </div>
       </div>
 
+      @php $checkoutFlag = 1; @endphp
       @endif
       @endforeach
       <!-- End Cart Item -->
@@ -123,7 +125,7 @@
             </div>
             <div class='total-amount'>
                {{ $fiat_totalPrice }} {{ $fiat_currency }} <br>
-               {{ $crypto_totalPrice }} {{ $crypto_currency }} 
+               {{ $crypto_totalPrice }} {{ $crypto_currency }}
             </div>
          </div>
 
@@ -132,7 +134,11 @@
          <br>
 
          <a href="/checkout">
+            @if ($checkoutFlag)
             <div><button class='button'>Checkout</button></div>
+            @else
+            <div><button class='button' disabled>Checkout</button></div>
+            @endif
          </a>
          </form>
       </div>
