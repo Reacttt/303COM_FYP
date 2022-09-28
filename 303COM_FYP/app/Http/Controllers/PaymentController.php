@@ -38,6 +38,16 @@ class PaymentController extends Controller
 
         DB::table('order')->where('order_id', $request->order_id)->update($data);
 
-        return redirect('order')->with('alert', 'Payment successfully!');
+        return redirect('order')->with('alert', 'Credit Card Payment Successful!');
+    }
+
+    public function addMetamaskTransaction(Request $request) 
+    {
+        $data = array(
+        "txHash" => $request->txHash,
+        "amount" => $request->amount,
+        );
+
+        return redirect('/')->with('alert', 'Metamask Payment Successful! txHash:' . $request->txHash . " Amount: " . $request->amount);
     }
 }
