@@ -43,6 +43,7 @@ class AssetController extends Controller
 
         $asset = DB::table('asset')->get();
 
-        return back()->with('alert', 'CoinAPI Updated Successfully!');
+        // return back()->with('alert', 'CoinAPI Updated Successfully!');
+        return back();
     }
 }
