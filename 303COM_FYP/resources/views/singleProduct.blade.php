@@ -39,8 +39,21 @@
 				</div>
 				<div class="col-lg-5 offset-lg-1">
 					<div class="s_product_text">
+						@php $fiat_currency = $_COOKIE['fiat-currency']; @endphp
+						@php $crypto_currency = $_COOKIE['crypto-currency']; @endphp
+						@php $fiat_rate = 1; @endphp
+						@php $crypto_rate = 0; @endphp
+
+						@if ($fiat_currency != "MYR")
+						@php $fiat_rate = DB::table('asset')->where('asset_quote', $fiat_currency)->value('asset_rate'); @endphp
+						@endif
+
+						@php $crypto_rate = DB::table('asset')->where('asset_quote', $crypto_currency)->value('asset_rate'); @endphp
+
 						<h3> {{ $product->product_name }} </h3>
-						<h2> {{ $product->product_price }} </h2>
+						@php $fiat_price = round(($product->product_price * $fiat_rate), 2); @endphp
+                        @php $crypto_price = round(($product->product_price * $crypto_rate), 6); @endphp
+						<h2> {{ $fiat_price }} {{ $fiat_currency }} | {{ $crypto_price }} {{ $crypto_currency }} </h2>
 						<ul class="list">
 
 							<li><a class="active" href="#"><span>Category</span> : {{ $category_name }}</a></li>
