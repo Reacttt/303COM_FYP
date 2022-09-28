@@ -69,8 +69,8 @@ Route::get('viewOrder/{order_id?}', [ViewController::class, 'viewOrderPage']);
 
 // Customer Payment
 Route::get('payment/{order_id?}/{method?}', [ViewController::class, 'paymentPage']);
-Route::post('/makeTransaction', [PaymentController::class, 'addMetamaskTransaction'])->name('/makeTransaction');
 Route::post('makePayment', [PaymentController::class, 'addPayment'])->name('makePayment');
+Route::get('makePayment', [PaymentController::class, 'addPayment'])->name('makePayment');
 
 // Customer Cookie
 Route::get('/updateCookie/{type?}/{value?}', [CookieController::class, 'updateCookie']);

@@ -18,6 +18,7 @@ return new class extends Migration
             $table->integer('order_id')->unsigned()->default(0);
             $table->foreign('order_id')->references('order_id')->on('order')->onDelete('cascade');
             $table->double('payment_total');
+            $table->string('payment_currency');
             $table->string('payment_method');
             $table->string('payment_transaction');
             $table->string('payment_status');

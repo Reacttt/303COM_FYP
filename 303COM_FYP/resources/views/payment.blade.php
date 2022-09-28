@@ -149,6 +149,7 @@
                                  @csrf
                                  <input type="hidden" class="form-control" name="order_id" value="{{ $order->order_id }}" readonly>
                                  <input type="hidden" name="payment_method" class="form-control" value="Credit Card" readonly>
+                                 <input type="hidden" name="payment_currency" class="form-control" value="{{ $fiat_currency }}" readonly>
                               </div>
                               <div class="form-group">
                                  <label class="control-label mb-1">Payment Amount ({{ $fiat_currency }})</label>
@@ -226,7 +227,8 @@
                               <div class="form-group text-center">
                                  @csrf
                                  <input type="hidden" class="form-control" name="order_id" value="{{ $order->order_id }}" readonly>
-                                 <input type="hidden" name="payment_method" class="form-control" value="Crypto " readonly>
+                                 <input type="hidden" name="payment_method" class="form-control" value="Crypto" readonly>
+                                 <input type="hidden" name="payment_currency" class="form-control" value="{{ $crypto_currency }}" readonly>
                               </div>
                               <div class="form-group">
                                  <label class="control-label mb-1">Payment Amount ({{ $crypto_currency }})</label>
@@ -326,19 +328,25 @@
     *
     */
    function storeTransaction(txHash, amount) {
+      var order_id = "<?php echo $order->order_id; ?>";
+      var payment_currency = "<?php echo $crypto_currency; ?>";
+
       $.ajax({
-         url: "{{ route('/makeTransaction') }}",
-         headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-         },
+         url: "{{ route('makePayment') }}",
          type: 'POST',
          data: {
-            txHash: txHash,
-            amount: amount,
+            _token: '{{csrf_token()}}',
+            order_id: order_id,
+            payment_amount: amount,
+            payment_method: "Crypto",
+            payment_currency: "ETH",
+            payment_transaction: txHash,
+            payment_status: 1,
          },
          success: function(response) {
             // reload page after success
-            window.location.reload();
+            window.location.replace("http://127.0.0.1:8000/");
+            alert("Crypto Payment Successful!");
          }
       });
    }
