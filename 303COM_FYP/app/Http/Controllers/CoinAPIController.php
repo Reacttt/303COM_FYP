@@ -25,7 +25,7 @@ class CoinAPIController extends Controller
         foreach ($rates as $row) {
             $type = NULL;
             if ($row->asset_id_quote == "USD" || $row->asset_id_quote == "SGD") $type = "Fiat";
-            else if ($row->asset_id_quote == "ETH" || $row->asset_id_quote == "BTC") $type = "Crypto";
+            else if ($row->asset_id_quote == "ETH" || $row->asset_id_quote == "DAI" || $row->asset_id_quote == "UNI") $type = "Crypto";
 
             if ($type != NULL) {
 

@@ -97,7 +97,8 @@ if (!isset($_COOKIE['crypto-currency'])) {
                   <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown"> Crypto ({{ $_COOKIE['crypto-currency'] }}) </a>
                   <div class="dropdown-menu">
                      <a href="/updateCookie/crypto-currency/ETH" class="dropdown-item"> ETH </a>
-                     <a href="/updateCookie/crypto-currency/BTC" class="dropdown-item"> BTC </a>
+                     <a href="/updateCookie/crypto-currency/DAI" class="dropdown-item"> DAI </a>
+                     <a href="/updateCookie/crypto-currency/UNI" class="dropdown-item"> UNI </a>
                   </div>
                </div>
                @php $username = Session::get('user_username') @endphp
