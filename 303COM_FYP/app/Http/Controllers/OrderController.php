@@ -67,7 +67,7 @@ class OrderController extends Controller
             }
         }
 
-        return redirect('/')->with('alert', 'Order Placed Successfully!');
+        return redirect('/payment/'. $order->order_id)->with('alert', 'Order Placed Successfully!');
     }
 
     public function updateOrderStatus($order_id = null, $order_status = null)
