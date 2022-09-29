@@ -25,7 +25,7 @@ class CoinAPIController extends Controller
         foreach ($rates as $row) {
             $type = NULL;
             if ($row->asset_id_quote == "USD" || $row->asset_id_quote == "SGD") $type = "Fiat";
-            else if ($row->asset_id_quote == "ETH" || $row->asset_id_quote == "DAI" || $row->asset_id_quote == "UNI") $type = "Crypto";
+            else if ($row->asset_id_quote == "ETH") $type = "Crypto";
 
             if ($type != NULL) {
 
@@ -45,7 +45,7 @@ class CoinAPIController extends Controller
         $data = array(
             "asset_type" => "Crypto",
             "asset_quote" => "EST",
-            "asset_rate" => 1,
+            "asset_rate" => 0.9,
             "updated_at" => \Carbon\Carbon::now()->toDateTimeString()
         );
 

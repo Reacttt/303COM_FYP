@@ -98,8 +98,6 @@ $_COOKIE['crypto-currency'] = "ETH";
                   <div class="dropdown-menu">
                      <a href="/updateCookie/crypto-currency/EST" class="dropdown-item"> EST </a>
                      <a href="/updateCookie/crypto-currency/ETH" class="dropdown-item"> ETH </a>
-                     <a href="/updateCookie/crypto-currency/DAI" class="dropdown-item"> DAI </a>
-                     <a href="/updateCookie/crypto-currency/UNI" class="dropdown-item"> UNI </a>
                   </div>
                </div>
                @php $username = Session::get('user_username') @endphp
