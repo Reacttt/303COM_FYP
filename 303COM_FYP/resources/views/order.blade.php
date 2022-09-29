@@ -112,22 +112,22 @@
                      @php $payment = DB::table('payment_details')->where('order_id', $order->order_id)->first() @endphp
                      <td>
                         @if ($order->order_status != "Cancelled")
-                        @if ($payment != null)
-                        <b>Method: </b> {{ $payment->payment_method }} <br>
-                        <b>Currency: </b> {{ $payment->payment_currency }} <br>
-                        @if ($payment->payment_status == 1)
-                        <b>Status: </b> Completed <br>
-                        @else
-                        <b>Status: </b> Pending <br>
-                        @endif
-                        @if ($payment->payment_method != "Crypto")
-                        <b>Transaction: </b> <small> {{ $payment->payment_transaction }} </small><br>
-                        @else
-                        <b>Transaction: </b> <a href="https://ropsten.etherscan.io/tx/{{ $payment->payment_transaction }}">View Transaction</a><br>
-                        @endif
-                        @else
-                        Pending Payment
-                        @endif
+                           @if ($payment != null)
+                           <b>Method: </b> {{ $payment->payment_method }} <br>
+                           <b>Currency: </b> {{ $payment->payment_currency }} <br>
+                              @if ($payment->payment_status == 1)
+                              <b>Status: </b> Completed <br>
+                              @else
+                              <b>Status: </b> Pending <br>
+                              @endif
+                              @if ($payment->payment_method != "Crypto")
+                              <b>Transaction: </b> <small> {{ $payment->payment_transaction }} </small><br>
+                              @else
+                              <b>Transaction: </b> <a href="https://ropsten.etherscan.io/tx/{{ $payment->payment_transaction }}">View Transaction</a><br>
+                              @endif
+                              @else
+                              Pending Payment
+                           @endif
                         @else
                         Order Cancelled
                         @endif
