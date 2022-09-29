@@ -64,7 +64,7 @@ Route::post('updateShippingDetails', [ShippingDetailsController::class, 'updateS
 Route::get('removeShippingDetails/{shipping_details_id?}', [ShippingDetailsController::class, 'removeShippingDetails']);
 
 // Customer Order
-Route::get('order', [ViewController::class, 'orderPage']);
+Route::get('order/{filter?}', [ViewController::class, 'orderPage']);
 Route::post('placeOrder', [OrderController::class, 'placeOrder'])->name('placeOrder');
 Route::get('viewOrder/{order_id?}', [ViewController::class, 'viewOrderPage']);
 

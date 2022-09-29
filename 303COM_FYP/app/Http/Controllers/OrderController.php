@@ -67,11 +67,13 @@ class OrderController extends Controller
             }
         }
 
-        return redirect('/payment/'. $order->order_id)->with('alert', 'Order Placed Successfully!');
+        return redirect('/payment/' . $order->order_id)->with('alert', 'Order Placed Successfully!');
     }
 
     public function updateOrderStatus($order_id = null, $order_status = null)
     {
+        if ($order_status == "Refund") $order_status = "Pending Refund";
+
         $data = array(
             "order_status" => $order_status,
             "updated_at" => \Carbon\Carbon::now()->toDateTimeString()
@@ -99,5 +101,7 @@ class OrderController extends Controller
             return redirect('/order')->with('alert', 'Order received successfully! ');
         else if ($order_status == "Cancelled")
             return redirect('/order')->with('alert', 'Order cancelled successfully! ');
+        else if ($order_status == "Pending Refund")
+            return redirect('/order')->with('alert', 'Requested refund successfully! ');
     }
 }
