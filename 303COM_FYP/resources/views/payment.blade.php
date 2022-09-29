@@ -345,7 +345,7 @@
          },
          success: function(response) {
             // reload page after success
-            window.location.replace("http://127.0.0.1:8000/updatePaymentStatus/" + txHash);
+            window.location.replace("http://127.0.0.1:8000/order");
             alert("Crypto Payment Submitted Successfully!");
          }
       });
