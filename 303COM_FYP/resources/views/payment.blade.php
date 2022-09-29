@@ -341,11 +341,11 @@
             payment_method: "Crypto",
             payment_currency: "ETH",
             payment_transaction: txHash,
-            payment_status: 1,
+            payment_status: 0,
          },
          success: function(response) {
             // reload page after success
-            window.location.replace("http://127.0.0.1:8000/");
+            window.location.replace("http://127.0.0.1:8000/updatePayment/" + txHash);
             alert("Crypto Payment Successful!");
          }
       });

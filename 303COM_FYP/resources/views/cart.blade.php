@@ -43,6 +43,8 @@
 
       @if ($fiat_currency != "MYR")
       @php $fiat_rate = DB::table('asset')->where('asset_quote', $fiat_currency)->value('asset_rate'); @endphp
+      @else
+      @php $fiat_rate = 1; @endphp
       @endif
       @php $crypto_rate = DB::table('asset')->where('asset_quote', $crypto_currency)->value('asset_rate'); @endphp
 
