@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\DB;
 
-class AssetController extends Controller
+class CoinAPIController extends Controller
 {
     //    $key = "53C9B0CF-E34D-4EFC-8079-6A9A259ABA2F";
 
