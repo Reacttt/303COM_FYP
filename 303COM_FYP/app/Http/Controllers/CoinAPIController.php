@@ -41,7 +41,15 @@ class CoinAPIController extends Controller
             }
         }
 
-        $asset = DB::table('asset')->get();
+        // Initialize Custom Token Ecommerce Store Token (EST)
+        $data = array(
+            "asset_type" => "Crypto",
+            "asset_quote" => "EST",
+            "asset_rate" => 1,
+            "updated_at" => \Carbon\Carbon::now()->toDateTimeString()
+        );
+
+        DB::table('asset')->insert($data);
 
         // return back()->with('alert', 'CoinAPI Updated Successfully!');
         return back();

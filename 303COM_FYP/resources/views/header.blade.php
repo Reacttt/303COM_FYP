@@ -33,37 +33,37 @@
 @php
 // Logout User is the User Account is Deleted by Admin
 if (session()->get('user_username') != NULL) {
-   $user_status = DB::table('user')->where('user_username', session()->get('user_username'))->value('user_status');
-   if ($user_status == 0) {
-      Session()->forget('user_username');
-      Session()->put('alert', "User status has been updated by Admin. Please login again!");
-   }
+$user_status = DB::table('user')->where('user_username', session()->get('user_username'))->value('user_status');
+if ($user_status == 0) {
+Session()->forget('user_username');
+Session()->put('alert', "User status has been updated by Admin. Please login again!");
+}
 }
 
 $asset = DB::table('asset')->first();
 
 if ($asset != NULL) {
-   $current_time = time();
-   $updated_at = strtotime($asset->updated_at);
-   $difference = abs($current_time - $updated_at);
+$current_time = time();
+$updated_at = strtotime($asset->updated_at);
+$difference = abs($current_time - $updated_at);
 
-   // If difference is more or equal to 15 minutes
-   if ($difference >= (60 * 15)) {
-      header('location: http://127.0.0.1:8000/updateAPI');
-      die;
-   }
+// If difference is more or equal to 15 minutes
+if ($difference >= (60 * 15)) {
+header('location: http://127.0.0.1:8000/updateAPI');
+die;
+}
 } else {
-   header('location: http://127.0.0.1:8000/updateAPI');
-   die;
+header('location: http://127.0.0.1:8000/updateAPI');
+die;
 }
 
 
 if (!isset($_COOKIE['fiat-currency'])) {
-   $_COOKIE['fiat-currency'] = "MYR";
+$_COOKIE['fiat-currency'] = "MYR";
 }
 
 if (!isset($_COOKIE['crypto-currency'])) {
-   $_COOKIE['crypto-currency'] = "ETH";
+$_COOKIE['crypto-currency'] = "ETH";
 }
 
 @endphp
@@ -96,6 +96,7 @@ if (!isset($_COOKIE['crypto-currency'])) {
                <div class="nav-item dropdown">
                   <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown"> Crypto ({{ $_COOKIE['crypto-currency'] }}) </a>
                   <div class="dropdown-menu">
+                     <a href="/updateCookie/crypto-currency/EST" class="dropdown-item"> EST </a>
                      <a href="/updateCookie/crypto-currency/ETH" class="dropdown-item"> ETH </a>
                      <a href="/updateCookie/crypto-currency/DAI" class="dropdown-item"> DAI </a>
                      <a href="/updateCookie/crypto-currency/UNI" class="dropdown-item"> UNI </a>
