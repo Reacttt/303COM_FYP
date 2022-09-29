@@ -71,6 +71,7 @@ Route::get('viewOrder/{order_id?}', [ViewController::class, 'viewOrderPage']);
 Route::get('payment/{order_id?}/{method?}', [ViewController::class, 'paymentPage']);
 Route::post('makePayment', [PaymentController::class, 'addPayment'])->name('makePayment');
 Route::get('makePayment', [PaymentController::class, 'addPayment'])->name('makePayment');
+Route::get('updatePaymentStatus/{transaction?}', [PaymentController::class, 'updatePaymentStatus']);
 
 // Customer Cookie
 Route::get('/updateCookie/{type?}/{value?}', [CookieController::class, 'updateCookie']);
