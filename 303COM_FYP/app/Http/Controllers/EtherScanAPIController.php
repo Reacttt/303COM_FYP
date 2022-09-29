@@ -17,7 +17,7 @@ class EtherScanAPIController extends Controller
     {
         $admin_wallet = "0xE8dEc2A51E0E6F15a4917306c486165dFb395f1f";
         $payment_details = DB::table('payment_details')->where('payment_method', 'Crypto')->where('created_at', '<', \Carbon\Carbon::now()->subMinutes(1))->where('payment_status', 0)->get();
-        $result = null;
+        $validated = null;
 
         foreach ($payment_details as $payment) {
             //get transaction information from etherscan
@@ -34,6 +34,7 @@ class EtherScanAPIController extends Controller
                     );
 
                     DB::table('payment_details')->where('payment_details_id', $payment->payment_details_id)->update($data);
+                    $validated++;
                 } else {
                     // Update Transaction As Canceled
                     $data = array(
@@ -52,11 +53,12 @@ class EtherScanAPIController extends Controller
 
                 DB::table('payment_details')->where('payment_details_id', $payment->payment_details_id)->update($data);
             }
-
-            $result++;
         }
 
-        return back()->with('alert', 'Hash Validated Successfully' . $result);
+        if ($validated != 0)
+        return back()->with('alert', $validated . ' Hash Validated Successfully');
+        else 
+        return back()->with('alert', 'No Hash Has Been Validated');
     }
 
     /**
