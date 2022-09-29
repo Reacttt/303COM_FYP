@@ -113,10 +113,11 @@ class ViewController extends Controller
 
     // Order View
 
-    public function orderPage()
+    public function orderPage($filter = null)
     {
         $order = DB::table('order')->orderBy('order_id', 'DESC')->get();
         $order_item = DB::table('order_item')->get();
+
         return view("order", compact('order', 'order_item'));
     }
 
@@ -224,6 +225,8 @@ class ViewController extends Controller
             $order = DB::table('order')->where('order_status', "Completed")->get();
         } else if ($filter == "pendingReceive") {
             $order = DB::table('order')->where('order_status', "Shipped")->get();
+        } else if ($filter == "pendingRefund") {
+            $order = DB::table('order')->where('order_status', "Pending Refund")->get();
         } else if ($filter == "cancelled") {
             $order = DB::table('order')->where('order_status', "Cancelled")->get();
         }
