@@ -9,11 +9,11 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\AdminController;
-use App\Http\Controllers\AssetController;
 use App\Http\Controllers\ShippingDetailsController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\CookieController;
-
+use App\Http\Controllers\CoinAPIController;
+use App\Http\Controllers\EtherScanAPIController;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,7 +30,8 @@ use App\Http\Controllers\CookieController;
 Route::get('/', [ViewController::class, 'homePage']);
 
 // API Router
-Route::get('/updateAPI', [AssetController::class, 'updateAPI']);
+Route::get('/updateAPI', [CoinAPIController::class, 'updateAPI']);
+Route::get('/validateHash', [EtherScanAPIController::class, 'validateHash']);
 
 // Customer Routers
 
@@ -71,7 +72,6 @@ Route::get('viewOrder/{order_id?}', [ViewController::class, 'viewOrderPage']);
 Route::get('payment/{order_id?}/{method?}', [ViewController::class, 'paymentPage']);
 Route::post('makePayment', [PaymentController::class, 'addPayment'])->name('makePayment');
 Route::get('makePayment', [PaymentController::class, 'addPayment'])->name('makePayment');
-Route::get('updatePaymentStatus/{transaction?}', [PaymentController::class, 'updatePaymentStatus']);
 
 // Customer Cookie
 Route::get('/updateCookie/{type?}/{value?}', [CookieController::class, 'updateCookie']);
