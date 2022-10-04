@@ -36,7 +36,7 @@ class PaymentController extends Controller
 
         DB::table('payment_details')->insert($data);
 
-        if ($request->payment_status != "Crypto") {
+        if ($request->payment_method != "Crypto") {
             $data = array(
                 "order_status" => "Pending Shipment",
                 "updated_at" => \Carbon\Carbon::now()->toDateTimeString()

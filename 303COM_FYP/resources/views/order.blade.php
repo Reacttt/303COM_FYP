@@ -109,7 +109,7 @@
                         <b>Contact: </b> {{ $order->order_contact }} <br>
                      </td>
                      <td> {{ $order->order_status }} </td>
-                     @php $payment = DB::table('payment_details')->where('order_id', $order->order_id)->first() @endphp
+                     @php $payment = DB::table('payment_details')->where('order_id', $order->order_id)->orderBy('created_at', 'DESC')->first() @endphp
                      <td>
                         @if ($order->order_status != "Cancelled")
                            @if ($payment != null)
@@ -137,8 +137,11 @@
                      <td>
                         <center>
                            <a href="/viewOrder/{{ $order->order_id }}"><button type="submit" class='btn btn-success'>View Order</button><br><br></a>
-                           @if ($order->order_status == "Pending Payment" || DB::table('payment_details')->where('order_id', $order->order_id)->latest('created_at')->value('payment_status') == 3)
+                           @if ($order->order_status == "Pending Payment" && DB::table('payment_details')->where('order_id', $order->order_id)->latest('created_at')->value('payment_status') == NULL)
                            <a href="/payment/{{ $order->order_id }}"><button type="submit" class='btn btn-warning'>Pay Order</button><br><br></a>
+                           <a href="/updateOrderStatus/{{ $order->order_id }}/Cancelled"><button type="submit" class='btn btn-danger'>Cancel Order</button><br><br></a>
+                           @elseif ($order->order_status == "Pending Payment" && DB::table('payment_details')->where('order_id', $order->order_id)->latest('created_at')->value('payment_status') == 3)
+                           <a href="/payment/{{ $order->order_id }}"><button type="submit" class='btn btn-warning'>Retry Payment</button><br><br></a>
                            <a href="/updateOrderStatus/{{ $order->order_id }}/Cancelled"><button type="submit" class='btn btn-danger'>Cancel Order</button><br><br></a>
                            @elseif ($order->order_status == "Shipped")
                            <a href="/updateOrderStatus/{{ $order->order_id }}/Completed"><button type="submit" class='btn btn-warning'>Received Order</button><br><br></a>
