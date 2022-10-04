@@ -112,6 +112,8 @@
                                        <b>Currency: </b> {{ $payment->payment_currency }} <br>
                                           @if ($payment->payment_status == 1)
                                           <b>Status: </b> Completed <br>
+                                          @elseif ($payment->payment_status == 3)
+                                          <b>Status: </b> Failed <br>
                                           @else
                                           <b>Status: </b> Pending <br>
                                           @endif
