@@ -30,39 +30,16 @@
       <div class="top-right">
          <div class="header-menu">
             <div class="header-left">
-
                @php $admin = Session::get('admin_username') @endphp
                @if ($admin != NULL)
                <div class="dropdown for-notification">
-                  <button class="btn btn-secondary dropdown-toggle" type="button" id="notification" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                     <i class="fa fa-bell"></i>
-                     <span class="count bg-danger">1</span>
-                  </button>
-                  <div class="dropdown-menu" aria-labelledby="notification">
-                     <p class="red">You have 1 Notification</p>
-                     <a class="dropdown-item media" href="#">
-                        <i class="fa fa-check"></i>
-                        <p>Server #1 overloaded.</p>
-                     </a>
-                  </div>
+                  <button class="btn btn-secondary dropdown-toggle" type="button" id="notification" aria-haspopup="true" aria-expanded="false">
+                  <a href="/updateAPI" class="nav-item nav-link"><i class="fa fa-refresh"> CoinAPI</i></a></button>
                </div>
 
-               <div class="dropdown for-message">
-                  <button class="btn btn-secondary dropdown-toggle" type="button" id="message" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                     <i class="fa fa-envelope"></i>
-                     <span class="count bg-primary">1</span>
-                  </button>
-                  <div class="dropdown-menu" aria-labelledby="message">
-                     <p class="red">You have 1 Mails</p>
-                     <a class="dropdown-item media" href="#">
-                        <span class="photo media-left"><img alt="avatar" src="/images/admin.jpg"></span>
-                        <div class="message media-body">
-                           <span class="name float-left">Jonathan Smith</span>
-                           <span class="time float-right">Just now</span>
-                           <p>Hello, this is an example msg</p>
-                        </div>
-                     </a>
-                  </div>
+               <div class="dropdown for-notification">
+                  <button class="btn btn-secondary dropdown-toggle" type="button" id="notification" aria-haspopup="true" aria-expanded="false">
+                  <a href="/validateHash" class="nav-item nav-link"><i class="fa fa-flag"> Validate</i></a></button>
                </div>
             </div>
 

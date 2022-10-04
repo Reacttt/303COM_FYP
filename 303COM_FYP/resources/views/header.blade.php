@@ -82,8 +82,6 @@ $_COOKIE['crypto-currency'] = "ETH";
             <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
                <div class="navbar-nav mr-auto">
                   <a href="/admin" class="nav-item nav-link">Admin Centre</a>
-                  <a href="/updateAPI" class="nav-item nav-link">Refresh API</a>
-                  <a href="/validateHash" class="nav-item nav-link">Validate Hash</a>
                </div>
                <div class="nav-item dropdown">
                   <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown"> Fiat ({{ $_COOKIE['fiat-currency'] }}) </a>
