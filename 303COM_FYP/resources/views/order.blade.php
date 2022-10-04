@@ -117,6 +117,8 @@
                            <b>Currency: </b> {{ $payment->payment_currency }} <br>
                               @if ($payment->payment_status == 1)
                               <b>Status: </b> Completed <br>
+                              @elseif ($payment->payment_status == 3)
+                              <b>Status: </b> Failed <br>
                               @else
                               <b>Status: </b> Pending <br>
                               @endif
@@ -135,7 +137,7 @@
                      <td>
                         <center>
                            <a href="/viewOrder/{{ $order->order_id }}"><button type="submit" class='btn btn-success'>View Order</button><br><br></a>
-                           @if ($order->order_status == "Pending Payment")
+                           @if ($order->order_status == "Pending Payment" || DB::table('payment_details')->where('order_id', $order->order_id)->latest('created_at')->value('payment_status') == 3)
                            <a href="/payment/{{ $order->order_id }}"><button type="submit" class='btn btn-warning'>Pay Order</button><br><br></a>
                            <a href="/updateOrderStatus/{{ $order->order_id }}/Cancelled"><button type="submit" class='btn btn-danger'>Cancel Order</button><br><br></a>
                            @elseif ($order->order_status == "Shipped")

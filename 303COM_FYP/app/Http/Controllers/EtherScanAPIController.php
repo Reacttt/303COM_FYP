@@ -34,6 +34,14 @@ class EtherScanAPIController extends Controller
                     );
 
                     DB::table('payment_details')->where('payment_details_id', $payment->payment_details_id)->update($data);
+
+                    $data = array(
+                        "order_status" => "Pending Shipment",
+                        "updated_at" => \Carbon\Carbon::now()->toDateTimeString()
+                    );
+            
+                    DB::table('order')->where('order_id', $payment->order_id)->update($data);
+                    
                     $validated++;
                 } else {
                     // Update Transaction As Canceled
