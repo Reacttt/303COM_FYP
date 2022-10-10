@@ -22,17 +22,18 @@
          <div class="animated fadeIn">
             <!-- Widgets  -->
             <div class="row">
-               <div class="col-lg-3 col-md-6">
+
+            <div class="col-lg-3 col-md-6">
                   <div class="card">
                      <div class="card-body">
                         <div class="stat-widget-five">
-                           <div class="stat-icon dib flat-color-1">
-                              <i class="pe-7s-cash"></i>
+                           <div class="stat-icon dib flat-color-2">
+                              <i class="pe-7s-cart"></i>
                            </div>
                            <div class="stat-content">
                               <div class="text-left dib">
-                                 <div class="stat-text">$<span class="count">23569</span></div>
-                                 <div class="stat-heading">Revenue</div>
+                                 <div class="stat-text"><span class="count">{{ DB::table('product')->sum('product_sale'); }}</span></div>
+                                 <div class="stat-heading">Product Sold</div>
                               </div>
                            </div>
                         </div>
@@ -44,13 +45,23 @@
                   <div class="card">
                      <div class="card-body">
                         <div class="stat-widget-five">
-                           <div class="stat-icon dib flat-color-2">
-                              <i class="pe-7s-cart"></i>
+                           <div class="stat-icon dib flat-color-1">
+                              <i class="pe-7s-cash"></i>
                            </div>
                            <div class="stat-content">
                               <div class="text-left dib">
-                                 <div class="stat-text"><span class="count">3435</span></div>
-                                 <div class="stat-heading">Sales</div>
+                                 @php $payment = DB::table('payment_details')->where('payment_status', 1)->get(); @endphp
+                                 @php $total_sales = 0; @endphp
+                                 
+                                 @foreach ($payment as $payment)
+                                 @if ($payment->payment_currency != "MYR")
+                                 @php $total_sales += ($payment->payment_total / DB::table('asset')->where('asset_quote', $payment->payment_currency)->value('asset_rate')) @endphp
+                                 @else
+                                 @php $total_sales += $payment->payment_total; @endphp
+                                 @endif
+                                 @endforeach
+                                 <div class="stat-text">$<span class="count">{{ number_format($total_sales,2) }}</span></div>
+                                 <div class="stat-heading">Total Sales (MYR)</div>
                               </div>
                            </div>
                         </div>
@@ -67,8 +78,8 @@
                            </div>
                            <div class="stat-content">
                               <div class="text-left dib">
-                                 <div class="stat-text"><span class="count">349</span></div>
-                                 <div class="stat-heading">Templates</div>
+                                 <div class="stat-text"><span class="count">{{ DB::table('product')->where('product_status', 1)->count(); }}</span></div>
+                                 <div class="stat-heading">Active Products</div>
                               </div>
                            </div>
                         </div>
@@ -85,8 +96,8 @@
                            </div>
                            <div class="stat-content">
                               <div class="text-left dib">
-                                 <div class="stat-text"><span class="count">2986</span></div>
-                                 <div class="stat-heading">Clients</div>
+                                 <div class="stat-text"><span class="count">{{ DB::table('user')->where('user_status', 1)->count(); }}</span></div>
+                                 <div class="stat-heading">Active Users</div>
                               </div>
                            </div>
                         </div>
