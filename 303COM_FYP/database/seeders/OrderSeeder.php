@@ -52,109 +52,109 @@ class OrderSeeder extends Seeder
             ]);
         };
 
-        // Order Seeder 2 (Pending Shipment)
+        // // Order Seeder 2 (Pending Shipment)
 
-        $shipping_details = DB::table('shipping_details')->where('shipping_details_id', 2)->first();
+        // $shipping_details = DB::table('shipping_details')->where('shipping_details_id', 2)->first();
 
-        DB::table('order')->insert([
-            "order_id" => 2,
-            "user_id" => 1,
-            "order_status" => "Pending Shipment",
-            "order_first_name" => $shipping_details->shipping_first_name,
-            "order_last_name" => $shipping_details->shipping_last_name,
-            "order_address_line1" => $shipping_details->shipping_address_line1,
-            "order_address_line2" => $shipping_details->shipping_address_line2,
-            "order_city" => $shipping_details->shipping_city,
-            "order_postal_code" => $shipping_details->shipping_postal_code,
-            "order_country" => $shipping_details->shipping_country,
-            "order_contact" => $shipping_details->shipping_contact,
-            "created_at" => \Carbon\Carbon::now()->toDateTimeString()
-        ]);
+        // DB::table('order')->insert([
+        //     "order_id" => 2,
+        //     "user_id" => 1,
+        //     "order_status" => "Pending Shipment",
+        //     "order_first_name" => $shipping_details->shipping_first_name,
+        //     "order_last_name" => $shipping_details->shipping_last_name,
+        //     "order_address_line1" => $shipping_details->shipping_address_line1,
+        //     "order_address_line2" => $shipping_details->shipping_address_line2,
+        //     "order_city" => $shipping_details->shipping_city,
+        //     "order_postal_code" => $shipping_details->shipping_postal_code,
+        //     "order_country" => $shipping_details->shipping_country,
+        //     "order_contact" => $shipping_details->shipping_contact,
+        //     "created_at" => \Carbon\Carbon::now()->toDateTimeString()
+        // ]);
 
-        for ($i = 0; $i < 2; $i++) {
-            $product = DB::table('product')->where('product_id', rand(1, 5))->first();
+        // for ($i = 0; $i < 2; $i++) {
+        //     $product = DB::table('product')->where('product_id', rand(1, 5))->first();
 
-            DB::table('order_item')->insert([
-                "order_id" => 2,
-                "product_id" => $product->product_id,
-                "order_item_name" => $product->product_name,
-                "order_item_description" => $product->product_description,
-                "order_item_image" => $product->product_image,
-                "order_item_price" => $product->product_price,
-                "order_item_quantity" => rand(1, 3),
-                "order_item_status" => 0,
-                "created_at" => \Carbon\Carbon::now()->toDateTimeString()
-            ]);
-        };
+        //     DB::table('order_item')->insert([
+        //         "order_id" => 2,
+        //         "product_id" => $product->product_id,
+        //         "order_item_name" => $product->product_name,
+        //         "order_item_description" => $product->product_description,
+        //         "order_item_image" => $product->product_image,
+        //         "order_item_price" => $product->product_price,
+        //         "order_item_quantity" => rand(1, 3),
+        //         "order_item_status" => 0,
+        //         "created_at" => \Carbon\Carbon::now()->toDateTimeString()
+        //     ]);
+        // };
 
-        // Order Seeder 3 (Completed)
+        // // Order Seeder 3 (Completed)
 
-        $shipping_details = DB::table('shipping_details')->where('shipping_details_id', 1)->first();
+        // $shipping_details = DB::table('shipping_details')->where('shipping_details_id', 1)->first();
 
-        DB::table('order')->insert([
-            "order_id" => 3,
-            "user_id" => 1,
-            "order_status" => "Completed",
-            "order_first_name" => $shipping_details->shipping_first_name,
-            "order_last_name" => $shipping_details->shipping_last_name,
-            "order_address_line1" => $shipping_details->shipping_address_line1,
-            "order_address_line2" => $shipping_details->shipping_address_line2,
-            "order_city" => $shipping_details->shipping_city,
-            "order_postal_code" => $shipping_details->shipping_postal_code,
-            "order_country" => $shipping_details->shipping_country,
-            "order_contact" => $shipping_details->shipping_contact,
-            "created_at" => \Carbon\Carbon::now()->toDateTimeString()
-        ]);
+        // DB::table('order')->insert([
+        //     "order_id" => 3,
+        //     "user_id" => 1,
+        //     "order_status" => "Completed",
+        //     "order_first_name" => $shipping_details->shipping_first_name,
+        //     "order_last_name" => $shipping_details->shipping_last_name,
+        //     "order_address_line1" => $shipping_details->shipping_address_line1,
+        //     "order_address_line2" => $shipping_details->shipping_address_line2,
+        //     "order_city" => $shipping_details->shipping_city,
+        //     "order_postal_code" => $shipping_details->shipping_postal_code,
+        //     "order_country" => $shipping_details->shipping_country,
+        //     "order_contact" => $shipping_details->shipping_contact,
+        //     "created_at" => \Carbon\Carbon::now()->toDateTimeString()
+        // ]);
 
-        for ($i = 0; $i < 2; $i++) {
-            $product = DB::table('product')->where('product_id', rand(1, 5))->first();
+        // for ($i = 0; $i < 2; $i++) {
+        //     $product = DB::table('product')->where('product_id', rand(1, 5))->first();
 
-            DB::table('order_item')->insert([
-                "order_id" => 3,
-                "product_id" => $product->product_id,
-                "order_item_name" => $product->product_name,
-                "order_item_description" => $product->product_description,
-                "order_item_image" => $product->product_image,
-                "order_item_price" => $product->product_price,
-                "order_item_quantity" => rand(1, 3),
-                "order_item_status" => 1,
-                "created_at" => \Carbon\Carbon::now()->toDateTimeString()
-            ]);
-        };
+        //     DB::table('order_item')->insert([
+        //         "order_id" => 3,
+        //         "product_id" => $product->product_id,
+        //         "order_item_name" => $product->product_name,
+        //         "order_item_description" => $product->product_description,
+        //         "order_item_image" => $product->product_image,
+        //         "order_item_price" => $product->product_price,
+        //         "order_item_quantity" => rand(1, 3),
+        //         "order_item_status" => 1,
+        //         "created_at" => \Carbon\Carbon::now()->toDateTimeString()
+        //     ]);
+        // };
 
-        // Order Seeder 4 (Cancelled)
+        // // Order Seeder 4 (Cancelled)
 
-        $shipping_details = DB::table('shipping_details')->where('shipping_details_id', 2)->first();
+        // $shipping_details = DB::table('shipping_details')->where('shipping_details_id', 2)->first();
 
-        DB::table('order')->insert([
-            "order_id" => 4,
-            "user_id" => 1,
-            "order_status" => "Cancelled",
-            "order_first_name" => $shipping_details->shipping_first_name,
-            "order_last_name" => $shipping_details->shipping_last_name,
-            "order_address_line1" => $shipping_details->shipping_address_line1,
-            "order_address_line2" => $shipping_details->shipping_address_line2,
-            "order_city" => $shipping_details->shipping_city,
-            "order_postal_code" => $shipping_details->shipping_postal_code,
-            "order_country" => $shipping_details->shipping_country,
-            "order_contact" => $shipping_details->shipping_contact,
-            "created_at" => \Carbon\Carbon::now()->toDateTimeString()
-        ]);
+        // DB::table('order')->insert([
+        //     "order_id" => 4,
+        //     "user_id" => 1,
+        //     "order_status" => "Cancelled",
+        //     "order_first_name" => $shipping_details->shipping_first_name,
+        //     "order_last_name" => $shipping_details->shipping_last_name,
+        //     "order_address_line1" => $shipping_details->shipping_address_line1,
+        //     "order_address_line2" => $shipping_details->shipping_address_line2,
+        //     "order_city" => $shipping_details->shipping_city,
+        //     "order_postal_code" => $shipping_details->shipping_postal_code,
+        //     "order_country" => $shipping_details->shipping_country,
+        //     "order_contact" => $shipping_details->shipping_contact,
+        //     "created_at" => \Carbon\Carbon::now()->toDateTimeString()
+        // ]);
 
-        for ($i = 0; $i < 2; $i++) {
-            $product = DB::table('product')->where('product_id', rand(1, 5))->first();
+        // for ($i = 0; $i < 2; $i++) {
+        //     $product = DB::table('product')->where('product_id', rand(1, 5))->first();
 
-            DB::table('order_item')->insert([
-                "order_id" => 4,
-                "product_id" => $product->product_id,
-                "order_item_name" => $product->product_name,
-                "order_item_description" => $product->product_description,
-                "order_item_image" => $product->product_image,
-                "order_item_price" => $product->product_price,
-                "order_item_quantity" => rand(1, 3),
-                "order_item_status" => 0,
-                "created_at" => \Carbon\Carbon::now()->toDateTimeString()
-            ]);
-        };
+        //     DB::table('order_item')->insert([
+        //         "order_id" => 4,
+        //         "product_id" => $product->product_id,
+        //         "order_item_name" => $product->product_name,
+        //         "order_item_description" => $product->product_description,
+        //         "order_item_image" => $product->product_image,
+        //         "order_item_price" => $product->product_price,
+        //         "order_item_quantity" => rand(1, 3),
+        //         "order_item_status" => 0,
+        //         "created_at" => \Carbon\Carbon::now()->toDateTimeString()
+        //     ]);
+        // };
     }
 }
