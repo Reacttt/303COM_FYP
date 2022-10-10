@@ -134,8 +134,6 @@
                                        <a href="/viewOrder/{{ $order->order_id }}"><button type="submit" class='btn btn-success'>View Order</button><br><br></a>
                                        @if ($order->order_status == "Pending Shipment")
                                        <a href="/updateOrderStatus/{{ $order->order_id }}/Shipped"><button type="submit" class='btn btn-success'>Ship Order</button><br><br></a>
-                                       @elseif ($order->order_status == "Pending Refund")
-                                       <button type="button" onClick="startProcess()" class='btn btn-warning'> Refund Order </button><br><br>
                                        @endif
                                     </center>
                                  </td>

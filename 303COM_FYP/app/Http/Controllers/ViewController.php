@@ -225,8 +225,6 @@ class ViewController extends Controller
             $order = DB::table('order')->where('order_status', "Completed")->get();
         } else if ($filter == "pendingReceive") {
             $order = DB::table('order')->where('order_status', "Shipped")->get();
-        } else if ($filter == "pendingRefund") {
-            $order = DB::table('order')->where('order_status', "Pending Refund")->get();
         } else if ($filter == "cancelled") {
             $order = DB::table('order')->where('order_status', "Cancelled")->get();
         }

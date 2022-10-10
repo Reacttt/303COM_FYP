@@ -145,8 +145,6 @@
                            <a href="/updateOrderStatus/{{ $order->order_id }}/Cancelled"><button type="submit" class='btn btn-danger'>Cancel Order</button><br><br></a>
                            @elseif ($order->order_status == "Shipped")
                            <a href="/updateOrderStatus/{{ $order->order_id }}/Completed"><button type="submit" class='btn btn-warning'>Received Order</button><br><br></a>
-                           @elseif (DB::table('payment_details')->where('order_id', $order->order_id)->latest('created_at')->first() && $order->order_status != "Request Refund")
-                           <a href="/updateOrderStatus/{{ $order->order_id }}/Refund"><button type="submit" class='btn btn-warning'>Request Refund</button><br><br></a>
                            @endif
                         </center>
                      </td>
