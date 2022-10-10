@@ -22,6 +22,7 @@ return new class extends Migration
             $table->binary('product_image');
             $table->integer('product_stock');
             $table->double('product_price');
+            $table->integer('product_sale');
             $table->boolean('product_status');
             $table->timestamps();
         });

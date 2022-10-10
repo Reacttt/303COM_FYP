@@ -92,6 +92,18 @@ class OrderController extends Controller
                 );
 
                 DB::table('order_item')->where('order_item_id', $order_item->order_item_id)->update($data);
+
+                $product = DB::table('product')->where('product_id', $order_item->product_id)->first();
+
+                $newSale = ($product->product_sale + $order_item->order_item_quantity);
+
+                $data = array(
+
+                    "product_sale" => $newSale,
+                    "updated_at" => \Carbon\Carbon::now()->toDateTimeString()
+                );
+
+                DB::table('product')->where('product_id', $product->product_id)->update($data);
             }
         }
 

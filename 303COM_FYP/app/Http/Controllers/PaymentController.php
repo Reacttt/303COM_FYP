@@ -43,6 +43,8 @@ class PaymentController extends Controller
             );
     
             DB::table('order')->where('order_id', $request->order_id)->update($data);
+
+            $product_item = DB::table('order_item')->where('order_id', $request->order_id)->get();
         }
         
 
