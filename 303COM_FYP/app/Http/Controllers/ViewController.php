@@ -48,8 +48,7 @@ class ViewController extends Controller
             // Retrieve Product that is in Order Items Table
             $product = DB::table('product')->where('product_status', 1)->whereExists(function ($query) {
                 $query->select(DB::raw(1))->from('order_item')->whereRaw('order_item.product_id = product.product_id')->where('order_item.order_item_status', '=', '1');
-            })->orderBy('product_sale', 'desc')->get();
-
+            })->orderBy('product_sale', 'desc')->take(6)->get();
         } elseif ($category_id == "new") {
             $product = DB::table('product')->orderBy('created_at', 'desc')->where('product_status', 1)->take(6)->get();
         } else {
@@ -150,6 +149,11 @@ class ViewController extends Controller
         } else {
             return view("admin");
         }
+    }
+
+    public function adminPreviewPage()
+    {
+        return view("adminPreview");
     }
 
     // Category Manage View
