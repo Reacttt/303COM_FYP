@@ -89,7 +89,7 @@
 										@php $user_username = Session::get('user_username') @endphp
 										@if ($user_username != null)
 										<a href="/addCart/{{ $product->product_id }}/{{ $user_username }}" class="social-info">
-											<i class="fa fa-shopping-bag"></i>
+											<i class="fa fa-cart-plus"></i>
 											<p class="hover-text">add to bag</p>
 										</a>
 										@endif
