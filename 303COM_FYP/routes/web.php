@@ -85,6 +85,7 @@ Route::get('logoutAdmin', [AdminController::class, 'logoutAdmin'])->name('logout
 
 // Admin Dashboard
 Route::get('/admin', [ViewController::class, 'adminPage']);
+Route::get('/admin/Preview', [ViewController::class, 'adminPreviewPage']);
 
 // Admin Manage Category
 Route::get('/addCategory', [ViewController::class, 'addCategoryPage']);
