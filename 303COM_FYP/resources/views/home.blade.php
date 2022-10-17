@@ -102,118 +102,55 @@
 </div>
 <!-- Main Slider End -->
 
-<!-- Brand Start -->
-<div class="brand">
+<!-- Recent Product Start -->
+<div class="recent-product product">
     <div class="container-fluid">
-        <div class="brand-slider">
-            <div class="brand-item"><img src="/images/brand-1.png" alt=""></div>
-            <div class="brand-item"><img src="/images/brand-2.png" alt=""></div>
-            <div class="brand-item"><img src="/images/brand-3.png" alt=""></div>
-            <div class="brand-item"><img src="/images/brand-4.png" alt=""></div>
-            <div class="brand-item"><img src="/images/brand-5.png" alt=""></div>
-            <div class="brand-item"><img src="/images/brand-6.png" alt=""></div>
+        <div class="section-header">
+            <h1>Recent Product</h1>
         </div>
-    </div>
-</div>
-<!-- Brand End -->
+        <div class="row align-items-center product-slider product-slider-4">
+            @php $product = DB::table('product')->orderBy('created_at', 'desc')->where('product_status', 1)->take(6)->get(); @endphp
+            @php $user_username = Session::get('user_username') @endphp
 
-<!-- Feature Start-->
-<div class="feature">
-    <div class="container-fluid">
-        <div class="row align-items-center">
-            <div class="col-lg-3 col-md-6 feature-col">
-                <div class="feature-content">
-                    <i class="fab fa-cc-mastercard"></i>
-                    <h2>Secure Payment</h2>
-                    <p>
-                        Lorem ipsum dolor sit amet consectetur elit
-                    </p>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6 feature-col">
-                <div class="feature-content">
-                    <i class="fa fa-truck"></i>
-                    <h2>Worldwide Delivery</h2>
-                    <p>
-                        Lorem ipsum dolor sit amet consectetur elit
-                    </p>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6 feature-col">
-                <div class="feature-content">
-                    <i class="fa fa-sync-alt"></i>
-                    <h2>90 Days Return</h2>
-                    <p>
-                        Lorem ipsum dolor sit amet consectetur elit
-                    </p>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6 feature-col">
-                <div class="feature-content">
-                    <i class="fa fa-comments"></i>
-                    <h2>24/7 Support</h2>
-                    <p>
-                        Lorem ipsum dolor sit amet consectetur elit
-                    </p>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- Feature End-->
+            @foreach ($product as $product)
+            <div class="col-lg-3">
+                <div class="product-item">
+                    <div class="product-title">
+                        <a href="/singleProduct/{{ $product->product_id }}">{{ $product->product_name }}</a>
+                    </div>
+                    <div class="product-image">
+                        <a href="product-detail.html">
+                            <img src="/images/{{ $product->product_image }}" alt="Product Image">
+                        </a>
+                        <div class="product-action">
+                            @if ($user_username != null)
+                            <a href="/addCart/{{ $product->product_id }}/{{ $user_username }}"><i class="fa fa-cart-plus"></i></a>
+                            @endif
+                            <a href="/singleProduct/{{ $product->product_id }}"><i class="fa fa-expand"></i></a>
+                        </div>
+                    </div>
+                    <div class="product-price">
+                        @php $fiat_price = $product->product_price; @endphp
 
-<!-- Category Start-->
-<div class="category">
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-md-3">
-                <div class="category-item ch-400">
-                    <img src="/images/category-3.jpg" />
-                    <a class="category-name" href="">
-                        <p>Some text goes here that describes the image</p>
-                    </a>
+                        @if ($_COOKIE['fiat-currency'] != "MYR")
+                        @php $fiat_rate = DB::table('asset')->where('asset_quote', $_COOKIE['fiat-currency'])->value('asset_rate'); @endphp
+                        @php $fiat_price = round(($product->product_price * $fiat_rate), 2); @endphp
+                        @else
+                        @php $fiat_rate = 1; @endphp
+                        @endif
+
+                        @php $crypto_rate = DB::table('asset')->where('asset_quote', $_COOKIE['crypto-currency'])->value('asset_rate'); @endphp
+                        @php $crypto_price = round(($product->product_price * $crypto_rate), 6); @endphp
+
+                        <h3>{{ $fiat_price }} {{ $_COOKIE['fiat-currency'] }} | {{ $crypto_price }} {{ $_COOKIE['crypto-currency'] }} </h3>
+                    </div>
                 </div>
             </div>
-            <div class="col-md-3">
-                <div class="category-item ch-250">
-                    <img src="/images/category-4.jpg" />
-                    <a class="category-name" href="">
-                        <p>Some text goes here that describes the image</p>
-                    </a>
-                </div>
-                <div class="category-item ch-150">
-                    <img src="/images/category-5.jpg" />
-                    <a class="category-name" href="">
-                        <p>Some text goes here that describes the image</p>
-                    </a>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="category-item ch-150">
-                    <img src="/images/category-6.jpg" />
-                    <a class="category-name" href="">
-                        <p>Some text goes here that describes the image</p>
-                    </a>
-                </div>
-                <div class="category-item ch-250">
-                    <img src="/images/category-7.jpg" />
-                    <a class="category-name" href="">
-                        <p>Some text goes here that describes the image</p>
-                    </a>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="category-item ch-400">
-                    <img src="/images/category-8.jpg" />
-                    <a class="category-name" href="">
-                        <p>Some text goes here that describes the image</p>
-                    </a>
-                </div>
-            </div>
+            @endforeach
         </div>
     </div>
 </div>
-<!-- Category End-->
+<!-- Recent Product End -->
 
 <!-- Call to Action Start -->
 <div class="call-to-action">
