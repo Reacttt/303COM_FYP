@@ -155,12 +155,12 @@
                     </div>
                 </div>
                 <!-- /Widgets -->
-                <!--  Traffic  -->
+                <!--  Transactions  -->
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="card">
                             <div class="card-body">
-                                <h4 class="box-title">Transactions </h4>
+                                <h4 class="box-title">Transactions (MYR)</h4>
                             </div>
                             <div class="row">
                                 <div class="col-lg-8">
@@ -206,7 +206,7 @@
                         </div>
                     </div><!-- /# column -->
                 </div>
-                <!--  /Traffic -->
+                <!--  /Transactions -->
                 <div class="clearfix"></div>
                 <!-- Orders -->
                 <div class="orders">
@@ -285,20 +285,6 @@
                     </div>
                 </div>
                 <!-- /.orders -->
-                <!-- Calender Chart Weather  -->
-                <div class="row">
-
-                    <div class="col-lg-4 col-md-6">
-                        <div class="card ov-h">
-                            <div class="card-body bg-flat-color-2">
-                                <div id="flotBarChart" class="float-chart ml-4 mr-4"></div>
-                            </div>
-                            <div id="cellPaiChart" class="float-chart"></div>
-                        </div><!-- /.card -->
-                    </div>
-
-                </div>
-                <!-- /Calender Chart Weather -->
             </div>
             <!-- .animated -->
         </div>
@@ -397,41 +383,6 @@
                 }
             });
             // Pie chart flotPie1  End
-            // cellPaiChart
-            var cellPaiChart = [{
-                    label: "Direct Sell",
-                    data: [
-                        [1, 65]
-                    ],
-                    color: '#5b83de'
-                },
-                {
-                    label: "Channel Sell",
-                    data: [
-                        [1, 35]
-                    ],
-                    color: '#00bfa5'
-                }
-            ];
-            $.plot('#cellPaiChart', cellPaiChart, {
-                series: {
-                    pie: {
-                        show: true,
-                        stroke: {
-                            width: 0
-                        }
-                    }
-                },
-                legend: {
-                    show: false
-                },
-                grid: {
-                    hoverable: true,
-                    clickable: true
-                }
-
-            });
-            // cellPaiChart End
             // Line Chart  #flotLine5
             var newCust = [
                 [0, 3],
@@ -483,7 +434,7 @@
                     series: [
                         [0, 18000, 35000, 25000, 22000, 0],
                         [0, 33000, 15000, 20000, 15000, 300],
-                        [0, 15000, 28000, 15000, 30000, 5000]
+                        [0, 15000, 28000, 15000, 30000, 5000],
                     ]
                 }, {
                     low: 0,
