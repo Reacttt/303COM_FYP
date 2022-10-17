@@ -78,7 +78,9 @@ class EtherScanAPIController extends Controller
     public function checkWithEtherScan($transaction_hash)
     {
         $api_key = "2KDYFSQ6QUHZBWT4HREMYT3W8X35Y35PDW"; // API Key from Etherscan.io
-        $test_network = "https://api-ropsten.etherscan.io"; // Ethereum Test Net
+        // $test_network = "https://api-ropsten.etherscan.io"; // Ethereum Test Net Depreciated
+        $test_network = "https://api-goerli.etherscan.io/"; // Goerli Test Net
+        // $test_network = "https://api-sepolia.etherscan.io/"; // Sepolia Test Net
         $main_network = "https://etherscan.io"; // Ethereum Main Net.
 
         $response = Http::get($test_network . "/api/?module=proxy&action=eth_getTransactionByHash&txhash="
