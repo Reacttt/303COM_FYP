@@ -20,6 +20,7 @@ class CategorySeeder extends Seeder
             'category_description' => 'All about fashion and beauty products',
             'category_image' => 'brand-1.png',
             'category_status' => 1,
+            'category_sale' => 0,
             'created_at' => \Carbon\Carbon::now()->toDateTimeString()
         ]);
 
@@ -28,6 +29,7 @@ class CategorySeeder extends Seeder
             'category_description' => 'All about kids and babies products',
             'category_image' => 'brand-2.png',
             'category_status' => 1,
+            'category_sale' => 0,
             'created_at' => \Carbon\Carbon::now()->toDateTimeString()
         ]);
 
@@ -36,6 +38,7 @@ class CategorySeeder extends Seeder
             'category_description' => 'All about men and women products',
             'category_image' => 'brand-3.png',
             'category_status' => 1,
+            'category_sale' => 0,
             'created_at' => \Carbon\Carbon::now()->toDateTimeString()
         ]);
 
@@ -44,6 +47,7 @@ class CategorySeeder extends Seeder
             'category_description' => 'All about gadgets and accessories products',
             'category_image' => 'brand-4.png',
             'category_status' => 1,
+            'category_sale' => 0,
             'created_at' => \Carbon\Carbon::now()->toDateTimeString()
         ]);
 
@@ -52,6 +56,7 @@ class CategorySeeder extends Seeder
             'category_description' => 'All about electronic and accessories products',
             'category_image' => 'brand-5.png',
             'category_status' => 1,
+            'category_sale' => 0,
             'created_at' => \Carbon\Carbon::now()->toDateTimeString()
         ]);
     }

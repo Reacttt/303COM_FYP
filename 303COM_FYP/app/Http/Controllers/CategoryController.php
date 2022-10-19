@@ -20,6 +20,7 @@ class CategoryController extends Controller
         $category_name = $request->input('category_name');
         $category_description = $request->input('category_description');
         $category_image = $request->input('category_image');
+        $category_sale = 0;
         $category_status = $request->input('category_status');
         $created_at = \Carbon\Carbon::now()->toDateTimeString();
         
@@ -37,6 +38,7 @@ class CategoryController extends Controller
             "category_name" => $category_name,
             "category_description" => $category_description,
             "category_image" => $imageName,
+            "category_sale" => $category_sale,
             "category_status" => $category_status,
             "created_at" => $created_at
         );
