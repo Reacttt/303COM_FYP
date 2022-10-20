@@ -11,7 +11,7 @@
 </head>
 
 <body>
-
+   @include('adminAuth')
    @include('panel')
 
    <div id="right-panel" class="right-panel">
