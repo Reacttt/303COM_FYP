@@ -27,6 +27,7 @@ class PaymentController extends Controller
         $data = array(
             "order_id" => $request->order_id,
             "payment_total" => $request->payment_amount,
+            "payment_total_native" => $request->payment_native,
             "payment_method" => $request->payment_method,
             "payment_currency" => $request->payment_currency,
             "payment_transaction" => $payment_transaction,
