@@ -126,9 +126,7 @@
                @endif
             </table>
             <br>
-            <a href="/shippingDetailsForm/new">
-               <button type="submit">Add Shipping Address</button><br><br>
-            </a>
+            <a href="/shippingDetailsForm/new">Add Shipping Address</a>
          </center>
 
          <br><br><br>
