@@ -72,6 +72,7 @@
                               @php $totalQuantity = 0; @endphp
                               @php $fiat_grandTotal = 0; @endphp
                               @php $crypto_grandTotal = 0; @endphp
+                              @php $native_grandTotal = 0; @endphp
                               @foreach ($order_item as $item)
                               @if ($order->order_id === $item->order_id)
                               @php $fiat_price = round(($item->order_item_price * $fiat_rate), 2); @endphp
@@ -84,6 +85,7 @@
                                     Unit Price: {{ $fiat_price }} {{ $fiat_currency }} <br>
                                     @php $fiat_subTotal = $fiat_price * $item->order_item_quantity; @endphp
                                     @php $fiat_grandTotal = $fiat_grandTotal + $fiat_subTotal; @endphp
+                                    @php $native_grandTotal = $native_grandTotal + ($item->order_item_price * $item->order_item_quantity); @endphp
                                     Quantity: {{ $item->order_item_quantity }} item <br>
                                     Subtotal: {{ $fiat_subTotal }} {{ $fiat_currency }} <br>
                                     @php $totalQuantity = $totalQuantity + $item->order_item_quantity; @endphp
@@ -149,6 +151,7 @@
                                  @csrf
                                  <input type="hidden" class="form-control" name="order_id" value="{{ $order->order_id }}" readonly>
                                  <input type="hidden" name="payment_method" class="form-control" value="Credit Card" readonly>
+                                 <input type="hidden" name="payment_native" class="form-control" value="{{ $native_grandTotal }}" readonly>
                                  <input type="hidden" name="payment_currency" class="form-control" value="{{ $fiat_currency }}" readonly>
                                  <input type="hidden" name="payment_status" class="form-control" value="1" readonly>
                               </div>
@@ -333,6 +336,7 @@
    function storeTransaction(txHash, amount) {
       var order_id = "<?php echo $order->order_id; ?>";
       var payment_currency = "<?php echo $crypto_currency; ?>";
+      var native_price = "<?php echo $native_grandTotal; ?>";
 
       $.ajax({
          url: "{{ route('makePayment') }}",
@@ -341,6 +345,7 @@
             _token: '{{csrf_token()}}',
             order_id: order_id,
             payment_amount: amount,
+            payment_native: native_price,
             payment_method: "Crypto",
             payment_currency: "ETH",
             payment_transaction: txHash,
