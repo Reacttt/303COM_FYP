@@ -14,6 +14,7 @@ use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\CookieController;
 use App\Http\Controllers\CoinAPIController;
 use App\Http\Controllers\EtherScanAPIController;
+use App\Http\Controllers\DataController;
 
 /*
 |--------------------------------------------------------------------------
@@ -81,11 +82,18 @@ Route::get('/updateCookie/{type?}/{value?}', [CookieController::class, 'updateCo
 
 // Admin Account
 Route::post('loginAdmin', [AdminController::class, 'loginAdmin'])->name('loginAdmin');
+Route::get('loginAdmin', [ViewController::class, 'adminPage']);
 Route::get('logoutAdmin', [AdminController::class, 'logoutAdmin'])->name('logoutAdmin');
 
 // Admin Dashboard
 Route::get('/admin', [ViewController::class, 'adminPage']);
 Route::get('/admin/Preview', [ViewController::class, 'adminPreviewPage']);
+
+// Admin Dashboard Data
+Route::get('/admin/data1', [DataController::class, 'data1']);
+Route::get('/admin/data2', [DataController::class, 'data2']);
+Route::get('/admin/data3', [DataController::class, 'data3']);
+
 
 // Admin Manage Category
 Route::get('/addCategory', [ViewController::class, 'addCategoryPage']);
@@ -119,4 +127,3 @@ Route::get('updateUserStatus/{user_id?}/{user_status?}', [UserController::class,
 
 // Asset
 Route::get('/assetList/{filter?}', [ViewController::class, 'assetListPage']);
-

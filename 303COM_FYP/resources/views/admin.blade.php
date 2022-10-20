@@ -285,6 +285,15 @@
                     </div>
                 </div>
                 <!-- /.orders -->
+
+                <div class="col-lg-14">
+                    <div class="card">
+                        <div class="card-body">
+                            <h4 class="mb-3">Category Sales Chart </h4>
+                            <canvas id="singelBarChart"></canvas>
+                        </div>
+                    </div>
+                </div><!-- /# column -->
             </div>
             <!-- .animated -->
         </div>
@@ -312,7 +321,6 @@
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.4/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/js/bootstrap.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/jquery-match-height@0.7.2/dist/jquery.matchHeight.min.js"></script>
-    <script src="assets/js/main.js"></script>
 
     <!--  Chart js -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js@2.7.3/dist/Chart.bundle.min.js"></script>
@@ -326,11 +334,86 @@
     <script src="https://cdn.jsdelivr.net/npm/flot-spline@0.0.1/js/jquery.flot.spline.min.js"></script>
 
     <script src="https://cdn.jsdelivr.net/npm/simpleweather@3.1.0/jquery.simpleWeather.min.js"></script>
-    <script src="assets/js/init/weather-init.js"></script>
 
     <script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/moment.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/fullcalendar@3.9.0/dist/fullcalendar.min.js"></script>
-    <script src="assets/js/init/fullcalendar-init.js"></script>
+
+    <!--Fetch Chart Data-->
+    <script>
+        // Credit Card vs Crypto Total Percentage
+        $(document).ready(function() {
+            $.ajax({
+                url: "http://127.0.0.1:8000/admin/data2",
+                dataType: 'json',
+                method: "GET",
+                success: function(data) {
+                    console.log(data);
+                    var payment_method = [];
+                    var payment_total = [];
+                    var payment_percentage = [];
+
+                    for (var i in data) {
+                        payment_method.push(data[i].payment_method);
+                        payment_total.push(data[i].payment_total);
+                        payment_percentage.push(data[i].payment_percentage);
+                    }
+                },
+                error: function(data) {
+                    console.log(data);
+                }
+            })
+        })
+
+        // Each Category Total Sales
+        $(document).ready(function() {
+            $.ajax({
+                url: "http://127.0.0.1:8000/admin/data3",
+                dataType: 'json',
+                method: "GET",
+                success: function(data) {
+                    console.log(data);
+
+                    var category_id = [];
+                    var category_name = [];
+                    var category_sale = [];
+
+                    for (var i = 0; i < data.length; i++) {
+                        category_id[i] = data[i].category_id;
+                        category_name[i] = data[i].category_name;
+                        category_sale[i] = data[i].category_sale;
+                    }                    
+                    // single bar chart
+                    var ctx = document.getElementById("singelBarChart");
+                    ctx.height = 75;
+                    var myChart = new Chart(ctx, {
+                        type: 'bar',
+                        data: {
+                            labels: category_name,
+                            datasets: [{
+                                label: "Category Sales",
+                                data: category_sale,
+                                borderColor: "rgba(0, 194, 146, 0.9)",
+                                borderWidth: "0",
+                                backgroundColor: "rgba(0, 194, 146, 0.5)"
+                            }]
+                        },
+                        options: {
+                            scales: {
+                                yAxes: [{
+                                    ticks: {
+                                        beginAtZero: true
+                                    }
+                                }]
+                            }
+                        }
+                    });
+                },
+                error: function(data) {
+                    console.log(data);
+                }
+            })
+        })
+    </script>
 
     <!--Local Stuff-->
     <script>
@@ -339,21 +422,21 @@
 
             // Pie chart flotPie1
             var piedata = [{
-                    label: "Desktop visits",
+                    label: "Category 1  .",
                     data: [
                         [1, 32]
                     ],
                     color: '#5c6bc0'
                 },
                 {
-                    label: "Tab visits",
+                    label: "Category 2",
                     data: [
                         [1, 33]
                     ],
                     color: '#ef5350'
                 },
                 {
-                    label: "Mobile visits",
+                    label: "Category 3",
                     data: [
                         [1, 35]
                     ],
@@ -432,9 +515,9 @@
                 var chart = new Chartist.Line('#traffic-chart', {
                     labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
                     series: [
-                        [0, 18000, 35000, 25000, 22000, 0],
-                        [0, 33000, 15000, 20000, 15000, 300],
-                        [0, 15000, 28000, 15000, 30000, 5000],
+                        [0, 0, 0, 0, 0, 0],
+                        [0, 0, 0, 0, 0, 0],
+                        [0, 0, 0, 0, 0, 0],
                     ]
                 }, {
                     low: 0,
@@ -526,7 +609,7 @@
                     [20, 17],
                     [22, 7],
                     [24, 4],
-                    [26, 9],
+                    [26, 9], 
                     [28, 11]
                 ],
                 bars: {
