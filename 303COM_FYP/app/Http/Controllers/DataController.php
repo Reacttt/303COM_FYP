@@ -130,4 +130,24 @@ class DataController extends Controller
 
         return view("data", compact('result'));
     }
+
+    // Order Summary
+    public function data4()
+    {
+        $order_status = ["Pending Payment", "Pending Shipment", "Shipped", "Completed", "Cancelled"];
+        $result = array();
+
+        for ($i = 0; $i < sizeof($order_status) ; $i++) {
+            $data = DB::table('order')
+            ->where('order_status', $order_status[$i])
+            ->count();
+
+            $result[] = array(
+                "order_status" => $order_status[$i],
+                "total" => $data,
+            );
+        }
+
+        return view("data", compact('result'));
+    }
 }

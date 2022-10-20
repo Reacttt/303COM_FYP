@@ -263,9 +263,8 @@
                                 <div class="col-lg-6 col-xl-12">
                                     <div class="card br-0">
                                         <div class="card-body">
-                                            <div class="chart-container ov-h">
-                                                <div id="flotPie1" class="float-chart"></div>
-                                            </div>
+                                            <h4 class="mb-3">Order Summary</h4>
+                                            <canvas id="Chart2"></canvas>
                                         </div>
                                     </div><!-- /.card -->
                                 </div>
@@ -273,7 +272,7 @@
                                 <div class="col-lg-6 col-xl-12">
                                     <div class="card bg-flat-color-3  ">
                                         <div class="card-body">
-                                            <h4 class="card-title m-0  white-color ">August 2018</h4>
+                                            <h4 class="card-title m-0  white-color ">Completed Orders</h4>
                                         </div>
                                         <div class="card-body">
                                             <div id="flotLine5" class="flot-line"></div>
@@ -290,7 +289,7 @@
                     <div class="card">
                         <div class="card-body">
                             <h4 class="mb-3">Category Sales Chart </h4>
-                            <canvas id="singelBarChart"></canvas>
+                            <canvas id="Chart3"></canvas>
                         </div>
                     </div>
                 </div><!-- /# column -->
@@ -343,20 +342,50 @@
         // Credit Card vs Crypto Total Percentage
         $(document).ready(function() {
             $.ajax({
-                url: "http://127.0.0.1:8000/admin/data2",
+                url: "http://127.0.0.1:8000/admin/data4",
                 dataType: 'json',
                 method: "GET",
                 success: function(data) {
                     console.log(data);
-                    var payment_method = [];
-                    var payment_total = [];
-                    var payment_percentage = [];
+                    var order_status = [];
+                    var total = [];
 
-                    for (var i in data) {
-                        payment_method.push(data[i].payment_method);
-                        payment_total.push(data[i].payment_total);
-                        payment_percentage.push(data[i].payment_percentage);
+                    for (var i = 0; i < data.length; i++) {
+                        order_status[i] = data[i].order_status;
+                        total[i] = data[i].total;
                     }
+
+                    //doughut chart
+                    var ctx = document.getElementById("Chart2");
+                    ctx.height = 160;
+                    var myChart = new Chart(ctx, {
+                        type: 'doughnut',
+                        data: {
+                            datasets: [{
+                                data: total,
+                                backgroundColor: [
+                                    "rgba(0, 194, 146,1.0)",
+                                    "rgba(0, 194, 146,0.8)",
+                                    "rgba(0, 194, 146,0.6)",
+                                    "rgba(0, 194, 146,0.4)",
+                                    "rgba(0,0,0,0.07)"
+                                ],
+                                hoverBackgroundColor: [
+                                    "rgba(0, 194, 146,1.0)",
+                                    "rgba(0, 194, 146,0.8)",
+                                    "rgba(0, 194, 146,0.6)",
+                                    "rgba(0, 194, 146,0.4)",
+                                    "rgba(0,0,0,0.07)"
+                                ]
+
+                            }],
+                            labels: order_status
+                        },
+                        options: {
+                            responsive: true
+                        }
+                    });
+                    // doughut chart end
                 },
                 error: function(data) {
                     console.log(data);
@@ -364,7 +393,7 @@
             })
         })
 
-        // Each Category Total Sales
+        // Each Category Total Sales Single Bar Chart
         $(document).ready(function() {
             $.ajax({
                 url: "http://127.0.0.1:8000/admin/data3",
@@ -378,12 +407,12 @@
                     var category_sale = [];
 
                     for (var i = 0; i < data.length; i++) {
-                        category_id[i] = data[i].category_id;
                         category_name[i] = data[i].category_name;
                         category_sale[i] = data[i].category_sale;
-                    }                    
+                    }
+
                     // single bar chart
-                    var ctx = document.getElementById("singelBarChart");
+                    var ctx = document.getElementById("Chart3");
                     ctx.height = 75;
                     var myChart = new Chart(ctx, {
                         type: 'bar',
@@ -419,53 +448,6 @@
     <script>
         jQuery(document).ready(function($) {
             "use strict";
-
-            // Pie chart flotPie1
-            var piedata = [{
-                    label: "Category 1  .",
-                    data: [
-                        [1, 32]
-                    ],
-                    color: '#5c6bc0'
-                },
-                {
-                    label: "Category 2",
-                    data: [
-                        [1, 33]
-                    ],
-                    color: '#ef5350'
-                },
-                {
-                    label: "Category 3",
-                    data: [
-                        [1, 35]
-                    ],
-                    color: '#66bb6a'
-                }
-            ];
-
-            $.plot('#flotPie1', piedata, {
-                series: {
-                    pie: {
-                        show: true,
-                        radius: 1,
-                        innerRadius: 0.65,
-                        label: {
-                            show: true,
-                            radius: 2 / 3,
-                            threshold: 1
-                        },
-                        stroke: {
-                            width: 0
-                        }
-                    }
-                },
-                grid: {
-                    hoverable: true,
-                    clickable: true
-                }
-            });
-            // Pie chart flotPie1  End
             // Line Chart  #flotLine5
             var newCust = [
                 [0, 3],
@@ -609,7 +591,7 @@
                     [20, 17],
                     [22, 7],
                     [24, 4],
-                    [26, 9], 
+                    [26, 9],
                     [28, 11]
                 ],
                 bars: {

@@ -93,6 +93,7 @@ Route::get('/admin/Preview', [ViewController::class, 'adminPreviewPage']);
 Route::get('/admin/data1', [DataController::class, 'data1']);
 Route::get('/admin/data2', [DataController::class, 'data2']);
 Route::get('/admin/data3', [DataController::class, 'data3']);
+Route::get('/admin/data4', [DataController::class, 'data4']);
 
 
 // Admin Manage Category
