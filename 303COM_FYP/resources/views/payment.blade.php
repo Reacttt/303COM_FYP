@@ -81,11 +81,11 @@
                                  <div><img src="/images/{{ $item->order_item_image }}" height='100' width='100' /></div>
                                  <div>
                                     <strong> {{ $item->order_item_name }} </strong> <br>
+                                    @php $native_grandTotal = $native_grandTotal + ($item->order_item_price * $item->order_item_quantity); @endphp
                                     @if ($method != "crypto")
                                     Unit Price: {{ $fiat_price }} {{ $fiat_currency }} <br>
                                     @php $fiat_subTotal = $fiat_price * $item->order_item_quantity; @endphp
                                     @php $fiat_grandTotal = $fiat_grandTotal + $fiat_subTotal; @endphp
-                                    @php $native_grandTotal = $native_grandTotal + ($item->order_item_price * $item->order_item_quantity); @endphp
                                     Quantity: {{ $item->order_item_quantity }} item <br>
                                     Subtotal: {{ $fiat_subTotal }} {{ $fiat_currency }} <br>
                                     @php $totalQuantity = $totalQuantity + $item->order_item_quantity; @endphp
@@ -336,7 +336,7 @@
    function storeTransaction(txHash, amount) {
       var order_id = "<?php echo $order->order_id; ?>";
       var payment_currency = "<?php echo $crypto_currency; ?>";
-      var native_price = "<?php echo $native_grandTotal; ?>";
+      var native_grandTotal = "<?php echo $native_grandTotal; ?>";
 
       $.ajax({
          url: "{{ route('makePayment') }}",
@@ -345,7 +345,7 @@
             _token: '{{csrf_token()}}',
             order_id: order_id,
             payment_amount: amount,
-            payment_native: native_price,
+            payment_native: native_grandTotal,
             payment_method: "Crypto",
             payment_currency: "ETH",
             payment_transaction: txHash,
