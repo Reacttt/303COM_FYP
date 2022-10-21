@@ -19,6 +19,7 @@
 </head>
 
 @include('header')
+@include('userAuth')
 
 <body>
 

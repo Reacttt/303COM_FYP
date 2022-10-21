@@ -24,6 +24,7 @@
 
 </head>
 
+@include('userAuth')
 @include('header')
 
 <body>

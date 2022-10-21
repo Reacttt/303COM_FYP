@@ -25,6 +25,8 @@
 </head>
 
 <body>
+   @include('userAuth')
+   
    <div class='CartContainer'>
       <div class='Header'>
          <h3 class='Heading'>Checkout Page</h3>

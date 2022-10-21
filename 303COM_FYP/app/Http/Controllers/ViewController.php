@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use Symfony\Component\VarDumper\Caster\RedisCaster;
 use App\Http\Controllers\Session;
 use App\Http\Controllers\Collection;
+use Illuminate\Contracts\Session\Session as SessionSession;
 
 class ViewController extends Controller
 {
@@ -76,24 +77,36 @@ class ViewController extends Controller
 
     public function checkoutPage()
     {
-        $user = DB::table('user')->where('user_username', Session()->get('user_username'))->first();
-        $cart = DB::table('cart')->where('user_id', $user->user_id)->get();
-        $shipping_details = DB::table('shipping_details')->where('user_id', $user->user_id)->get();
-        return view("checkout", compact('cart', 'user', 'shipping_details'));
+        $username = Session()->get('user_username');
+
+        if ($username == null) {
+            return view("login");
+        } else {
+            $user = DB::table('user')->where('user_username', Session()->get('user_username'))->first();
+            $cart = DB::table('cart')->where('user_id', $user->user_id)->get();
+            $shipping_details = DB::table('shipping_details')->where('user_id', $user->user_id)->get();
+            return view("checkout", compact('cart', 'user', 'shipping_details'));
+        }
     }
 
     // Shipping View
     public function shippingDetailsPage()
     {
-        $user = DB::table('user')->where('user_username', Session()->get('user_username'))->first();
+        $username = Session()->get('user_username');
 
-        $counts = DB::table('shipping_details')->where('user_id', $user->user_id)->count();
-
-        if ($counts != 0) {
-            $shipping_details = DB::table('shipping_details')->where('user_id', $user->user_id)->get();
-            return view("shippingDetails", compact('shipping_details', 'counts'));
+        if ($username == null) {
+            return view("login");
         } else {
-            return view("addShippingDetails")->with('alert', 'Please create a new shipping details');
+            $user = DB::table('user')->where('user_username', Session()->get('user_username'))->first();
+
+            $counts = DB::table('shipping_details')->where('user_id', $user->user_id)->count();
+
+            if ($counts != 0) {
+                $shipping_details = DB::table('shipping_details')->where('user_id', $user->user_id)->get();
+                return view("shippingDetails", compact('shipping_details', 'counts'));
+            } else {
+                return view("addShippingDetails")->with('alert', 'Please create a new shipping details');
+            }
         }
     }
 
