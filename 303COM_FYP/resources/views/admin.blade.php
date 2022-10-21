@@ -57,6 +57,8 @@
     </style>
 </head>
 
+<!--Fetch Chart Data-->
+
 <body>
     @include('panel')
 
@@ -160,7 +162,7 @@
                     <div class="col-lg-12">
                         <div class="card">
                             <div class="card-body">
-                                <h4 class="box-title">Transactions (MYR)</h4>
+                                <h4 class="box-title">Transactions Summary</h4>
                             </div>
                             <div class="row">
                                 <div class="col-lg-8">
@@ -172,33 +174,20 @@
                                 <div class="col-lg-4">
                                     <div class="card-body">
                                         <div class="progress-box progress-1">
-                                            <h4 class="por-title">MYR (Fiat)</h4>
-                                            <div class="por-txt">PENDING</div>
+                                            <h4 class="por-title">Fiat Transactions</h4>
+                                            <div class="por-txt" id="total_fiat">0</div>
                                             <div class="progress mb-2" style="height: 5px;">
-                                                <div class="progress-bar bg-flat-color-1" role="progressbar" style="width: 0%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                                                <div id="fiat_percent" class="progress-bar bg-flat-color-1" role="progressbar" style="width: 0%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                                             </div>
                                         </div>
                                         <div class="progress-box progress-2">
-                                            <h4 class="por-title">USD (Fiat)</h4>
-                                            <div class="por-txt">PENDING</div>
+                                            <h4 class="por-title">Crypto Transactions</h4>
+                                            <div class="por-txt" id="total_crypto">0</div>
                                             <div class="progress mb-2" style="height: 5px;">
-                                                <div class="progress-bar bg-flat-color-2" role="progressbar" style="width: 0%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                                                <div id="crypto_percent" class="progress-bar bg-flat-color-4" role="progressbar" style="width: 0%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                                             </div>
                                         </div>
-                                        <div class="progress-box progress-2">
-                                            <h4 class="por-title">ETH (Crypto)</h4>
-                                            <div class="por-txt">PENDING</div>
-                                            <div class="progress mb-2" style="height: 5px;">
-                                                <div class="progress-bar bg-flat-color-3" role="progressbar" style="width: 0%;" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
-                                            </div>
-                                        </div>
-                                        <div class="progress-box progress-2">
-                                            <h4 class="por-title">EST (Crypto)</h4>
-                                            <div class="por-txt">PENDING</div>
-                                            <div class="progress mb-2" style="height: 5px;">
-                                                <div class="progress-bar bg-flat-color-4" role="progressbar" style="width: 0%;" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100"></div>
-                                            </div>
-                                        </div>
+
                                     </div> <!-- /.card-body -->
                                 </div>
                             </div> <!-- /.row -->
@@ -264,7 +253,7 @@
                                     <div class="card br-0">
                                         <div class="card-body">
                                             <h4 class="mb-3">Order Summary</h4>
-                                            <canvas id="Chart2"></canvas>
+                                            <canvas id="Chart4"></canvas>
                                         </div>
                                     </div><!-- /.card -->
                                 </div>
@@ -339,7 +328,79 @@
 
     <!--Fetch Chart Data-->
     <script>
-        // Credit Card vs Crypto Total Percentage
+        // Fiat vs Crypto Transactions (6 Months)
+        $(document).ready(function() {
+            $.ajax({
+                url: "http://127.0.0.1:8000/admin/data1",
+                dataType: 'json',
+                method: "GET",
+                success: function(data) {
+                    console.log(data);
+                    var month = [];
+                    var fiat_month_sale = [];
+                    var crypto_month_sale = [];
+                    var total_fiat = 0;
+                    var total_crypto = 0;
+
+                    for (var i = 0; i < (data.length / 2); i++) {
+                        month[i] = data[i].month;
+                        fiat_month_sale[i] = data[i].month_sales;
+                        total_fiat += data[i].month_sales;
+                        crypto_month_sale[i] = data[i + 6].month_sales;
+                        total_crypto += data[i + 6].month_sales;
+                    }
+
+                    var percent_fiat = parseFloat((total_fiat / (total_fiat + total_crypto)) * 100).toFixed(2);
+                    var percent_crypto = parseFloat(100 - percent_fiat).toFixed(2);
+
+                    document.getElementById("total_fiat").innerHTML = parseFloat(total_fiat).toFixed(2) + " MYR (" + percent_fiat + "%)";
+                    document.getElementById("total_crypto").innerHTML = parseFloat(total_crypto).toFixed(2) + " MYR (" + percent_crypto + "%)";
+
+                    document.getElementById("fiat_percent").style.width = percent_fiat + "%";
+                    document.getElementById("crypto_percent").style.width = percent_crypto + "%";
+
+                    // Traffic Chart using chartist
+                    if ($('#traffic-chart').length) {
+                        var chart = new Chartist.Line('#traffic-chart', {
+                            labels: month,
+                            series: [
+                                fiat_month_sale,
+                                crypto_month_sale,
+                            ]
+                        }, {
+                            low: 0,
+                            showArea: true,
+                            showLine: false,
+                            showPoint: false,
+                            fullWidth: true,
+                            axisX: {
+                                showGrid: true
+                            }
+                        });
+
+                        chart.on('draw', function(data) {
+                            if (data.type === 'line' || data.type === 'area') {
+                                data.element.animate({
+                                    d: {
+                                        begin: 2000 * data.index,
+                                        dur: 2000,
+                                        from: data.path.clone().scale(1, 0).translate(0, data.chartRect.height()).stringify(),
+                                        to: data.path.clone().stringify(),
+                                        easing: Chartist.Svg.Easing.easeOutQuint
+                                    }
+                                });
+                            }
+                        });
+                    }
+                    // Traffic Chart using chartist End 
+                },
+                error: function(data) {
+                    console.log(data);
+                }
+            })
+        })
+
+        // Order Status Summary Doughnut Chart
         $(document).ready(function() {
             $.ajax({
                 url: "http://127.0.0.1:8000/admin/data4",
@@ -356,7 +417,7 @@
                     }
 
                     //doughut chart
-                    var ctx = document.getElementById("Chart2");
+                    var ctx = document.getElementById("Chart4");
                     ctx.height = 160;
                     var myChart = new Chart(ctx, {
                         type: 'doughnut',
@@ -492,41 +553,6 @@
                 }
             });
             // Line Chart  #flotLine5 End
-            // Traffic Chart using chartist
-            if ($('#traffic-chart').length) {
-                var chart = new Chartist.Line('#traffic-chart', {
-                    labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
-                    series: [
-                        [0, 0, 0, 0, 0, 0],
-                        [0, 0, 0, 0, 0, 0],
-                        [0, 0, 0, 0, 0, 0],
-                    ]
-                }, {
-                    low: 0,
-                    showArea: true,
-                    showLine: false,
-                    showPoint: false,
-                    fullWidth: true,
-                    axisX: {
-                        showGrid: true
-                    }
-                });
-
-                chart.on('draw', function(data) {
-                    if (data.type === 'line' || data.type === 'area') {
-                        data.element.animate({
-                            d: {
-                                begin: 2000 * data.index,
-                                dur: 2000,
-                                from: data.path.clone().scale(1, 0).translate(0, data.chartRect.height()).stringify(),
-                                to: data.path.clone().stringify(),
-                                easing: Chartist.Svg.Easing.easeOutQuint
-                            }
-                        });
-                    }
-                });
-            }
-            // Traffic Chart using chartist End
             //Traffic chart chart-js
             if ($('#TrafficChart').length) {
                 var ctx = document.getElementById("TrafficChart");

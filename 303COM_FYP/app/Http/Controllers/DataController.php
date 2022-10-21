@@ -10,66 +10,47 @@ class DataController extends Controller
     // Credit Card vs Crypto Monthly Completed Transactions in Past 6 Months
     public function data1()
     {
-        // $query = DB::table('payment_details')
-        //     ->whereBetween('created_at', [\Carbon\Carbon::now()->subMonth(6), \Carbon\Carbon::now()->now()])
-        //     ->where('payment_status', 1)
-        //     ->select('payment_total', 'payment_currency', 'payment_method', 'created_at')
-        //     ->get();
-
-        // $data = array();
-        // foreach ($query as $row) {
-        //     $date = $row->created_at;
-        //     $payment_price = 0;
-        //         if ($row->payment_currency != "MYR") {
-        //             $currency_rate = DB::table('asset')->where('asset_quote', $row->payment_currency)->value('asset_rate');
-        //             $payment_price = round(($row->payment_total * $currency_rate), 2);
-        //         } else {
-        //             $payment_price = $row->payment_total;
-        //         }
-
-        //         $data[] = array(
-        //             "payment_method" => $row->payment_method,
-        //             "payment_currency" => $row->payment_currency,
-        //             "payment_total" => $payment_price,
-        //             "payment_date" => date('M', strtotime($date))
-        //         );
-        //     }
-
         $result = array();
         // Calculate the total completed credit card transaction for the past 6 months
         $data = DB::table('payment_details')
             ->where('payment_status', 1)
             ->where('payment_method', "Credit Card")
+            ->whereBetween('created_at', [\Carbon\Carbon::now()->subMonth(6), \Carbon\Carbon::now()->now()])
             ->select(
-                DB::raw('sum(payment_total) as monthly_sales')
+                DB::raw('sum(payment_total_native) as monthly_sales')
             )
-            ->orderBy('created_at', 'desc')
+            ->orderBy('created_at', 'asc')
             ->groupBy(DB::raw('month(created_at)'))
-            ->take(6)
             ->get();
 
+        $counter = 0;
         foreach ($data as $row) {
             $result[] = array(
+                "month" => date('M', strtotime(\Carbon\Carbon::now()->subMonth(5 - $counter))),
                 "payment_method" => "Credit Card",
                 "month_sales" => $row->monthly_sales
             );
+            $counter++;
         }
 
         // Calculate the total completed crypto transaction for the past 6 months
         $data = DB::table('payment_details')
             ->where('payment_status', 1)
             ->where('payment_method', "Crypto")
-            ->select(DB::raw('sum(payment_total) as monthly_sales'))
-            ->orderBy('created_at', 'desc')
+            ->whereBetween('created_at', [\Carbon\Carbon::now()->subMonth(6), \Carbon\Carbon::now()->now()])
+            ->select(DB::raw('sum(payment_total_native) as monthly_sales'))
+            ->orderBy('created_at', 'asc')
             ->groupBy(DB::raw('month(created_at)'))
-            ->take(6)
             ->get();
 
+        $counter = 0;
         foreach ($data as $row) {
             $result[] = array(
+                "month" => date('M', strtotime(\Carbon\Carbon::now()->subMonth(5 - $counter))),
                 "payment_method" => "Crypto",
                 "month_sales" => $row->monthly_sales
             );
+            $counter++;
         }
 
         return view("data", compact('result'));
@@ -137,10 +118,30 @@ class DataController extends Controller
         $order_status = ["Pending Payment", "Pending Shipment", "Shipped", "Completed", "Cancelled"];
         $result = array();
 
-        for ($i = 0; $i < sizeof($order_status) ; $i++) {
+        for ($i = 0; $i < sizeof($order_status); $i++) {
             $data = DB::table('order')
-            ->where('order_status', $order_status[$i])
-            ->count();
+                ->where('order_status', $order_status[$i])
+                ->count();
+
+            $result[] = array(
+                "order_status" => $order_status[$i],
+                "total" => $data,
+            );
+        }
+
+        return view("data", compact('result'));
+    }
+
+    // Completed Orders (Past 6 Months)
+    public function data5()
+    {
+        $order_status = ["Pending Payment", "Pending Shipment", "Shipped", "Completed", "Cancelled"];
+        $result = array();
+
+        for ($i = 0; $i < sizeof($order_status); $i++) {
+            $data = DB::table('order')
+                ->where('order_status', $order_status[$i])
+                ->count();
 
             $result[] = array(
                 "order_status" => $order_status[$i],
