@@ -56,41 +56,31 @@ class DataController extends Controller
         return view("data", compact('result'));
     }
 
-    // Total Credit Card vs Crypto Payment Methods (Pie Chart)
+    // Completed Order in Past 6 Months
     public function data2()
     {
         $result = array();
 
-        $ccard_data = DB::table('payment_details')
-            ->where('payment_status', 1)
-            ->where('payment_method', 'Credit Card')
-            ->sum('payment_total');
+        $result = DB::table('order')
+            ->where('order_status', "Completed")
+            ->whereBetween('created_at', [\Carbon\Carbon::now()->subMonth(6), \Carbon\Carbon::now()->now()])
+            ->select(DB::raw('count(order_id) as completed'))
+            ->orderBy('created_at', 'asc')
+            ->groupBy(DB::raw('month(created_at)'))
+            ->get();
 
-        $crypto_data = DB::table('payment_details')
-            ->where('payment_status', 1)
-            ->where('payment_method', 'Crypto')
-            ->sum('payment_total');
+        // for ($i = 0; $i < 6; $i++) {
 
-        $grandTotal = $ccard_data + $crypto_data;
-        $ccardPercent = ($ccard_data / $grandTotal) * 100;
-        $cryptoPercent = ($crypto_data / $grandTotal) * 100;
-
-        $result[] = array(
-            "payment_method" => "Credit Card",
-            "payment_total" => $ccard_data,
-            "payment_percentage" => $ccardPercent
-        );
-
-        $result[] = array(
-            "payment_method" => "Crypto",
-            "payment_total" => $crypto_data,
-            "payment_percentage" => $cryptoPercent
-        );
+        //     $result[] = array(
+        //         "month" => date('M', strtotime(\Carbon\Carbon::now()->subMonth(5 - $i))),
+        //         "total" => $data[$i],
+        //     );
+        // }
 
         return view("data", compact('result'));
     }
 
-    // Total Sales of Each Category (Bar Chart)
+    // Total Sales of Each Category
     public function data3()
     {
         $data = DB::table('category')
@@ -114,26 +104,6 @@ class DataController extends Controller
 
     // Order Summary
     public function data4()
-    {
-        $order_status = ["Pending Payment", "Pending Shipment", "Shipped", "Completed", "Cancelled"];
-        $result = array();
-
-        for ($i = 0; $i < sizeof($order_status); $i++) {
-            $data = DB::table('order')
-                ->where('order_status', $order_status[$i])
-                ->count();
-
-            $result[] = array(
-                "order_status" => $order_status[$i],
-                "total" => $data,
-            );
-        }
-
-        return view("data", compact('result'));
-    }
-
-    // Completed Orders (Past 6 Months)
-    public function data5()
     {
         $order_status = ["Pending Payment", "Pending Shipment", "Shipped", "Completed", "Cancelled"];
         $result = array();
