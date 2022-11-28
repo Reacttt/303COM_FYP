@@ -3,10 +3,11 @@
 
 <head>
    <meta charset="utf-8">
-   <title>E Store - eCommerce HTML Template</title>
-   <meta content="width=device-width, initial-scale=1.0" name="viewport">
-   <meta content="eCommerce HTML Template Free Download" name="keywords">
-   <meta content="eCommerce HTML Template Free Download" name="description">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <title>E-Store | Admin Header</title>
+
+   <!-- Favicon -->
+   <link href="images/favicon.png" rel="icon">
 
    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.0/normalize.min.css">
    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/css/bootstrap.min.css">
@@ -33,12 +34,12 @@
                @php $admin = Session::get('admin_username') @endphp
                @if ($admin != NULL)
                <div class="dropdown for-notification">
-                  <button class="btn btn-secondary dropdown-toggle" type="button" id="notification" aria-haspopup="true" aria-expanded="false">
+                  <button class="btn btn-secondary dropdown-toggle" type="button" aria-haspopup="true" aria-expanded="false">
                   <a href="/updateAPI" class="nav-item nav-link"><i class="fa fa-refresh"> CoinAPI</i></a></button>
                </div>
 
                <div class="dropdown for-notification">
-                  <button class="btn btn-secondary dropdown-toggle" type="button" id="notification" aria-haspopup="true" aria-expanded="false">
+                  <button class="btn btn-secondary dropdown-toggle" type="button" aria-haspopup="true" aria-expanded="false">
                   <a href="/validateHash" class="nav-item nav-link"><i class="fa fa-flag"> Validate</i></a></button>
                </div>
             </div>

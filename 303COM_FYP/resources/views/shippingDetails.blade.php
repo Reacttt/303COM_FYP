@@ -9,12 +9,10 @@
 <head>
    <meta charset="utf-8">
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-   <title>Ela Admin - HTML5 Admin Template</title>
-   <meta name="description" content="Ela Admin - HTML5 Admin Template">
-   <meta name="viewport" content="width=device-width, initial-scale=1">
+   <title>E-Store | Shipping Details</title>
 
-   <link rel="apple-touch-icon" href="https://i.imgur.com/QRAUqs9.png">
-   <link rel="shortcut icon" href="https://i.imgur.com/QRAUqs9.png">
+   <!-- Favicon -->
+   <link href="images/favicon.png" rel="icon">
 
    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800' rel='stylesheet' type='text/css'>
 

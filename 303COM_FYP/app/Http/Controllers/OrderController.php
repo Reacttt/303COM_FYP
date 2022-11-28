@@ -89,16 +89,17 @@ class OrderController extends Controller
                     "updated_at" => \Carbon\Carbon::now()->toDateTimeString()
                 );
 
-                // Update Product Sales
+                // Update Product Sales and Product Stock
 
                 DB::table('order_item')->where('order_item_id', $order_item->order_item_id)->update($data);
-
                 $product = DB::table('product')->where('product_id', $order_item->product_id)->first();
 
                 $newProductSale = ($product->product_sale + $order_item->order_item_quantity);
+                $newProductStock = ($product->product_stock - $order_item->order_item_quantity);
 
                 $data = array(
 
+                    "product_stock" => $newProductStock,
                     "product_sale" => $newProductSale,
                     "updated_at" => \Carbon\Carbon::now()->toDateTimeString()
                 );

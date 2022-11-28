@@ -3,13 +3,11 @@
 
 <head>
    <meta charset="utf-8">
-   <title>E Store - eCommerce HTML Template</title>
-   <meta content="width=device-width, initial-scale=1.0" name="viewport">
-   <meta content="eCommerce HTML Template Free Download" name="keywords">
-   <meta content="eCommerce HTML Template Free Download" name="description">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <title>E-Store | Shipping Details Form </title>
 
    <!-- Favicon -->
-   <link href="img/favicon.ico" rel="icon">
+   <link href="images/favicon.png" rel="icon">
 
    <!-- Google Fonts -->
    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400|Source+Code+Pro:700,900&display=swap" rel="stylesheet">
@@ -24,6 +22,11 @@
 <body>
 
    @if ($shipping_details == NULL)
+   <center>
+      <h4><b> Update Shipping Details </b></h4>
+   </center>
+   <br>
+   
    <div class='container'>
       <form action="{{route('addShippingDetails')}}" method="post" class="form-group" enctype="multipart/form-data" align='center'>
          @csrf
@@ -91,6 +94,12 @@
       </form>
    </div>
    @else
+
+   <center>
+      <h4><b> Update Shipping Details </b></h4>
+   </center>
+   <br>
+
    <div class='container'>
       <form action="{{route('updateShippingDetails')}}" method="post" class="form-group" enctype="multipart/form-data" align='center'>
          @csrf
@@ -112,14 +121,13 @@
          <br>
          <input type="text" class="form-control" placeholder="Contact" name="shipping_contact" value="{{ $shipping_details->shipping_contact }}">
          <br>
-         <button type='submit' class='registerbtn'>Add Shipping Details</button>
+         <button type='submit' class='registerbtn'>Update Shipping Details</button>
          <br>
       </form>
    </div>
    @endif
 
 </body>
-
 
 @include('footer')
 

@@ -3,10 +3,11 @@
 
 <head>
    <meta charset="utf-8">
-   <title>E Store - eCommerce HTML Template</title>
-   <meta content="width=device-width, initial-scale=1.0" name="viewport">
-   <meta content="eCommerce HTML Template Free Download" name="keywords">
-   <meta content="eCommerce HTML Template Free Download" name="description">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <title>E-Store | Category </title>
+
+   <!-- Favicon -->
+   <link href="images/favicon.png" rel="icon">
 
    <!-- Favicon -->
    <link href="img/favicon.ico" rel="icon">
@@ -41,7 +42,7 @@
          <div class="row g-4">
             @foreach($category as $category)
             @if ($category->category_status == 1)
-            @php $active_product = DB::table('product')->where('category_id', $category->category_id)->where('product_status', 1)->count(); @endphp
+            @php $active_product = DB::table('product')->where('category_id', $category->category_id)->where('product_status', 1)->where('category_status', 1)->count(); @endphp
 
             <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.1s">
                <a class="cat-item d-block bg-light text-center rounded p-3" href="/product/{{ $category->category_id }}">

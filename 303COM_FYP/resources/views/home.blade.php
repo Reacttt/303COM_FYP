@@ -2,14 +2,12 @@
 <html lang="en">
 
 <head>
-    <meta charset="utf-8">
-    <title>E Store - eCommerce HTML Template</title>
-    <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <meta content="eCommerce HTML Template Free Download" name="keywords">
-    <meta content="eCommerce HTML Template Free Download" name="description">
+   <meta charset="utf-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <title>E-Store | Home </title>
 
-    <!-- Favicon -->
-    <link href="img/favicon.ico" rel="icon">
+   <!-- Favicon -->
+   <link href="images/favicon.png" rel="icon">
 
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400|Source+Code+Pro:700,900&display=swap" rel="stylesheet">
@@ -57,43 +55,15 @@
                 </nav>
             </div>
             <div class="col-md-6">
-                <div class="header-slider normal-slider">
-                    <div class="header-slider-item">
-                        <img src="/images/slider-1.jpg" alt="Slider Image" />
-                        <div class="header-slider-caption">
-                            <p>Some text goes here that describes the image</p>
-                            <a class="btn" href="/product"><i class="fa fa-shopping-cart"></i>Shop Now</a>
-                        </div>
-                    </div>
-                    <div class="header-slider-item">
-                        <img src="/images/slider-2.jpg" alt="Slider Image" />
-                        <div class="header-slider-caption">
-                            <p>Some text goes here that describes the image</p>
-                            <a class="btn" href="/product"><i class="fa fa-shopping-cart"></i>Shop Now</a>
-                        </div>
-                    </div>
-                    <div class="header-slider-item">
-                        <img src="/images/slider-3.jpg" alt="Slider Image" />
-                        <div class="header-slider-caption">
-                            <p>Some text goes here that describes the image</p>
-                            <a class="btn" href="/product"><i class="fa fa-shopping-cart"></i>Shop Now</a>
-                        </div>
-                    </div>
-                </div>
+                <center><img src="/images/slider-2.jpg" alt="Slider Image" style="width:850px;height:395px;" /></center>
             </div>
             <div class="col-md-3">
                 <div class="header-img">
                     <div class="img-item">
-                        <img src="/images/category-1.jpg" />
-                        <a class="img-text" href="">
-                            <p>Some text goes here that describes the image</p>
-                        </a>
+                        <img src="/images/slider-1.jpg" />
                     </div>
                     <div class="img-item">
-                        <img src="/images/category-2.jpg" />
-                        <a class="img-text" href="">
-                            <p>Some text goes here that describes the image</p>
-                        </a>
+                        <img src="/images/slider-3.jpg" />
                     </div>
                 </div>
             </div>
@@ -109,7 +79,7 @@
             <h1>Recent Product</h1>
         </div>
         <div class="row align-items-center product-slider product-slider-4">
-            @php $product = DB::table('product')->orderBy('created_at', 'desc')->where('product_status', 1)->take(6)->get(); @endphp
+            @php $product = DB::table('product')->orderBy('created_at', 'desc')->where('product_status', 1)->where('category_status', 1)->take(6)->get(); @endphp
             @php $user_username = Session::get('user_username') @endphp
 
             @foreach ($product as $product)
@@ -120,7 +90,7 @@
                     </div>
                     <div class="product-image">
                         <a href="product-detail.html">
-                            <img src="/images/{{ $product->product_image }}" alt="Product Image">
+                            <img src="/images/{{ $product->product_image }}" style="width:400px;height:400px;" alt="Product Image" >
                         </a>
                         <div class="product-action">
                             @if ($user_username != null)
@@ -151,21 +121,6 @@
     </div>
 </div>
 <!-- Recent Product End -->
-
-<!-- Call to Action Start -->
-<div class="call-to-action">
-    <div class="container-fluid">
-        <div class="row align-items-center">
-            <div class="col-md-6">
-                <h1>call us for any queries</h1>
-            </div>
-            <div class="col-md-6">
-                <a href="tel:0123456789">+012-345-6789</a>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- Call to Action End -->
 
 @include('footer')
 

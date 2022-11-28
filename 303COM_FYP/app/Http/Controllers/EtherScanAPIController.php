@@ -16,7 +16,11 @@ class EtherScanAPIController extends Controller
     public function validateHash()
     {
         $admin_wallet = "0xE8dEc2A51E0E6F15a4917306c486165dFb395f1f";
-        $payment_details = DB::table('payment_details')->where('payment_method', 'Crypto')->where('created_at', '<', \Carbon\Carbon::now()->subMinutes(1))->where('payment_status', 0)->get();
+        $payment_details = DB::table('payment_details')
+                            ->where('payment_method', 'Crypto')
+                            ->where('created_at', '<', \Carbon\Carbon::now()->subMinutes(1))
+                            ->where('payment_status', 0)
+                            ->get();
         $validated = null;
 
         foreach ($payment_details as $payment) {

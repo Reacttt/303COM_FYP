@@ -9,12 +9,10 @@
 <head>
    <meta charset="utf-8">
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-   <title>Ela Admin - HTML5 Admin Template</title>
-   <meta name="description" content="Ela Admin - HTML5 Admin Template">
-   <meta name="viewport" content="width=device-width, initial-scale=1">
+   <title>E-Store | Order </title>
 
-   <link rel="apple-touch-icon" href="https://i.imgur.com/QRAUqs9.png">
-   <link rel="shortcut icon" href="https://i.imgur.com/QRAUqs9.png">
+   <!-- Favicon -->
+   <link href="images/favicon.png" rel="icon">
 
    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800' rel='stylesheet' type='text/css'>
 
@@ -126,7 +124,7 @@
                               @if ($payment->payment_method != "Crypto")
                               <b>Transaction: </b> <small> {{ $payment->payment_transaction }} </small><br>
                               @else
-                              <b>Transaction: </b> <a href="https://ropsten.etherscan.io/tx/{{ $payment->payment_transaction }}">View Transaction</a><br>
+                              <b>Transaction: </b> <a href="https://goerli.etherscan.io/tx/{{ $payment->payment_transaction }}">View Transaction</a><br>
                               @endif
                               @else
                               Pending Payment

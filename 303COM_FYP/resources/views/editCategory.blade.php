@@ -3,10 +3,11 @@
 
 <head>
    <meta charset="utf-8">
-   <title>E Store - eCommerce HTML Template</title>
-   <meta content="width=device-width, initial-scale=1.0" name="viewport">
-   <meta content="eCommerce HTML Template Free Download" name="keywords">
-   <meta content="eCommerce HTML Template Free Download" name="description">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <title>E-Store | Edit Category</title>
+
+   <!-- Favicon -->
+   <link href="images/favicon.png" rel="icon">
 
 </head>
 
@@ -31,7 +32,7 @@
                      @csrf
                      <div class="row form-group">
                         <div class="col col-md-3"><label for="text-input" class=" form-control-label">Category Image</label></div>
-                        <img class="center" width="150" height="150" src="/images/{{ $category->category_image }}" alt="">
+                        <img class="center" width="150" height="100" src="/images/{{ $category->category_image }}" alt="">
                      </div>
                      <div class="row form-group">
                         <div class="col col-md-3"><label for="text-input" class=" form-control-label">Category ID</label></div>

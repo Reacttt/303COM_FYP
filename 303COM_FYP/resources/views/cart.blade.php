@@ -3,13 +3,11 @@
 
 <head>
    <meta charset="utf-8">
-   <title>E Store - eCommerce HTML Template</title>
-   <meta content="width=device-width, initial-scale=1.0" name="viewport">
-   <meta content="eCommerce HTML Template Free Download" name="keywords">
-   <meta content="eCommerce HTML Template Free Download" name="description">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <title>E-Store | Cart</title>
 
    <!-- Favicon -->
-   <link href="img/favicon.ico" rel="icon">
+   <link href="images/favicon.png" rel="icon">
 
    <!-- Google Fonts -->
    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400|Source+Code+Pro:700,900&display=swap" rel="stylesheet">
@@ -42,6 +40,7 @@
       @php $totalQuantity = 0; @endphp
 
       @php $checkoutFlag = 0; @endphp
+      @php $notAvailableFlag = 0; @endphp
 
       @if ($fiat_currency != "MYR")
       @php $fiat_rate = DB::table('asset')->where('asset_quote', $fiat_currency)->value('asset_rate'); @endphp
@@ -90,6 +89,7 @@
 
                   @else
                   <div class='count'> Not Available </div>
+                  @php $notAvailableFlag = 1; @endphp
                   @endif
          </div>
 
@@ -139,9 +139,11 @@
 
          <a href="/checkout">
             @if ($checkoutFlag)
-            <div><button class='button'>Checkout</button></div>
-            @else
-            <div><button class='button' disabled>Checkout</button></div>
+               @if (!$notAvailableFlag)
+               <div><button class='button'>Checkout</button></div>
+               @else
+               <div><button class='button' disabled>Checkout</button></div>
+               @endif
             @endif
          </a>
          </form>

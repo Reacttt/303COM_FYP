@@ -69,7 +69,9 @@ return [
     |
     */
 
-    'timezone' => 'UTC',
+    'timezone' => env('APP_TIMEZONE', 'UTC'),
+
+    // The second parameter UTC is set as the default timezone value
 
     /*
     |--------------------------------------------------------------------------

@@ -67,6 +67,7 @@ class ShippingDetailsController extends Controller
             'shipping_first_name' => 'required|max:255',
             'shipping_last_name' => 'required',
             'shipping_address_line1' => 'required',
+            'shipping_address_line2' => 'required',
             'shipping_city' => 'required',
             'shipping_postal_code' => 'required',
             'shipping_country' => 'required',

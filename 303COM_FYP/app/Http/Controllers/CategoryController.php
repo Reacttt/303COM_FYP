@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\DB;
 
 class CategoryController extends Controller
 {
-    
+
     public function findCategory($category_id = null)
     {
         $category = DB::table('category')->where('category_id', $category_id)->first();
@@ -23,7 +23,7 @@ class CategoryController extends Controller
         $category_sale = 0;
         $category_status = $request->input('category_status');
         $created_at = \Carbon\Carbon::now()->toDateTimeString();
-        
+
         $this->validate($request, [
             'category_name' => 'required|max:255',
             'category_description' => 'required|max:255',
@@ -45,7 +45,7 @@ class CategoryController extends Controller
 
         DB::table('category')->insert($data);
 
-        return redirect('admin')->with('alert', 'Category added successfully!');
+        return redirect('/updateCategory')->with('alert', 'Category added successfully!');
     }
 
     public function updateCategoryDetails(Request $request)
@@ -82,9 +82,33 @@ class CategoryController extends Controller
 
         DB::table('category')->where('category_id', $category_id)->update($data);
 
-        if ($category_status != 0)
+        if ($category_status != 0) {
+            $category_product = DB::table('product')->where('category_id', $category_id)->get();
+
+            foreach ($category_product as $product) {
+                $data = array(
+
+                    "category_status" => 1,
+                    "updated_at" => \Carbon\Carbon::now()->toDateTimeString()
+                );
+
+                DB::table('product')->where('product_id', $product->product_id)->update($data);
+            }
+
             return redirect('/restoreCategory')->with('alert', 'Category restored successfully! ');
-        else
-            return redirect('/deleteCategory')->with('alert', 'Category deleted successfully! ');
+        } else
+            $category_product = DB::table('product')->where('category_id', $category_id)->get();
+
+        foreach ($category_product as $product) {
+            $data = array(
+
+                "category_status" => 0,
+                "updated_at" => \Carbon\Carbon::now()->toDateTimeString()
+            );
+
+            DB::table('product')->where('product_id', $product->product_id)->update($data);
+        }
+
+        return redirect('/deleteCategory')->with('alert', 'Category deleted successfully! ');
     }
 }

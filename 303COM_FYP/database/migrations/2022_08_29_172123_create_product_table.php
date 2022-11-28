@@ -24,6 +24,7 @@ return new class extends Migration
             $table->double('product_price');
             $table->integer('product_sale');
             $table->boolean('product_status');
+            $table->boolean('category_status');
             $table->timestamps();
         });
     }

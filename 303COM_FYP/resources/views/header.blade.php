@@ -3,13 +3,11 @@
 
 <head>
    <meta charset="utf-8">
-   <title>E Store - eCommerce HTML Template</title>
-   <meta content="width=device-width, initial-scale=1.0" name="viewport">
-   <meta content="eCommerce HTML Template Free Download" name="keywords">
-   <meta content="eCommerce HTML Template Free Download" name="description">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <title>E-Store | Header</title>
 
    <!-- Favicon -->
-   <link href="img/favicon.ico" rel="icon">
+   <link href="images/favicon.png" rel="icon">
 
    <!-- Google Fonts -->
    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400|Source+Code+Pro:700,900&display=swap" rel="stylesheet">
@@ -43,18 +41,19 @@ Session()->put('alert', "User status has been updated by Admin. Please login aga
 $asset = DB::table('asset')->first();
 
 if ($asset != NULL) {
-$current_time = time();
-$updated_at = strtotime($asset->updated_at);
-$difference = abs($current_time - $updated_at);
+   $current_time = time();
+   $updated_at = strtotime($asset->updated_at);
+   $difference = abs($current_time - $updated_at);
 
-// If difference is more or equal to 15 minutes
-if ($difference >= (60 * 15)) {
-header('location: http://127.0.0.1:8000/updateAPI');
-die;
-}
+   // If difference is more or equal to 15 minutes
+   if ($difference >= (60 * 15)) {
+      header('location: http://127.0.0.1:8000/updateAPI');
+      die;
+   }
+   
 } else {
-header('location: http://127.0.0.1:8000/updateAPI');
-die;
+   header('location: http://127.0.0.1:8000/updateAPI');
+   die;
 }
 
 

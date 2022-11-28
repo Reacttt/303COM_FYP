@@ -2,14 +2,12 @@
 <html lang="en">
 
 <head>
-	<meta charset="utf-8">
-	<title>E Store - eCommerce HTML Template</title>
-	<meta content="width=device-width, initial-scale=1.0" name="viewport">
-	<meta content="eCommerce HTML Template Free Download" name="keywords">
-	<meta content="eCommerce HTML Template Free Download" name="description">
+   <meta charset="utf-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <title>E-Store | Product List</title>
 
-	<!-- Favicon -->
-	<link href="img/favicon.ico" rel="icon">
+   <!-- Favicon -->
+   <link href="images/favicon.png" rel="icon">
 
 	<!-- Google Fonts -->
 	<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400|Source+Code+Pro:700,900&display=swap" rel="stylesheet">
@@ -27,7 +25,7 @@
 				<div class="sidebar-categories">
 					<div class="head">Browse Categories</div>
 					<ul class="main-categories">
-						@php $all_active_product = DB::table('product')->where('product_status', 1)->count(); @endphp
+						@php $all_active_product = DB::table('product')->where('product_status', 1)->where('category_status', 1)->count(); @endphp
 						@php $all_active_category = DB::table('category')->where('category_status', 1)->count(); @endphp
 
 						<li class="main-nav-list"><a href="/product"><span class="lnr lnr-arrow-right"></span>All Products<span class="number">({{$all_active_product}})</span></a>
@@ -40,7 +38,7 @@
 						<li class="main-nav-list"><a data-toggle="collapse" href="#meatFish" aria-expanded="false" aria-controls="meatFish"><span class="lnr lnr-arrow-right"></span>Categories<span class="number">({{$all_active_category}})</span></a>
 							<ul class="collapse" id="meatFish" data-toggle="collapse" aria-expanded="false" aria-controls="meatFish">
 								@foreach ($category as $category)
-								@php $active_product = DB::table('product')->where('category_id', $category->category_id)->where('product_status', 1)->count(); @endphp
+								@php $active_product = DB::table('product')->where('category_id', $category->category_id)->where('product_status', 1)->where('category_status', 1)->count(); @endphp
 								<li class="main-nav-list child"><a href="/product/{{ $category->category_id }}">{{ $category->category_name }}<span class="number">({{$active_product}})</span></a></li>
 								@endforeach
 							</ul>
@@ -53,9 +51,6 @@
 				<!-- Start Filter Bar -->
 				<div class="filter-bar d-flex flex-wrap align-items-center">
 					<div class="sorting">
-						<select>
-							<option value="1">Default sorting</option>
-						</select>
 					</div>
 				</div>
 				<!-- End Filter Bar -->
@@ -66,7 +61,7 @@
 						@foreach($product as $product)
 						<div class="col-lg-4 col-md-6">
 							<div class="single-product">
-								<img class="img-fluid" src="/images/{{ $product->product_image }}" alt="">
+								<img class="img-fluid" src="/images/{{ $product->product_image }}" style="width:400px;height:250px;" alt="">
 								<div class="product-details">
 									<h6> {{ $product->product_name }}</h6>
 									<div class="price">
@@ -90,12 +85,12 @@
 										@if ($user_username != null)
 										<a href="/addCart/{{ $product->product_id }}/{{ $user_username }}" class="social-info">
 											<i class="fa fa-cart-plus"></i>
-											<p class="hover-text">add to bag</p>
+											<p class="hover-text">add cart </p>
 										</a>
 										@endif
 										<a href="/singleProduct/{{ $product->product_id }}" class="social-info">
 											<i class="fa fa-expand"></i>
-											<p class="hover-text">view more</p>
+											<p class="hover-text">view more </p>
 										</a>
 									</div>
 								</div>

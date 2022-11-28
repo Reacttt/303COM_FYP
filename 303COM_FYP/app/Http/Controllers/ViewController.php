@@ -44,16 +44,16 @@ class ViewController extends Controller
         $category = DB::table('category')->where('category_status', 1)->get();
 
         if ($category_id == null) {
-            $product = DB::table('product')->where('product_status', 1)->get();
+            $product = DB::table('product')->where('product_status', 1)->where('category_status', 1)->get();
         } elseif ($category_id == "best") {
             // Retrieve Product that is in Order Items Table
-            $product = DB::table('product')->where('product_status', 1)->whereExists(function ($query) {
+            $product = DB::table('product')->where('product_status', 1)->where('category_status', 1)->whereExists(function ($query) {
                 $query->select(DB::raw(1))->from('order_item')->whereRaw('order_item.product_id = product.product_id')->where('order_item.order_item_status', '=', '1');
             })->orderBy('product_sale', 'desc')->take(6)->get();
         } elseif ($category_id == "new") {
-            $product = DB::table('product')->orderBy('created_at', 'desc')->where('product_status', 1)->take(6)->get();
+            $product = DB::table('product')->orderBy('created_at', 'desc')->where('product_status', 1)->where('category_status', 1)->take(6)->get();
         } else {
-            $product = DB::table('product')->where('category_id', $category_id)->where('product_status', 1)->get();
+            $product = DB::table('product')->where('category_id', $category_id)->where('product_status', 1)->where('category_status', 1)->get();
         }
 
         return view("productList", compact('product', 'category'));
@@ -125,7 +125,8 @@ class ViewController extends Controller
 
     public function orderPage($filter = null)
     {
-        $order = DB::table('order')->orderBy('order_id', 'DESC')->get();
+        $user = DB::table('user')->where('user_username', Session()->get('user_username'))->first();
+        $order = DB::table('order')->where('user_id', $user->user_id)->orderBy('order_id', 'DESC')->get();
         $order_item = DB::table('order_item')->get();
 
         return view("order", compact('order', 'order_item'));

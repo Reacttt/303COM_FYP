@@ -51,12 +51,14 @@ class ProductController extends Controller
             "product_price" => $product_price,
             "product_stock" => $product_stock,
             "product_status" => $product_status,
+            'category_status' => 1,
+            "product_sale" => 0,
             "created_at" => $created_at
         );
 
         DB::table('product')->insert($data);
 
-        return redirect('admin')->with('alert', 'Product added successfully!');
+        return redirect('/updateProduct')->with('alert', 'Product added successfully!');
     }
 
     public function updateProductDetails(Request $request)
